@@ -11,7 +11,7 @@
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 
 
-    <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/images/ico.ico') }}" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
     <!-- waves.css -->
@@ -102,15 +102,19 @@
                             <div class="header-search">
                                 <div class="main-search morphsearch-search">
                                     <div class="input-group">
-                                        <span class="input-group-addon search-close"><i class="ti-close"></i></span>
+                                        <span class="input-group-addon search-close">
+                                            <i class="ti-close"></i>
+                                        </span>
                                         <input type="text" class="form-control" placeholder="Enter Keyword">
-                                        <span class="input-group-addon search-btn"><i class="ti-search"></i></span>
+                                        <span class="input-group-addon search-btn">
+                                            <i class="ti-search"></i>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <a href="index.html">
-                            <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo" />
+                            <img class="img-fluid" src="{{ asset('assets/images/logo.png')}}" alt="Theme-Logo" />
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="ti-more"></i>
@@ -120,15 +124,22 @@
                     <div class="navbar-container container-fluid">
                         <ul class="nav-left">
                             <li>
-                                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a>
+                                <div class="sidebar_toggle">
+                                    <a href="javascript:void(0)">
+                                        <i class="ti-menu"></i>
+                                    </a>
                                 </div>
                             </li>
                             <li class="header-search">
                                 <div class="main-search morphsearch-search">
                                     <div class="input-group">
-                                        <span class="input-group-addon search-close"><i class="ti-close"></i></span>
+                                        <span class="input-group-addon search-close">
+                                            <i class="ti-close"></i>
+                                        </span>
                                         <input type="text" class="form-control">
-                                        <span class="input-group-addon search-btn"><i class="ti-search"></i></span>
+                                        <span class="input-group-addon search-btn">
+                                            <i class="ti-search"></i>
+                                        </span>
                                     </div>
                                 </div>
                             </li>
@@ -152,7 +163,8 @@
                                     <li class="waves-effect waves-light">
                                         <div class="media">
                                             <img class="d-flex align-self-center img-radius"
-                                                src="assets/images/avatar-2.jpg" alt="Generic placeholder image">
+                                                src="{{ asset('assets/images/avatar-2.jpg')}}"
+                                                alt="Generic placeholder image">
                                             <div class="media-body">
                                                 <h5 class="notification-user">John Doe</h5>
                                                 <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer
@@ -164,7 +176,8 @@
                                     <li class="waves-effect waves-light">
                                         <div class="media">
                                             <img class="d-flex align-self-center img-radius"
-                                                src="assets/images/avatar-4.jpg" alt="Generic placeholder image">
+                                                src="{{ asset('assets/images/avatar-4.jpg')}}"
+                                                alt="Generic placeholder image">
                                             <div class="media-body">
                                                 <h5 class="notification-user">Joseph William</h5>
                                                 <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer
@@ -176,7 +189,8 @@
                                     <li class="waves-effect waves-light">
                                         <div class="media">
                                             <img class="d-flex align-self-center img-radius"
-                                                src="assets/images/avatar-3.jpg" alt="Generic placeholder image">
+                                                src="{{ asset('assets/images/avatar-3.jpg')}}"
+                                                alt="Generic placeholder image">
                                             <div class="media-body">
                                                 <h5 class="notification-user">Sara Soudein</h5>
                                                 <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer
@@ -189,34 +203,40 @@
                             </li>
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <img src="assets/images/faq_man.png" class="img-radius" alt="User-Profile-Image">
+                                    <img src="{{ asset('assets/images/faq_man.png')}}" class="img-radius"
+                                        alt="User-Profile-Image">
                                     <span>CHOURABI Aziz</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
                                     <li class="waves-effect waves-light">
                                         <a href="#!">
-                                            <i class="ti-settings"></i> Settings
+                                            <i class="ti-settings"></i>
+                                            Settings
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
                                         <a href="user-profile.html">
-                                            <i class="ti-user"></i> Profile
+                                            <i class="ti-user"></i>
+                                            Profile
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
                                         <a href="email-inbox.html">
-                                            <i class="ti-email"></i> My Messages
+                                            <i class="ti-email"></i>
+                                            My Messages
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
                                         <a href="auth-lock-screen.html">
-                                            <i class="ti-lock"></i> Lock Screen
+                                            <i class="ti-lock"></i>
+                                            Lock Screen
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
                                         <a href="auth-normal-sign-in.html">
-                                            <i class="ti-layout-sidebar-left"></i> Logout
+                                            <i class="ti-layout-sidebar-left"></i>
+                                            Logout
                                         </a>
                                     </li>
                                 </ul>
@@ -229,11 +249,16 @@
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
                     <nav class="pcoded-navbar">
-                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                        <div class="sidebar_toggle">
+                            <a href="#">
+                                <i class="icon-close icons"></i>
+                            </a>
+                        </div>
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
                                 <div class="main-menu-header">
-                                    <img class="img-80 img-radius" src="assets\images\logo_off.png" alt="logo">
+                                    <img class="img-80 img-radius" src="{{asset('assets/images/logo_off.png')}}"
+                                        alt="logo">
                                     <div class="user-details">
                                         <span>
                                             <b>
@@ -328,6 +353,55 @@
                                 <li class="pcoded-hasmenu ">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                                         <span class="pcoded-micon">
+                                            <i class="ti-bag"></i>
+                                            <b>M</b>
+                                        </span>
+                                        <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Les Contrats
+                                        </span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class="">
+                                            <a href="/contrat" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon">
+                                                    <i class="ti-angle-right"></i>
+                                                </span>
+                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">
+                                                    Tous les contrats
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="actif" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon">
+                                                    <i class="ti-angle-right"></i>
+                                                </span>
+                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">
+
+                                                    Les contrats
+                                                    actifs</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="expire" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon">
+                                                    <i class="ti-angle-right"></i>
+                                                </span>
+                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">
+                                                    Les contrats
+                                                    expriés</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+
+
+
+                                    </ul>
+                                </li>
+                                <li class="pcoded-hasmenu ">
+                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon">
                                             <i class="ti-file"></i>
                                             <b>M</b>
                                         </span>
@@ -371,63 +445,7 @@
 
                                     </ul>
                                 </li>
-                                <li class="pcoded-hasmenu ">
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon">
-                                            <i class="ti-bag"></i>
-                                            <b>M</b>
-                                        </span>
-                                        <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Les Contrats
-                                        </span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                    <ul class="pcoded-submenu">
-                                        <li class="">
-                                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon">
-                                                    <i class="ti-angle-right"></i>
-                                                </span>
-                                                <span class="pcoded-mtext"
-                                                    data-i18n="nav.menu-levels.menu-level-21">tous
-                                                    les contrats
-                                                </span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon">
-                                                    <i class="ti-angle-right"></i>
-                                                </span>
-                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">Les
-                                                    contrats en cours</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon">
-                                                    <i class="ti-angle-right"></i>
-                                                </span>
-                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">Les
-                                                    contrats terminé</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon">
-                                                    <i class="ti-angle-right"></i>
-                                                </span>
-                                                <span class="pcoded-mtext" data-i18n="nav.menu-levels.menu-level-21">Les
-                                                    contrats en attente</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
 
-
-                                    </ul>
-                                </li>
 
                                 <div class="pcoded-navigation-label" data-i18n="nav.category.other">Communication</div>
                                 <ul class="pcoded-item pcoded-left-item">
@@ -531,50 +549,63 @@
                         </div>
                     </nav>
                     <div class="pcoded-content">
-                        <!-- Page-header start -->
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-body">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-sm-12 ">
+                                                    <div class="card p-5">
+                                                        <!-- Page-header end -->
+                                                        {% block body %}{% endblock %}
+                                                    </div>
 
-                        <!-- Page-header end -->
-
-
-
-
-                        {% block body %}{% endblock %}
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script type="text/javascript" src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/popper.js/popper.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/pages/widget/excanvas.js') }}"></script>
-    <!-- waves js -->
-    <script src="{{ asset('assets/pages/waves/js/waves.min.js') }}"></script>
-    <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="{{ asset('assets/js/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
-    <!-- modernizr js -->
-    <script type="text/javascript" src="{{ asset('assets/js/modernizr/modernizr.js') }}"></script>
-    <!-- slimscroll js -->
-    <script type="text/javascript" src="{{ asset('assets/js/SmoothScroll.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
-    <!-- Chart js -->
-    <script type="text/javascript" src="{{ asset('assets/js/chart.js/Chart.js') }}"></script>
-    <!-- amchart js -->
-    <script src="{{ asset('https://www.amcharts.com/lib/3/amcharts.js') }}"></script>
-    <script src="{{ asset('assets/pages/widget/amchart/gauge.js') }}"></script>
-    <script src="{{ asset('assets/pages/widget/amchart/serial.js') }}"></script>
-    <script src="{{ asset('assets/pages/widget/amchart/light.js') }}"></script>
-    <script src="{{ asset('assets/pages/widget/amchart/pie.min.js') }}"></script>
-    <script src="{{ asset('https://www.amcharts.com/lib/3/plugins/export/export.min.js') }}"></script>
-    <!-- menu js -->
-    <script src="{{ asset('assets/js/pcoded.min.js') }}"></script>
-    <script src="{{ asset('assets/js/vertical-layout.min.js') }}"></script>
-    <!-- custom js -->
-    <script type="text/javascript" src="{{ asset('assets/pages/dashboard/custom-dashboard.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/script.js') }}"></script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <script type="text/javascript"
+                                        src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
+                                    <script type="text/javascript"
+                                        src="{{ asset('assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
+                                    <script type="text/javascript"
+                                        src="{{ asset('assets/js/popper.js/popper.min.js') }}"></script>
+                                    <script type="text/javascript"
+                                        src="{{ asset('assets/js/bootstrap/js/bootstrap.min.js') }}"></script>
+                                    <script type="text/javascript"
+                                        src="{{ asset('assets/pages/widget/excanvas.js') }}"></script>
+                                    <!-- waves js -->
+                                    <script src="{{ asset('assets/pages/waves/js/waves.min.js') }}"></script>
+                                    <!-- jquery slimscroll js -->
+                                    <script type="text/javascript"
+                                        src="{{ asset('assets/js/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
+                                    <!-- modernizr js -->
+                                    <script type="text/javascript"
+                                        src="{{ asset('assets/js/modernizr/modernizr.js') }}"></script>
+                                    <!-- slimscroll js -->
+                                    <script type="text/javascript"
+                                        src="{{ asset('assets/js/SmoothScroll.js') }}"></script>
+                                    <script
+                                        src="{{ asset('assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+                                    <!-- Chart js -->
+                                    <script type="text/javascript"
+                                        src="{{ asset('assets/js/chart.js/Chart.js') }}"></script>
+                                    <!-- amchart js -->
+                                    <script src="{{ asset('https://www.amcharts.com/lib/3/amcharts.js') }}"></script>
+                                    <script src="{{ asset('assets/pages/widget/amchart/gauge.js') }}"></script>
+                                    <script src="{{ asset('assets/pages/widget/amchart/serial.js') }}"></script>
+                                    <script src="{{ asset('assets/pages/widget/amchart/light.js') }}"></script>
+                                    <script src="{{ asset('assets/pages/widget/amchart/pie.min.js') }}"></script>
+                                    <script
+                                        src="{{ asset('https://www.amcharts.com/lib/3/plugins/export/export.min.js') }}"></script>
+                                    <!-- menu js -->
+                                    <script src="{{ asset('assets/js/pcoded.min.js') }}"></script>
+                                    <script src="{{ asset('assets/js/vertical-layout.min.js') }}"></script>
+                                    <!-- custom js -->
+                                    <script type="text/javascript"
+                                        src="{{ asset('assets/pages/dashboard/custom-dashboard.js') }}"></script>
+                                    <script type="text/javascript" src="{{ asset('assets/js/script.js') }}"></script>
 </body>
 
 </html>
