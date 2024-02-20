@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Facture
+{% endblock %}
+
+{% block body %}
+	<h1>Continuer Facture</h1>
+
+
+	{{ include('facture/_form2.html.twig', {'button_label': 'Continuer'}) }}
+
+
+	{{ include('facture/_delete_form.html.twig') }}
+{% endblock %}

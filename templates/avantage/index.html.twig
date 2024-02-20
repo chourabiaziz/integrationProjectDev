@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Avantage index{% endblock %}
+
+{% block body %}
+    <h1>Avantage index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Titre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for avantage in avantages %}
+            <tr>
+                <td>{{ avantage.id }}</td>
+                <td>{{ avantage.description }}</td>
+                <td>{{ avantage.titre }}</td>
+                <td>
+                    <a href="{{ path('app_avantage_show', {'id': avantage.id}) }}">show</a>
+                    <a href="{{ path('app_avantage_edit', {'id': avantage.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_avantage_new') }}">Create new</a>
+{% endblock %}
