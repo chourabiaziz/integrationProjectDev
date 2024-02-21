@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture index
+{% endblock %}
+
+{% block body %}
+<h1>List des Factures</h1>
+
+
+<div class="row">
+    {% for f in factures %}
+
+    <div class="col-xl-3 col-md-6">
+
+        {% if f.statut is null %}
+
+        <a href="etape2/{{f.id}}">
+
+            {% elseif f.statut == 0 %}
+            <a href="{{f.id}}">
+
+                {% else %}
+                <a href="{{f.id}}/ended">
+
+
+                    {% endif %}
+                    <div class="card">
+
+                        <div class="card-block">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+
+
+                                    <h6 class="text-muted m-b-0">Facture Ref°
+                                        {{f.id}}
+                                    </h6>
+
+                                    <h4 class="text-c-purple">{{f.totale}}
+                                        TND
+                                    </h4>
+                                    <h6 class="text-muted m-b-0">
+                                        {{f.CreatedAt|date('d-m-y')}}</h6>
+                                    </p>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <i class="ti ti-file f-28"></i>
+                                </div>
+                            </div>
+                        </div>
+                        {% if f.statut is null %}
+                        <div class="card-footer bg-warning">
+                            <div class="row align-items-center">
+                                <div class="col-9">
+                                    <p class="text-white m-b-0">Générer et non finis</p>
+                                </div>
+                                <div class="col-2  "><a href=""><i class="ti-trash"></i></a></div>
+                                <div class="col-1  "><a href=""><i class="ti-pencil-alt"></i></a></div>
+                            </div>
+                        </div>
+                        {% elseif f.statut == true %}
+                        <div class="card-footer bg-c-green">
+                            <div class="row align-items-center">
+                                <div class="col-10">
+                                    <p class="text-white m-b-0 "> Envoyé <i style="color: green;" class="ti-check"></i>
+                                    </p>
+                                </div>
+                                <div class="col-1"><a href=""><i class="ti-trash"></i></a></div>
+                                <div class="col-1"><a href=""><i class="ti-pencil-alt"></i></a></div>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="card-footer bg-c-purple">
+                            <div class="row align-items-center">
+                                <div class="col-9">
+                                    <p class="text-white m-b-0">prét pour continuer</p>
+
+                                </div>
+                                <div class="col-3 text-right"></div>
+                            </div>
+                        </div>
+
+
+                        {% endif %}
+
+
+                    </div>
+    </div>
+    </a>
+
+
+    {% else %}
+    <h1>Insérer votre données</h1>
+
+    {% endfor %}
+
+
+</div>
+
+
+<div class="col-3">
+    <a class="btn btn-primary" href="{{ path('app_facture_new') }}">Create new</a>
+
+</div>
+{% endblock %}
