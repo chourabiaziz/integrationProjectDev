@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Voitures{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="my-4">Liste des Voitures</h1>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Marque</th>
+                        <th scope="col">Modèle</th>
+                        <th scope="col">Numéro de série</th>
+                        <th scope="col">Type de carburant</th>
+                        <th scope="col">Numéro d'immatriculation</th>
+                        <th scope="col">Kilométrage</th>
+                        <th scope="col">Prix d'achat</th>
+                        <th scope="col">Prix actuel</th>
+                        <th scope="col">Date d'achat</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for voiture in voitures %}
+                        <tr>
+                            <td>{{ voiture.id }}</td>
+                            <td>{{ voiture.marque }}</td>
+                            <td>{{ voiture.modele }}</td>
+                            <td>{{ voiture.numeroSerie }}</td>
+                            <td>{{ voiture.typeCarburant }}</td>
+                            <td>{{ voiture.numeroImmatriculation }}</td>
+                            <td>{{ voiture.kilometrage }}</td>
+                            <td>{{ voiture.prixAchat }}</td>
+                            <td>{{ voiture.prixActuel }}</td>
+                            <td>{{ voiture.dateAchat ? voiture.dateAchat|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>
+                                <a href="{{ path('app_voiture_show', {'id': voiture.id}) }}" class="btn btn-info btn-sm">Voir</a>
+                                <a href="{{ path('app_voiture_edit', {'id': voiture.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                                <!-- Bouton de suppression avec notification -->
+                                <button type="button" class="btn btn-danger btn-sm" onclick="deleteConfirmation('{{ path('app_voiture_delete', {'id': voiture.id}) }}', '{{ csrf_token('delete' ~ voiture.id) }}')">Supprimer</button>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="11" class="text-center">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <a href="{{ path('app_voiture_new') }}" class="btn btn-success">Créer une nouvelle voiture</a>
+    </div>
+
+    <!-- Modal de confirmation de suppression -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Êtes-vous sûr de vouloir supprimer cet élément ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <form id="deleteForm" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" id="deleteToken" value="">
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin du Modal -->
+
+    <!-- Script pour la notification de suppression -->
+    <script>
+        function deleteConfirmation(url, token) {
+            $('#deleteModal').modal('show');
+            $('#deleteToken').val(token);
+            $('#deleteForm').attr('action', url);
+        }
+    </script>
+{% endblock %}

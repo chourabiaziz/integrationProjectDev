@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Voiture{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="my-4">Créer une nouvelle voiture</h1>
+
+        <div class="card">
+            <div class="card-body">
+                <form action="{{ path('app_voiture_new') }}" method="post">
+                    {{ form_start(form) }}
+
+                    <div class="form-group row">
+                        <label for="marque" class="col-sm-2 col-form-label">Marque :</label>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.marque, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="modele" class="col-sm-2 col-form-label">Modèle :</label>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.modele, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="annee_fabrication" class="col-sm-2 col-form-label">Année de fabrication :</label>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.annee_fabrication, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="numero_serie" class="col-sm-2 col-form-label">Numéro de série :</label>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.numero_serie, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="type_carburant" class="col-sm-2 col-form-label">Type de carburant :</label>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.type_carburant, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="numero_immatriculation" class="col-sm-2 col-form-label">Numéro d'immatriculation :</label>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.numero_immatriculation, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="kilometrage" class="col-sm-2 col-form-label">Kilométrage :</label>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.kilometrage, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="couleur" class="col-sm-2 col-form-label">Couleur :</label>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.couleur, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="prix_achat" class="col-sm-2 col-form-label">Prix d'achat :</label>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.prix_achat, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="prix_actuel" class="col-sm-2 col-form-label">Prix actuel :</label>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.prix_actuel, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="date_achat" class="col-sm-2 col-form-label">Date d'achat :</label>
+                        <div class="col-sm-10">
+                            {{ form_widget(form.date_achat, { 'attr': {'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-10 offset-sm-2">
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                            <a href="{{ path('app_voiture_index') }}" class="btn btn-secondary">Retour à la liste</a>
+                        </div>
+                    </div>
+
+                    {{ form_end(form) }}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
