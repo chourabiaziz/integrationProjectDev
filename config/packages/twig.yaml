@@ -1,6 +1,6 @@
 twig:
     file_name_pattern: '*.twig'
-
+#   exception_controller: 'App\Controller\ExceptionController::show404'
 when@test:
     twig:
         strict_variables: true

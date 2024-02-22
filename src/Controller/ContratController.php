@@ -61,12 +61,22 @@ class ContratController extends AbstractController
 
 
 
-
-        return $this->render('contrat/index.html.twig', [
-            'contrats' => $all,
-            'now' => $currentDate,
-            'contrats_searched' => $contrats_searched
-        ]);
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->render('contrat/index.html.twig', [
+                'contrats' => $all,
+                'now' => $currentDate,
+                'contrats_searched' => $contrats_searched
+            ]);
+         }
+        else  {
+            return $this->render('xfront_office/contrat/index.html.twig', [
+                'contrats' => $all,
+                'now' => $currentDate,
+                'contrats_searched' => $contrats_searched
+            ]);
+           
+        }
+       
     }
 
 
@@ -163,9 +173,20 @@ class ContratController extends AbstractController
     #[Route('/{id}', name: 'app_contrat_show', methods: ['GET'])]
     public function show(Contrat $contrat): Response
     {
-        return $this->render('contrat/show.html.twig', [
-            'contrat' => $contrat,
-        ]);
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->render('contrat/show.html.twig', [
+                'contrat' => $contrat,
+            ]);
+         }
+        else  {
+            return $this->render('xfront_office/contrat/show.html.twig', [
+                'contrat' => $contrat,
+            ]);
+           
+        }
+
+       
     }
 
     #[Route('/{id}/edit', name: 'app_contrat_edit', methods: ['GET', 'POST'])]
@@ -187,6 +208,19 @@ class ContratController extends AbstractController
     }
 
     
+    #[Route('/envoie/{id}', name: 'app_contrat_accepte', methods: ['GET', 'POST'])]
+    public function accepte(Request $request, Contrat $contrat, EntityManagerInterface $entityManager): Response
+    {
+
+        $contrat->setStatut(true);
+             $entityManager->flush();
+
+            return $this->redirectToRoute('app_contrat_index', [], Response::HTTP_SEE_OTHER);
+ 
+       
+    }
+
+
 
     #[Route('/{id}/renew', name: 'app_contrat_renew', methods: ['GET', 'POST'])]
     public function renew(  ContratRepository $contratRepository, Request $request, Contrat $contrat, EntityManagerInterface $entityManager): Response

@@ -4,92 +4,95 @@
 {% endblock %}
 
 {% block body %}
-	{{now|date('Y-m-d') }}
-	<h1>Tous Les Contrats</h1>
+{{now|date('Y-m-d') }}
+<h1>Tous Les Contrats</h1>
 
-	<table class="table">
+<table class="table">
 
-		<thead>
-			<tr>
-				<th class="text-center">Client</th>
+    <thead>
+        <tr>
+            <th class="text-center">Client</th>
 
-				<th class="text-center">Couverture</th>
-				<th class="text-center">Prix</th>
-				<th class="text-center">De</th>
-				<th class="text-center">Jusqu'à</th>
-				<th class="text-center">Statut</th>
-				<th class="text-center">Actiions</th>
+            <th class="text-center">Couverture</th>
+            <th class="text-center">Prix</th>
+            <th class="text-center">De</th>
+            <th class="text-center">Jusqu'à</th>
+            <th class="text-center">Statut</th>
+            <th class="text-center">Actiions</th>
 
-				<th class="text-center">Consulter</th>
-				<th class="text-center"></th>
-			</tr>
-		</thead>
-		<tbody>
-			<div class="mobile-search waves-effect waves-light">
-				<div class="header-search">
-					<div class="main-search morphsearch-search">
-						<div class="input-group">
-							<form method="get">
-								<input type="text" name="search" class="form-control" placeholder="Vous cherche quelqu'un?">
-								<select name="select" class="form-control col-2">
-									<option value="ref">Ref°</option>
-									<option value="assurance">Assurance</option>
-									<option value="client">Client</option>
-								</select>
-								<input class="btn btn-primary" value="Rechercher" type="submit">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
+            <th class="text-center">Consulter</th>
+            <th class="text-center"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <div class="mobile-search waves-effect waves-light">
+            <div class="header-search">
+                <div class="main-search morphsearch-search">
+                    <div class="input-group">
+                        <form method="get">
+                            <input type="text" name="search" class="form-control" placeholder="Vous cherche quelqu'un?">
+                            <select name="select" class="form-control col-2">
+                                <option value="ref">Ref°</option>
+                                <option value="assurance">Assurance</option>
+                                <option value="client">Client</option>
+                            </select>
+                            <input class="btn btn-primary" value="Rechercher" type="submit">
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
 
-			{% for contrat in contrats_searched %}
-				<tr class=" ">
-					<td class="text-center">{{ contrat.client }}</td>
+        {% for contrat in contrats_searched %}
+        <tr class=" ">
+            <td class="text-center">{{ contrat.client }}</td>
 
-					<td class="text-center">{{ contrat.couverture }}</td>
-					<td class="text-center">{{ contrat.prix }}
-						TND</td>
-					<td class="text-center">{{ contrat.dateDebut ? contrat.dateDebut|date('Y-m-d') : '' }}</td>
-					<td class="text-center">{{ contrat.dateFin ? contrat.dateFin|date('Y-m-d') : '' }}</td>
-					<td class="text-center">
+            <td class="text-center">{{ contrat.couverture }}</td>
+            <td class="text-center">{{ contrat.prix }}
+                TND</td>
+            <td class="text-center">{{ contrat.dateDebut ? contrat.dateDebut|date('Y-m-d') : '' }}</td>
+            <td class="text-center">{{ contrat.dateFin ? contrat.dateFin|date('Y-m-d') : '' }}</td>
+            <td class="text-center">
 
-						{% if contrat.statut == 1 %}
-							<span class="bg-success b-2 p-2 bordure">
-								Actif</span>
-						{% else %}
-							<span class="bg-danger b-2 p-2 bordure">
-								expiré</span>
-						{% endif %}
-					</td>
-					<td class="text-center">
-						{% if not contrat.statut %}
-							<a class=" btn-success p-2" style="border-radius: 15px;" href="{{ path('app_contrat_renew', {'id': contrat.id}) }}">Renouvellement
-								<i class="ti-reload"></i>
-							</a>
+                {% if contrat.statut == 1 %}
+                <span class="bg-success b-2 p-2 bordure">
+                    Actif</span>
+                {% else %}
+                <span class="bg-danger b-2 p-2 bordure">
+                    expiré</span>
+                {% endif %}
+            </td>
+            <td class="text-center">
+                {% if not contrat.statut %}
+                <a class=" btn-success p-2" style="border-radius: 15px;"
+                    href="{{ path('app_contrat_renew', {'id': contrat.id}) }}">Renouvellement
+                    <i class="ti-reload"></i>
+                </a>
 
-						{% else %}
-							<a class="" href="{{ path('app_contrat_edit', {'id': contrat.id}) }}">Edit
-								<i class="ti-pencil"></i>
-							</a>
-						{% endif %}
-					</td>
-					<td class="text-center">
-						<a class="badge-secondary p-2" style="border-radius: 15px;color:rgb(8, 42, 233);" href="{{contrat.id}}">
-							<i class="ti-eye"></i>
-						</a>
-						<a style="border-radius: 15px;" href="{{ path('app_contrat_delete', {'id': contrat.id}) }}">
-							<i class="ti-trash bg-danger p-2 bordure"></i>
-						</a>
-					</td>
-				</tr>
-			</td>
+                {% else %}
+                <a class="" href="{{ path('app_contrat_edit', {'id': contrat.id}) }}">Edit
+                    <i class="ti-pencil"></i>
+                </a>
+                {% endif %}
+            </td>
+            <td class="text-center">
+                <a class="badge-primary p-2 m-2" style="border-radius: 15px;color:rgb(8, 42, 233);"
+                    href="{{contrat.id}}">
+                    <i style="color: black;" class="ti-eye"></i>
+                </a>
+                <a style="border-radius: 15px;" href="{{ path('app_contrat_delete', {'id': contrat.id}) }}">
+                    <i class="ti-trash bg-danger p-2 bordure"></i>
+                </a>
+            </td>
+        </tr>
+        </td>
 
-		</tbody>
-	</tr>
-{% else %}
-	<tr>
-		<td class="text-center table-danger" colspan="10">Aucun contrat trouvé pour votre recherche</td>
-	</tr>
-{% endfor %}</tbody></table>{% endblock %}
+    </tbody>
+    </tr>
+    {% else %}
+    <tr>
+        <td class="text-center table-danger" colspan="10">Aucun contrat trouvé pour votre recherche</td>
+    </tr>
+    {% endfor %}</tbody>
+</table>{% endblock %}

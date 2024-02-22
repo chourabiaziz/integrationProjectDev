@@ -20,9 +20,19 @@ class FactureController extends AbstractController
     #[Route('/', name: 'app_facture_index', methods: ['GET'])]
     public function index(FactureRepository $factureRepository): Response
     {
-        return $this->render('facture/index.html.twig', [
-            'factures' => $factureRepository->findAllOrderedByAsc(),
-        ]);
+       
+          
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->render('facture/index.html.twig', [
+                'factures' => $factureRepository->findAllOrderedByAsc(),
+            ]);
+         }
+        else  {
+            return $this->render('xfront_office/facture/index.html.twig', [
+                'factures' => $factureRepository->findAllOrderedByAsc(),
+            ]);
+           
+        }
     }
 
     #[Route('/new', name: 'app_facture_new', methods: ['GET', 'POST'])]
@@ -133,16 +143,25 @@ class FactureController extends AbstractController
 
 
 
-    #[Route('/{id}/ended', name: 'app_facture_show')]
+    #[Route('/{id}/ended/template', name: 'app_facture_show_ended')]
     public function showfacture(Request $request,FactureRepository $fr , Facture $facture, EntityManagerInterface $entityManager): Response
     {
         
- 
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->render('facture/template.html.twig', [
+                'facture' => $facture,
+     
+            ]);
+         }
+        else  {
+            return $this->render('xfront_office/facture/show.html.twig', [
+                'facture' => $facture,
+     
+            ]);
+           
+        }
 
-        return $this->render('facture/template.html.twig', [
-            'facture' => $facture,
- 
-        ]);
+      
     }
     
 }

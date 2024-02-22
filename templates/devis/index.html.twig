@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-<h1>Devis index</h1>
+<h1>Liste Devis </h1>
 
 <table class="table">
     <thead>
@@ -29,14 +29,20 @@
             <td>{{ devi.civilite }}</td>
             <td>{{ devi.telephone }}</td>
             <td>{{ devi.email }}</td>
-            {% if devi.statut is null %}
-            <td> <span class="bg-danger">En attente</span> </td>
+            {% if devi.statut %}
+            <td> <span class="bg-success">demande accepté</span> </td>
+
+            {% elseif devi.statut is null %}
+            <td> <span class="bg-warning">demande en attente</span> </td>
+
+            {% else %}
+            <td> <span class="bg-danger">demande refusé</span> </td>
 
             {% endif %}
 
             <td>
-                <a href="{{ path('app_devis_show', {'id': devi.id}) }}">show</a>
-                <a href="{{ path('app_devis_edit', {'id': devi.id}) }}">edit</a>
+                <a class="btn btn-primary" href="{{ path('app_devis_show', {'id': devi.id}) }}">show</a>
+                <a class="btn btn-secondary" href="{{ path('app_devis_edit', {'id': devi.id}) }}">edit</a>
             </td>
         </tr>
         {% else %}
