@@ -1,11 +1,75 @@
+
+
+
 {% extends 'base.html.twig' %}
 
-{% block title %}New Assurance{% endblock %}
+{% block title %}Nouvelle Assurance{% endblock %}
 
 {% block body %}
-    <h1>Create new Assurance</h1>
+<div class="container">
+<h1 class="my-4 text-center text-italic-3d"> Nouvelle assurance</h1> <style> .text-italic-3d { font-style: italic; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); transform: perspective(1px) translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0.3); } </style>
+    <div class="card" style = " width: 30pc ;">
+        <div class="card-body">
+            <form action="{{ path('app_assurance_new') }}" method="post">
+                {{ form_start(form) }}
 
-    {{ include('assurance/_form.html.twig') }}
+                <div class="form-group row">
+                    <label for="nomAssurance" class="col-sm-3 col-form-label" style="font-weight: bold; font-style: italic; color: blue;" >Nom </label>
+                    <div class="col-sm-9">
+                        {{ form_widget(form.nomAssurance, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
 
-    <a href="{{ path('app_assurance_index') }}">back to list</a>
+
+                <div class="form-group row">
+<label for="adresse" class="col-sm-3 col-form-label" style="font-weight: bold; font-style: italic; color: blue;">Adresse </label>                    <div class="col-sm-9">
+                        {{ form_widget(form.adresseAssurance, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+
+               <div class="form-group row">
+                    <label for="codepostal" class="col-sm-3 col-form-label" style="font-weight: bold; font-style: italic; color: blue;" >Code Postal </label>
+                    <div class="col-sm-9">
+                        {{ form_widget(form.codePostalAssurance, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="tel" class="col-sm-3 col-form-label" style="font-weight: bold; font-style: italic; color: blue;">Telephone </label>
+                    <div class="col-sm-9">
+                        {{ form_widget(form.telAssurance, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="email" class="col-sm-3 col-form-label" style="font-weight: bold; font-style: italic; color: blue;">Email </label>
+                    <div class="col-sm-9">
+                        {{ form_widget(form.emailAssurance, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                </div>
+
+
+
+
+                  <div class="form-group row">
+                    <div class="col-sm-10 offset-sm-3">
+                        <button type="submit" class="btn btn-primary">Créer</button>
+                    </div>
+                </div>
+
+                
+
+                {{ form_end(form) }}
+            </form>
+        </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="{{ path('app_assurance_index') }}" class="btn btn-secondary">Retour à la liste</a>
+    </div>
+</div>
 {% endblock %}
+
+
+
+

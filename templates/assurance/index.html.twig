@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Assurance index{% endblock %}
+{% block body %}
 
     <h1>Assurance index</h1>
 
@@ -26,8 +27,8 @@
                 <td>{{ assurance.telAssurance }}</td>
                 <td>{{ assurance.emailAssurance }}</td>
                 <td>
-                    <a href="{{ path('app_assurance_show', {'id': assurance.id}) }}">show</a>
-                    <a href="{{ path('app_assurance_edit', {'id': assurance.id}) }}">edit</a>
+                    <a href="{{ path('app\_assurance\_show', {'id': assurance.id}) }}" class="btn btn-primary btn-sm mr-2">Show</a>
+                    <a href="{{ path('app_assurance_edit', {'id': assurance.id}) }}"  class="btn btn-primary btn-sm mr-2">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -43,6 +44,3 @@
 
 
 
-  
-  
-  

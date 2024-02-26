@@ -1,11 +1,691 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}New Constat{% endblock %}
+
+{% extends 'base_front.html.twig' %}
+
+{% block title %}Nouveau Constat{% endblock %}
 
 {% block body %}
-    <h1>Create new Constat</h1>
+    
+<form method="post" action="{{ path('app_constat_new') }}">
+{{ form_start(form) }}
+<div class="row">
 
-    {{ include('constat/_form.html.twig') }}
 
-    <a href="{{ path('app_constat_index') }}">back to list</a>
+    <table border="1">
+        <thead>
+            <th style="background-color: rgb(25, 125, 188); padding-right:1pc; ">1.</th>
+            <th>Date d'accident</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                {{ form_widget(form.date_accident) }}
+            </tr>
+        </tbody>
+    </table>
+
+    <table border="1">
+        <thead>
+            <th style="background-color: rgb(25, 125, 188); padding-right:1pc;">2.</th>
+            <th>Heure</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                {{ form_widget(form.heure) }}
+            </tr>
+        </tbody>
+    </table>
+
+    <table border="1">
+        <thead>
+            <th style="background-color: rgb(25, 125, 188); padding-right:1pc;;">3.</th>
+            <th>Localisation</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                {{ form_widget(form.localisation) }}
+            </tr>
+        </tbody>
+    </table>
+
+    <table border="1">
+        <thead>
+            <th style="background-color: rgb(25, 125, 188); padding-right:1pc;;">4.</th>
+            <th>Blessé même léger</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                {{ form_widget(form.blesse_meme_leger) }}
+            </tr>
+        </tbody>
+    </table>
+
+    <table border="1">
+        <thead>
+            <th style="background-color: rgb(25, 125, 188); padding-right:1pc;;">5.</th>
+            <th>Dégâts autre que objets</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                {{ form_widget(form.degats_autre_objets) }}
+            </tr>
+        </tbody>
+    </table>
+
+ <table border="1">
+        <thead>
+            <th style="background-color: rgb(25, 125, 188); padding-right:1pc;;">6.</th>
+            <th>Dégâts autre que véhicule</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                {{ form_widget(form.degats_autre_vehicule) }}
+            </tr>
+        </tbody>
+    </table>
+
+
+    <table border="1">
+        <thead>
+            <th style="background-color: rgb(25, 125, 188); padding-right:1pc;;">7.</th>
+            <th>Témoins : noms, adresses , Tel</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                {{ form_widget(form.temoins) }}
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+
+<div class="row">
+
+  <div class="col-4 " style="border: 1px solid black; background-color :rgb(206, 234, 247)   ">
+    <h3 style="color: rgb(255, 255, 255); font-weight: bold; text-align: center; background-color :rgb(25, 125, 188);     ">Véhicule A</h3>
+    <table border="1">
+
+      <thead>
+      <th style="background-color: rgb(25, 125, 188); padding-right:1pc;;">6.</th>
+      <th style="text-decoration: underline;">preneur d'assurance/assuré (voir attestation d'assurance)</th>
+    </thead>
+    
+      <tbody>
+        <tr>
+            <td colspan="2">Nom: {{ form_widget(form.A_preneur_nom , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+      </tr>
+      <tr>
+            <td colspan="2">Prénom: {{ form_widget(form.A_preneur_prenom , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+      </tr>
+      <tr>
+            <td colspan="2">Adresse: {{ form_widget(form.A_preneur_adresse , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+      </tr>
+      <tr>
+            <td colspan="2">Code postal: {{ form_widget(form.A_preneur_codePostal , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+      </tr>
+      <tr>
+            <td colspan="2">Pays: {{ form_widget(form.A_preneur_pays , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+      </tr>
+      <tr>
+            <td colspan="2">Tél ou Email: {{ form_widget(form.A_preneur_tel , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+      </tr>
+     
+    
+ </tbody>
+</table>
+
+
+
+<div class="row" style="border: 1px solid black">
+  <table border="1">
+      <thead>
+          
+              <th colspan="2" style=" color: rgb(48, 47, 47); font-weight: bold ; padding-right:1pc; ">7. Véhicule</th>
+
+      </thead>
+
+  <table>
+      <tbody >
+          <tr>
+              <td style="background-color: rgb(25, 125, 188); padding-right:1pc;; color: rgb(48, 47, 47); font-weight: bold;">A MOTEUR</td>
+          </tr>
+          
+          <tr>
+            <td>Marque, type: {{ form_widget(form.A_vehicule_moteur_marque , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+        </tr>
+        <tr>
+            <td>N° d'immatriculation: {{ form_widget(form.A_vehicule_moteur_numImmatriculation , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+        </tr>
+        <tr>
+            <td>Pays d'immatriculation: {{ form_widget(form.A_vehicule_moteur_paysImmatriculation , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+        </tr>
+        
+      </tbody>
+</table>
+
+      <table>
+      <tbody style="border: 1px solid black">
+        <tr>
+            <td style="background-color: rgb(25, 125, 188); padding-right:1pc;; color: rgb(48, 47, 47); font-weight: bold;">REMORQUE</td>
+        </tr>
+        <tr>
+            <td>N° d'immatriculation: {{ form_widget(form.A_vehicule_remorque_numImmatriculation , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+      </tr>
+      <tr>
+            <td>Pays d'immatriculation: {{ form_widget(form.A_vehicule_remorque_paysImmatriculation , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+      </tr>
+        </table>
+    </tbody>
+  </table>
+
+</div>
+
+<table border="1">
+
+  <thead>
+  <th style="background-color: rgb(25, 125, 188); padding-right:1pc;">8.</th>
+  <th style="text-decoration: underline;">Société d'assurance (voir attestation d'assurance)</th>
+</thead>
+
+<tbody>
+  <tr>
+            <td colspan="2">Nom: {{ form_widget(form.A_societeAssurance_nom , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+  </tr>
+  <tr>
+            <td colspan="2">num contrat: {{ form_widget(form.A_societeAssurance_numContrat , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+  </tr>
+  <tr>
+            <td colspan="2">num carte verte: {{ form_widget(form.A_societeAssurance_numCarteVerte , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+  </tr>
+  <tr>
+    <td colspan="2">attestation d'assurance ou carte verte valable du {{ form_widget(form.A_societeAssurance_attestationValable_du, {'type': 'date'} ) }}</td>
+</tr>
+<tr>
+    <td colspan="2">attestation d'assurance ou carte verte valable au {{ form_widget(form.A_societeAssurance_attestationValable_au, {'type': 'date'} ) }}</td>
+</tr>
+
+  <tr>
+      <td colspan="2">
+          <p>Agence ou ( bureau ou courtier )</p>
+      </td>
+  </tr>
+  <tr>
+            <td colspan="2">Nom: {{ form_widget(form.A_societeAssurance_agence_nom , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+  </tr>
+  <tr>
+            <td colspan="2">Adresse {{ form_widget(form.A_societeAssurance_agence_adresse, {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+  </tr>
+   <tr>
+            <td colspan="2">Pays {{ form_widget(form.A_societeAssurance_agence_pays , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+  </tr>
+  <tr>
+            <td colspan="2">Tel ou Email {{ form_widget(form.A_societeAssurance_agence_tel , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+  </tr>
+  <tr>
+            <td colspan="2">les dégats matériels au véhicule sont-ils assurés par le contrat ? {{ form_widget(form.A_societeAssurance_degatsMaterielsAssureParContrat , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+  </tr>
+</tbody>
+
+</table>
+
+
+
+<table border="1">
+
+  <thead>
+  <th style="background-color: rgb(25, 125, 188); padding-right:1pc;;">9.</th>
+  <th style="text-decoration: underline;">Conducteur (voir permis de conduite)</th>
+</thead>
+
+<tbody>
+  <tr>
+                  <td colspan="2">Nom: {{ form_widget(form.A_conducteur_nom , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+
+  </tr>
+  <tr>
+                  <td colspan="2">Prenom: {{ form_widget(form.A_conducteur_prenom , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+
+  </tr>
+  <tr>
+                        <td colspan="2">date de naissance: {{ form_widget(form.A_conducteur_dateNaissance , {'attr': {'style': ' background-color :rgb(206, 234, 247);'}}) }}</td>
+
+  </tr>
+  <tr>
+                        <td colspan="2">Adresse: {{ form_widget(form.A_conducteur_adresse , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+
+  </tr>
+  <tr>
+                        <td colspan="2">Pays: {{ form_widget(form.A_conducteur_pays , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+
+  </tr>
+  <tr>
+                              <td colspan="2">Tel ou Email: {{ form_widget(form.A_conducteur_tel , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+
+  </tr>
+  <tr>
+                              <td colspan="2">Num permis de conduite: {{ form_widget(form.A_conducteur_numPermisComduite , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+
+  </tr>
+  <tr>
+                              <td colspan="2">Catégorie(A,B,...) {{ form_widget(form.A_conducteur_categorie , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
+     
+  </tr>
+  <tr>
+                                <td colspan="2">Permis valable jusqu'au {{ form_widget(form.A_conducteur_permisValableJusqua ,{'attr': {'style': ' background-color :rgb(206, 234, 247);'}}) }}</td>
+
+  </tr>
+</tbody>
+</table>
+
+
+</div>
+
+
+
+<div class="col-4"> 
+    <table>
+      <thead>  <h3  style="font-weight: bold; text-align: center; color: black ; border: 1px solid black; ">12. CIRCONSTANCES </h3>
+      </thead>
+    <tbody>
+    
+      
+    <tr>
+      <td class="text-center"></td>
+      <td class="text-center" style="font-weight: bold;">▼ Mettre une croix dans chacune des cases utiles ▼ pour préciser le croquis.</td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">{{ form_widget(form.stationnement_arret) }}</td>
+    <td class="text-center">* en stationnement / à l'arrêt</td>
+    <td >{{ form_widget(form.Bstationnement_arret) }}</td>
+      </tr>
+    
+      <tr>
+        <td class="text-center">{{ form_widget(form.quittaitStationnement_arret) }}</td>
+    <td class="text-center">* quittait un stationnement/ ouvrait une portière </td>
+    <td>{{ form_widget(form.BquittaitStationnement_arret) }}</td>
+</tr>
+
+  <tr>
+        <td class="text-center">{{ form_widget(form.prenait_stationnement) }}</td>
+    <td class="text-center">prenait un stationnement </td>
+    <td>{{ form_widget(form.Bprenait_stationnement) }}</td>
+</tr>
+
+  <tr>
+        <td class="text-center">{{ form_widget(form.sortaitDun_parking_lieu) }}</td>
+    <td class="text-center">sortait d'un parking, d'un lieu privé, d'un chemin de terre</td>
+    <td>{{ form_widget(form.BsortaitDun_parking_lieu) }}</td>
+</tr>
+
+<tr>
+        <td class="text-center">{{ form_widget(form.sengageaitDun_parking_lieu) }}</td>
+    <td class="text-center">s'engageait dans un parking, un lieu privé, un chemin de terre </td>
+    <td>{{ form_widget(form.BsengageaitDun_parking_lieu) }}</td>
+</tr>
+
+  <tr>
+        <td class="text-center">{{ form_widget(form.sengageaitSurUnePlace_sensGigatoire) }}</td>
+    <td class="text-center">s'engageait sur une place à sens giratoire</td>
+    <td>{{ form_widget(form.BsengageaitSurUnePlace_sensGigatoire) }}</td>
+</tr>
+
+<tr>
+        <td class="text-center">{{ form_widget(form.roulerSurUnePlace_sensGigatoire) }}</td>
+    <td class="text-center">roulait sur une place à sens giratoire</td>
+    <td>{{ form_widget(form.BroulerSurUnePlace_sensGigatoire) }}</td>
+</tr>
+
+  <tr>
+        <td class="text-center">{{ form_widget(form.heurtait_a_larriere) }}</td>
+    <td class="text-center">heurtait a l'arriére , en roulant dans le meme sens et sur un meme file </td>
+    <td>{{ form_widget(form.Bheurtait_a_larriere) }}</td>
+</tr>
+
+<tr>
+        <td class="text-center">{{ form_widget(form.roulaitDansMemeSens_sureUneFileDifferente) }}</td>
+    <td class="text-center">roulait dans le même sens et sur une file différente</td>
+    <td>{{ form_widget(form.BroulaitDansMemeSens_sureUneFileDifferente) }}</td>
+</tr>
+
+<tr>
+        <td class="text-center">{{ form_widget(form.changeaitFile) }}</td>
+    <td class="text-center">changeait de file </td>
+    <td>{{ form_widget(form.BchangeaitFile) }}</td>
+</tr>
+
+  <tr>
+        <td class="text-center">{{ form_widget(form.doublait) }}</td>
+    <td class="text-center">doublait</td>
+    <td>{{ form_widget(form.Bdoublait) }}</td>
+</tr>
+
+<tr>
+        <td class="text-center">{{ form_widget(form.viraitDroite) }}</td>
+    <td class="text-center">virait à droite </td>
+    <td>{{ form_widget(form.BviraitDroite) }}</td>
+</tr>
+
+  <tr>
+        <td class="text-center">{{ form_widget(form.viraitGauche) }}</td>
+    <td class="text-center">virait à gauche</td>
+    <td>{{ form_widget(form.BviraitGauche) }}</td>
+</tr>
+
+<tr>
+        <td class="text-center">{{ form_widget(form.reculait) }}</td>
+    <td class="text-center">reculait </td>
+    <td>{{ form_widget(form.Breculait) }}</td>
+</tr>
+
+  <tr>
+        <td class="text-center">{{ form_widget(form.empietaitSurUneVoie) }}</td>
+    <td class="text-center">empiétait sur une voie réservée à la circulation en sens inverse</td>
+    <td>{{ form_widget(form.BempietaitSurUneVoie) }}</td>
+</tr>
+
+<tr>
+        <td class="text-center">{{ form_widget(form.venaitDeDroite) }}</td>
+    <td class="text-center">venait de droite (dans un carrefour) </td>
+    <td>{{ form_widget(form.BvenaitDeDroite) }}</td>
+</tr>
+
+  <tr>
+        <td class="text-center">{{ form_widget(form.observationSignal) }}</td>
+    <td class="text-center">n'avait pas observé un signal de priorité ou un feu rouge</td>
+    <td>{{ form_widget(form.BobservationSignal) }}</td>
+</tr>
+
+
+    <tr>
+        <td class="text-center" >{{ form_widget(form.indiquationNombreCases, {'attr': {'style': 'width: 40px;'}}) }}</td>
+        <td class="text-center">indiquer le nombre de cases marquées d'une croix</td>
+        <td >{{ form_widget(form.BindiquationNombreCases, {'attr': {'style': 'width: 40px;'}}) }}</td>
+    </tr>
+
+
+    
+    </tbody>
+    </table>
+  </div>
+
+
+
+
+
+
+
+
+
+
+ <div class="col-4 "  style="border: 1px solid black; background-color :#F7DC6F ">
+        <h3 style="color: rgb(255, 255, 255); font-weight: bold; text-align: center; background-color :#FFC300    ">Véhicule B</h3>
+
+ <table border="1">
+    
+          <thead>
+          <th style="background-color: #FFC300 ;">6.</th>
+          <th style="text-decoration: underline;">preneur d'assurance/assuré (voir attestation d'assurance)</th>
+        </thead>
+        
+          <tbody>
+            <tr>
+                          <td colspan="2">Nom: {{ form_widget(form.B_preneur_nom) }}</td>
+
+          </tr>
+          <tr>
+           <td colspan="2">Prénom: {{ form_widget(form.B_preneur_prenom) }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">Adresse: {{ form_widget(form.B_preneur_adresse) }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">Code postal: {{ form_widget(form.B_preneur_codePostal) }}</td>
+        </tr>
+        <tr>
+        <tr>
+            <td colspan="2">Pays: {{ form_widget(form.B_preneur_pays) }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">Tél ou Email: {{ form_widget(form.B_preneur_tel) }}</td>
+        </tr>
+        
+        
+     </tbody>
+    </table>
+      
+    <div class="row" >
+      <table border="1">
+          <thead>
+              
+                  <th colspan="2" style=" color: rgb(48, 47, 47); font-weight: bold;   ">7. Véhicule</th>
+             
+          </thead>
+    
+    
+      <table>
+          <tbody >
+              <tr>
+                  <td style="background-color: #FFC300 ; color: rgb(48, 47, 47); font-weight: bold;">A MOTEUR</td>
+              </tr>
+              
+              <tr>
+            <td>Marque, type: {{ form_widget(form.B_vehicule_moteur_marque) }}</td>
+            </tr>
+            <tr>
+            <td>N° d'immatriculation: {{ form_widget(form.B_vehicule_moteur_numImmatriculation) }}</td>
+            </tr>
+            <tr>
+            <td>Pays d'immatriculation: {{ form_widget(form.B_vehicule_moteur_paysImmatriculation) }}</td>
+            </tr>
+            
+          </tbody>
+    </table>
+    
+          <table>
+          <tbody style="border: 1px solid black">
+            <tr>
+                <td style="background-color: #FFC300; color: rgb(48, 47, 47); font-weight: bold;">REMORQUE</td>
+            </tr>
+            <tr>
+            <td>N° d'immatriculation: {{ form_widget(form.B_vehicule_remorque_numImmatriculation) }}</td>
+          </tr>
+          <tr>
+            <td>Pays d'immatriculation: {{ form_widget(form.B_vehicule_remorque_paysImmatriculation) }}</td>
+          </tr>
+            </table>
+        </tbody>
+      </table>
+    
+    </div>
+    
+    <table border="1">
+    
+      <thead>
+      <th style="background-color: #FFC300">8.</th>
+      <th style="text-decoration: underline;">Société d'assurance (voir attestation d'assurance)</th>
+    </thead>
+    
+      <tbody>
+        <tr>
+            <td colspan="2">Nom: {{ form_widget(form.B_societeAssurance_nom) }}</td>
+      </tr>
+      <tr>
+            <td colspan="2">num contrat: {{ form_widget(form.B_societeAssurance_numContrat) }}</td>
+    </tr>
+    <tr>
+            <td colspan="2">num carte verte: {{ form_widget(form.B_societeAssurance_numCarteVerte) }}</td>
+    </tr>
+    <tr>
+    <td colspan="2">attestation d'assurance ou carte verte valable du {{ form_widget(form.B_societeAssurance_attestationValable_du, {'type': 'date'}) }}</td>
+    </tr>
+    <tr>
+    <td colspan="2">attestation d'assurance ou carte verte valable au {{ form_widget(form.B_societeAssurance_attestationValable_au, {'type': 'date'}) }}</td>
+    </tr>
+    
+    <td colspan="2">
+    
+      <p>Agence ou ( bureau ou courtier )</p>
+    </td>
+    
+    <tr>
+            <td colspan="2">Nom: {{ form_widget(form.B_societeAssurance_agence_nom) }}</td>
+    </tr>
+    <tr>
+            <td colspan="2">Adresse {{ form_widget(form.B_societeAssurance_agence_adresse) }}</td>
+    </tr>
+        <tr>
+            <td colspan="2">Pays {{ form_widget(form.B_societeAssurance_agence_pays) }}</td>
+    </tr>
+    <tr>
+            <td colspan="2">Tel ou Email {{ form_widget(form.B_societeAssurance_agence_tel) }}</td>
+    </tr>
+    <tr>
+            <td colspan="2">les dégats matériels au véhicule sont-ils assurés par le contrat ? {{ form_widget(form.B_societeAssurance_degatsMaterielsAssureParContrat) }}</td>
+    </tr>
+    
+    </tbody>
+    </table>
+      
+      
+    <table border="1">
+    
+      <thead>
+      <th style="background-color:#FFC300;">9.</th>
+      <th style="text-decoration: underline;">Conducteur (voir permis de conduite)</th>
+    </thead>
+    
+      <tbody>
+        <tr>
+                  <td colspan="2">Nom: {{ form_widget(form.B_conducteur_nom) }}</td>
+      </tr>
+      <tr>
+                  <td colspan="2">Prenom: {{ form_widget(form.B_conducteur_prenom) }}</td>
+    </tr>
+    <tr>
+                        <td colspan="2">date de naissance: {{ form_widget(form.B_conducteur_dateNaissance) }}</td>
+    </tr>
+    <tr>
+                        <td colspan="2">Adresse: {{ form_widget(form.B_conducteur_adresse) }}</td>
+    </tr>
+    <tr>
+                        <td colspan="2">Pays: {{ form_widget(form.B_conducteur_pays) }}</td>
+    </tr>
+    
+    <tr>
+                              <td colspan="2">Tel ou Email: {{ form_widget(form.B_conducteur_tel) }}</td>
+    </tr>
+    <tr>
+                              <td colspan="2">Num permis de conduite: {{ form_widget(form.B_conducteur_numPermisComduite) }}</td>
+    </tr>
+    
+    <tr>
+                              <td colspan="2">Catégorie(A,B,...) {{ form_widget(form.B_conducteur_categorie) }}</td>
+    </tr>
+    <tr>
+                                <td colspan="2">Permis valable jusqu'au {{ form_widget(form.B_conducteur_permisValableJusqua) }}</td>
+    </tr>
+    
+    </tbody>
+    </table>
+      
+      </div>
+    
+
+    
+    <div class="row">
+      <div class="col-3 " style="border: 1px solid black; background-color :rgb(206, 234, 247); height: 150px;  ">
+        <table border="1">
+    
+          <thead>
+          <th style="background-color: rgb(25, 125, 188); ;">11.</th>
+          <th style="text-decoration: underline;"> Dégats apparents au véhicule A</th>
+        </thead>
+        <tbody>
+          <tr>
+             <td colspan="2"> {{ form_widget(form.A_degats) }}</td>
+
+        </tr>   
+      </tbody>
+       </table>
+
+       <thead>
+          <th style="background-color: #FFC300 ;">14.</th>
+          <th style="text-decoration: underline;"> Mes observations</th>
+        </thead>
+        <tbody>
+          <tr>
+             <td colspan="2"> {{ form_widget(form.A_observation) }}</td>
+        </tr>  
+         
+      </tbody>
+       </table>
+    
+        
+     </div>
+
+<div class ="col-6" style="border: 1px solid black ; height: 400px;">
+
+</div>
+
+
+
+     <div class="col-3  " style="border: 1px solid black; background-color :#F7DC6F ;height: 150px;  ">
+        <table border="1">
+    
+          <thead>
+          <th style="background-color: #FFC300 ;">11.</th>
+          <th style="text-decoration: underline;"> Dégats apparents au véhicule B</th>
+        </thead>
+        <tbody>
+          <tr>
+             <td colspan="2"> {{ form_widget(form.B_degats) }}</td>
+        </tr>  
+         
+      </tbody>
+       </table>
+
+       <thead>
+          <th style="background-color: #FFC300 ; ">14.</th>
+          <th style="text-decoration: underline;"> Mes observations</th>
+        </thead>
+        <tbody>
+          <tr>
+             <td colspan="2"> {{ form_widget(form.B_observation) }}</td>
+        </tr>  
+         
+      </tbody>
+       </table>
+    
+      </div>
+
+<div class ="col-6"  >
+
+
+
+</div>
+
+<div class="text-center mt-3">
+    <a href="{{ path('app_constat_index') }}" class="btn btn-secondary">Retour à la liste</a>
+</div>
+
+<div class="form-group row">
+    <div class="col-sm-10 offset-sm-3">
+        <button type="submit" class="btn">{{ button_label|default('Save') }}</button>
+    </div>
+</div>
+
+    
+{{ form_end(form) }}
+</form>
+   
+
 {% endblock %}

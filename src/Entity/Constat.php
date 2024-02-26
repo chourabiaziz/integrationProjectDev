@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
+
 #[ORM\Entity(repositoryClass: ConstatRepository::class)]
 class Constat
 {
@@ -16,7 +17,11 @@ class Constat
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE , nullable: true )]
+    
+    #[ORM\ManyToOne(inversedBy: 'constats')]
+    private ?Assurance $relation = null; 
+
+    #[ORM\Column(type: Types::DATE_MUTABLE  )]
     private ?\DateTimeInterface $date_accident = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
@@ -28,10 +33,10 @@ class Constat
     #[ORM\Column]
     private ?bool $blesse_meme_leger = null;
 
-    #[ORM\Column]
-    private ?bool $degats_autre_vehicule = null;
+    #[ORM\Column (type: 'boolean', nullable: true)]
+    private ?bool $degats_autre_vehicule = null; 
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'boolean', nullable: true)]
     private ?bool $degats_autre_objets = null;
 
     #[ORM\Column(length: 255)]
@@ -50,10 +55,11 @@ class Constat
     private ?string $A_preneur_codePostal = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $A_preneur_tel = null;
+    private ?string $A_preneur_pays = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $A_preneur_email = null;
+    private ?string $A_preneur_tel = null;
+
 
     #[ORM\Column(length: 255)]
     private ?string $A_vehicule_moteur_marque = null;
@@ -127,6 +133,7 @@ class Constat
     #[ORM\Column(type: Types::DATE_MUTABLE , nullable: true)]
     private ?\DateTimeInterface $A_conducteur_permisValableJusqua = null;
 
+ 
     #[ORM\Column(length: 255)]
     private ?string $A_degats = null;
 
@@ -235,7 +242,8 @@ class Constat
 
     #[ORM\Column]
     private ?bool $quittaitStationnement_arret = null;
-
+ 
+  
     #[ORM\Column]
     private ?bool $prenait_stationnement = null;
 
@@ -285,6 +293,18 @@ class Constat
     private ?int $indiquationNombreCases = null;
 
 
+
+public function getRelation(): ?Assurance
+{
+    return $this->relation;
+}
+
+public function setRelation(?Assurance $relation): static
+{
+    $this->relation = $relation;
+
+    return $this;
+}
 
     public function getId(): ?int
     {
@@ -349,7 +369,7 @@ class Constat
         $this->degats_autre_vehicule = $degats_autre_vehicule;
 
         return $this;
-    }
+    } 
 
     public function isDegatsAutreObjets(): ?bool
     {
@@ -423,6 +443,18 @@ class Constat
         return $this;
     }
 
+    public function getAPreneurPays(): ?string
+    {
+        return $this->A_preneur_pays;
+    }
+
+    public function setAPreneurPays(string $A_preneur_pays): static
+    {
+        $this->A_preneur_pays = $A_preneur_pays;
+
+        return $this;
+    }
+
     public function getAPreneurTel(): ?string
     {
         return $this->A_preneur_tel;
@@ -435,17 +467,7 @@ class Constat
         return $this;
     }
 
-    public function getAPreneurEmail(): ?string
-    {
-        return $this->A_preneur_email;
-    }
-
-    public function setAPreneurEmail(string $A_preneur_email): static
-    {
-        $this->A_preneur_email = $A_preneur_email;
-
-        return $this;
-    }
+  
 
     public function getAVehiculeMoteurMarque(): ?string
     {
@@ -740,6 +762,14 @@ class Constat
 
         return $this;
     }
+
+
+
+
+
+
+
+
 
     public function getADegats(): ?string
     {
@@ -1158,6 +1188,13 @@ class Constat
         return $this;
     }
 
+
+
+
+
+
+
+
     public function isStationnementArret(): ?bool
     {
         return $this->stationnement_arret;
@@ -1169,6 +1206,8 @@ class Constat
 
         return $this;
     }
+
+
 
     public function isQuittaitStationnementArret(): ?bool
     {
@@ -1182,6 +1221,7 @@ class Constat
         return $this;
     }
 
+
     public function isPrenaitStationnement(): ?bool
     {
         return $this->prenait_stationnement;
@@ -1194,6 +1234,7 @@ class Constat
         return $this;
     }
 
+    
     public function isSortaitDunParkingLieu(): ?bool
     {
         return $this->sortaitDun_parking_lieu;
@@ -1362,6 +1403,14 @@ class Constat
         return $this;
     }
 
+
+
+
+
+
+
+
+
     public function getIndiquationNombreCases(): ?int
     {
         return $this->indiquationNombreCases;
@@ -1429,10 +1478,8 @@ class Constat
       private ?bool $BobservationSignal = null;
 
       #[ORM\Column]
-      private ?bool $BindiquationNombreCases = null;
+      private ?int $BindiquationNombreCases = null;
 
-      #[ORM\ManyToOne(inversedBy: 'constats')]
-      private ?Assurance $relation = null; 
    
     public function getPhoto(): ?string
     {
@@ -1650,29 +1697,21 @@ class Constat
         return $this;
     }
 
-    public function isBindiquationNombreCases(): ?bool
+    public function isBindiquationNombreCases(): ?int
     {
         return $this->BindiquationNombreCases;
     }
 
-    public function setBindiquationNombreCases(bool $BindiquationNombreCases): static
+    public function setBindiquationNombreCases(int $BindiquationNombreCases): static
     {
         $this->BindiquationNombreCases = $BindiquationNombreCases;
 
         return $this;
     }
 
-    public function getRelation(): ?Assurance
-    {
-        return $this->relation;
-    }
 
-    public function setRelation(?Assurance $relation): static
-    {
-        $this->relation = $relation;
-
-        return $this;
-    }
+  
+   
 
 
 

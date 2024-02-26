@@ -1,137 +1,205 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Constat{% endblock %}
-
+{% block title %}Constat {% endblock %}
 {% block body %}
-    
-<div class="row">
 
-  <table border="1">
-    <thead>
-    <th style="background-color: aqua;">1.</th>
-    <th>Date de l'accident</th> 
-    <th>Heure</th></thead>
-    <tbody>
+    <h1>Constat </h1>
 
-       <tr><td></td><td><input type="date" name="" id=""></td><td><input type="hour" name="" id=""></td></tr>
-    </tbody>
-   </table>
-   <table border="1">
-    <thead>
-    <th style="background-color: aqua;">2.</th>
-    <th>Localisation</th> 
-    <th>Heure</th></thead>
-    <tbody>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>date accident</th>
+                <th>heure</th>
+                <th>localisation</th>
+                <th>blessé meme leger</th>
+                <th>degats autre vehicule</th>
+                <th>degats autre objets</th>
+                <th>temoins</th>
+                <th>A preneur nom</th>
+                <th>A preneur prenom</th>
+                <th>A preneur adresse</th>
+                <th>A preneur codePostal</th>
+                <th>A preneur Tel /email</th>
+                <th>A vehicule moteur marque</th>
+                <th>A vehicule moteur numImmatriculation</th>
+                <th>A vehicule moteur pays Immatriculation</th>
+                <th>A vehicule remorque num Immatriculation</th>
+                <th>localisation</th>
+                <th>A vehicule remorque paysImmatriculation</th>
+                <th>A societeAssurance nom</th>
+                <th>A societeAssurance numContrat</th>
+                <th>A societeAssurance numCarteVerte</th>
+                <th>A societeAssurance attestationValable du</th>
+                <th>A societeAssurance attestationValable au</th>
+                <th>A societeAssurance agence nom</th>
+                <th>A societeAssurance agence adresse</th>
+                <th>A societeAssurance agence pays</th>
+                <th>A societeAssurance agence tel</th>
 
-       <tr><td></td><td><input type="date" name="" id=""></td><td><input type="hour" name="" id=""></td></tr>
-    </tbody>
-   </table>
-   <br>
+                <th>les dégats matériels au véhicule sont-ils assurés par le contrat ?</th>
+                <th>A Conducteur Nom</th>
+                <th>A Conducteur Prenom</th>
+                <th>A Conducteur date de naissance</th>
+                <th>A Conducteur Adresse</th>
+                <th>A Conducteur Pays</th>
+                <th>A Conducteur Tel ou Email</th>
+                <th>A Conducteur Num permis de conduite</th>
+                <th>A Conducteur Catégorie(A,B,...)</th>
+                <th>A Conducteur Permis valable jusqu'au</th>
+              
 
-
-
-
-
-
-
-</div>
-
-
-<div class="row">
-  <div class="col-4 bg-primary">
-    <table border="1">
-      <thead>
-      <th style="background-color: aqua;">6.</th>
-      <th>preneur d'assurance/assuré</th> 
-    </thead>
-      <tbody>
-  <tr><td colspan="2">Nom:..............</td></tr>
-       </tbody>
-     </table>
-     <table border="1">
-      <thead>
-      <th style="background-color: aqua;">6.</th>
-      <th>preneur d'assurance/assuré</th> 
-    </thead>
-      <tbody>
-  <tr><td colspan="2">Nom:..............</td></tr>
-       </tbody>
-     </table>
-     <table border="1">
-      <thead>
-      <th style="background-color: aqua;">6.</th>
-      <th>preneur d'assurance/assuré</th> 
-    </thead>
-      <tbody>
-  <tr><td colspan="2">Nom:..............</td></tr>
-       </tbody>
-     </table>
-     <table border="1">
-      <thead>
-      <th style="background-color: aqua;">6.</th>
-      <th>preneur d'assurance/assuré</th> 
-    </thead>
-      <tbody>
-  <tr><td colspan="2">Nom:..............</td></tr>
-       </tbody>
-     </table>
-
-  </div>
-  <div class="col-4">
-<table>
-  <thead>  <th>12.Circonstances</th>
-  </thead>
-<tbody>
-  <tr>
-    <td class="text-center"> <input type="checkbox"> </td><td class="text-center">* EN bla bla bla</td> 
+                <th>A en stationnement / à l'arrêt</th>
+                <th>A quittait un stationnement/ ouvrait une portière</th>
+                <th>A prenait un stationnement</th>
+                <th>A sortait d'un parking, d'un lieu privé, d'un chemin de terre</th>
+                <th>A s'engageait dans un parking, un lieu privé, un chemin de terre</th>
+                <th>A s'engageait sur une place à sens giratoire</th>
+                <th>A roulait sur une place à sens giratoire</th>
+                <th>A heurtait a l'arriére , en roulant dans le meme sens et sur un meme file</th>
+                <th>A roulait dans le même sens et sur une file différente</th>
+                <th>A changeait de file </th>
+                <th>A doublait</th>
+                <th>A virait à gauche</th>
+                <th>A reculait</th>
+                <th>A empiétait sur une voie réservée à la circulation en sens inverse</th>
+                <th>A venait de droite (dans un carrefour) </th>
+                <th>A n'avait pas observé un signal de priorité ou un feu rouge</th>
+                <th>A indiquer le nombre de cases marquées d'une croix</th>
 
 
-    <td> <input type="checkbox"></td>
-  </tr>
-
-</tbody>
-</table>
+                <th>B en stationnement / à l'arrêt</th>
+                <th>B quittait un stationnement/ ouvrait une portière</th>
+                <th>B prenait un stationnement</th>
+                <th>B sortait d'un parking, d'un lieu privé, d'un chemin de terre</th>
+                <th>B s'engageait dans un parking, un lieu privé, un chemin de terre</th>
+                <th>B s'engageait sur une place à sens giratoire</th>
+                <th>B roulait sur une place à sens giratoire</th>
+                <th>B heurtait a l'arriére , en roulant dans le meme sens et sur un meme file</th>
+                <th>B roulait dans le même sens et sur une file différente</th>
+                <th>B changeait de file </th>
+                <th>B doublait</th>
+                <th>B virait à gauche</th>
+                <th>B reculait</th>
+                <th>B empiétait sur une voie réservée à la circulation en sens inverse</th>
+                <th>B venait de droite (dans un carrefour) </th>
+                <th>B n'avait pas observé un signal de priorité ou un feu rouge</th>
+                <th>B indiquer le nombre de cases marquées d'une croix</th>
 
 
 
-  </div>
-  <div class="col-4 bg-warning"><table border="1">
-    <thead>
-    <th style="background-color: aqua;">6.</th>
-    <th>preneur d'assurance/assuré</th> 
-  </thead>
-    <tbody>
-<tr><td colspan="2">Nom:..............</td></tr>
-     </tbody>
-   </table></div>
+            </tr>
+        </thead>
+        <tbody>
+        {% for constat in constats %}
+            <tr>
+              <th>{{ constat.dateAccident|date('d/m/Y') }}</th>
+              <th>{{ constat.heure|date('H:i:s') }}</th>
+                <td>{{ constat.localisation }}</td>
+                <td>{{ constat.blesseMemeLeger }}</td>
+                <td>{{ constat.degatsAutreVehicule }}</td>
+                <td>{{ constat.degatsAutreObjets }}</td>
+                <td>{{ constat.temoins }}</td>
+
+                <td>{{ constat.APreneurNom }}</td>
+                <td>{{ constat.APreneurPrenom }}</td>
+                <td>{{ constat.APreneurAdresse }}</td>
+                <td>{{ constat.APreneurPays }}</td>
+                <td>{{ constat.APreneurCodePostal }}</td>
+                <td>{{ constat.APreneurTel }}</td>
+               
+                <td>{{ constat.AVehiculeMoteurMarque }}</td>
+                <td>{{ constat.AVehiculeMoteurNumImmatriculation }}</td>
+                <td>{{ constat.AVehiculeMoteurPaysImmatriculation }}</td>
+                <td>{{ constat.AVehiculeRemorqueNumImmatriculation }}</td>
+                <td>{{ constat.AVehiculeRemorquePaysImmatriculation }}</td>
+                <td>{{ constat.ASocieteAssuranceNom }}</td>
+                <td>{{ constat.ASocieteAssuranceNumCarteVerte }}</td>
+                <td>{{ constat.ASocieteAssuranceAttestationValableDu|date('Y-m-d') }}</td>
+                <td>{{ constat.ASocieteAssuranceAttestationValableAu|date('Y-m-d')  }}</td>
+                <td>{{ constat.ASocieteAssuranceAgenceNom }}</td>
+                <td>{{ constat.ASocieteAssuranceAgenceAdresse }}</td>
+                <td>{{ constat.ASocieteAssuranceAgenceTel }}</td>
+
+                <td>{{ constat.ASocieteAssuranceDegatsMaterielsAssureParContrat }}</td>
+                <td>{{ constat.AConducteurNom }}</td>
+                <td>{{ constat.AConducteurPrenom }}</td>
+                <td>{{ constat.AConducteurDateNaissance |date('Y-m-d') }}</td>
+                <td>{{ constat.AConducteurAdresse }}</td>
+                <td>{{ constat.AConducteurPays }}</td>
+                <td>{{ constat.AConducteurTel }}</td>
+                <td>{{ constat.AConducteurNumPermisComduite }}</td>
+                <td>{{ constat.AConducteurCategorie }}</td>
+                <td>{{ constat.AConducteurPermisValableJusqua |date('Y-m-d') }}</td>
 
 
-</div>
+                <td>{{ constat.BstationnementArret }}</td>
+                <td>{{ constat.BquittaitStationnementArret }}</td>
+                <td>{{ constat.BstationnementArret }}</td>
+                <td>{{ constat.BquittaitStationnementArret }}</td>
+                <td>{{ constat.BstationnementArret }}</td>
+                <td>{{ constat.BquittaitStationnementArret }}</td>
+                <td>{{ constat.BstationnementArret }}</td>
+                <td>{{ constat.BquittaitStationnementArret }}</td>
+                <td>{{ constat.BstationnementArret }}</td>
+                <td>{{ constat.BquittaitStationnementArret }}</td>
+                <td>{{ constat.BstationnementArret }}</td>
+                <td>{{ constat.BquittaitStationnementArret }}</td>
+                <td>{{ constat.BstationnementArret }}</td>
+                <td>{{ constat.BquittaitStationnementArret }}</td>
+                <td>{{ constat.BstationnementArret }}</td>
+                <td>{{ constat.BquittaitStationnementArret }}</td>
+
+                
+                <td>{{ constat.BPreneurNom }}</td>
+                <td>{{ constat.BPreneurPrenom }}</td>
+                <td>{{ constat.BPreneurAdresse }}</td>
+                <td>{{ constat.BPreneurPays }}</td>
+                <td>{{ constat.BPreneurCodePostal }}</td>
+                <td>{{ constat.BPreneurTel }}</td>
+               
+                <td>{{ constat.BVehiculeMoteurMarque }}</td>
+                <td>{{ constat.BVehiculeMoteurNumImmatriculation }}</td>
+                <td>{{ constat.BVehiculeMoteurPaysImmatriculation }}</td>
+                <td>{{ constat.BVehiculeRemorqueNumImmatriculation }}</td>
+                <td>{{ constat.BVehiculeRemorquePaysImmatriculation }}</td>
+                <td>{{ constat.BSocieteAssuranceNom }}</td>
+                <td>{{ constat.BSocieteAssuranceNumCarteVerte }}</td>
+                <td>{{ constat.BSocieteAssuranceAttestationValableDu|date('Y-m-d') }}</td>
+                <td>{{ constat.BSocieteAssuranceAttestationValableAu|date('Y-m-d')  }}</td>
+                <td>{{ constat.BSocieteAssuranceAgenceNom }}</td>
+                <td>{{ constat.BSocieteAssuranceAgenceAdresse }}</td>
+                <td>{{ constat.BSocieteAssuranceAgenceTel }}</td>
+
+                <td>{{ constat.BSocieteAssuranceDegatsMaterielsAssureParContrat }}</td>
+                <td>{{ constat.BConducteurNom }}</td>
+                <td>{{ constat.BConducteurPrenom }}</td>
+                <td>{{ constat.BConducteurDateNaissance |date('Y-m-d') }}</td>
+                <td>{{ constat.BConducteurAdresse }}</td>
+                <td>{{ constat.BConducteurPays }}</td>
+                <td>{{ constat.BConducteurTel }}</td>
+                <td>{{ constat.BConducteurNumPermisComduite }}</td>
+                <td>{{ constat.BConducteurCategorie }}</td>
+                <td>{{ constat.BConducteurPermisValableJusqua |date('Y-m-d') }}</td>
 
 
-<div class="row">
-  <div class="col-3 bg-primary">
-    hahahah
-  </div>
-  <div class="col-6"><input height="450px" type="file"></div>
-  <div class="col-3 bg-warning">hahahaha</div>
-</div>
 
 
+                <td>
+                    <a href="{{ path('app\_constat\_show', {'id': constat.id}) }}" class="btn btn-primary btn-sm mr-2">Show</a>
+                    <a href="{{ path('app_constat_edit', {'id': constat.id}) }}"  class="btn btn-primary btn-sm mr-2">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <a href="{{ path('app_constat_new') }}">Create new</a>
 {% endblock %}
+
+
+
