@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+
+
+<div class="form-group row">
+	<label class="col-sm-2 col-form-label text-center">{{ form_label(form.client) }}
+	</label>
+	<div class="col-sm-10">
+		{{ form_widget(form.client, { 'attr': {'class': 'form-control form-control-capitalize' , 'placeholder':'choisir votre client'} }) }}
+	</div>
+</div>
+
+
+<button class="btn btn-primary">{{ button_label|default('Suivant') }}</button>
+
+{{ form_end(form) }}

@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offre
+{% endblock %}
+
+{% block body %}
+<h1>Offre</h1>
+
+
+
+
+<div class="col-sm-10">
+    <div class="card">
+        <div class="card-header">
+            <h5>{{offre.titre}} | {{ offre.assurance }}</h5>
+            <div class="card-header-right">
+                {{ offre.emailAssurance }}
+                {{ offre.numAssurance }}
+            </div>
+        </div>
+        <div class="card-block">
+            <p>
+                {{ offre.description }}
+
+            </p>
+        </div>
+        <div class="card-footer">
+            Email : {{ offre.emailAssurance }} <br>
+            Télephone : {{ offre.numAssurance }}
+        </div>
+    </div>
+</div>
+<div class="row">
+    {% for avantage in offre.avantages %}
+
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>{{avantage.titre}}</h5>
+                <div class="card-header-right">
+                    <ul>
+
+                        <li>
+                            <a class="btn btn-secondary bordure p-2" href="/avantage/{{avantage.id}}/edit"> <i
+                                    style="color: black;" class="ti-pencil"></i>
+                            </a>
+                            <a class="btn btn-danger bordure p-2" href="/avantage/{{avantage.id}}/edit"> <i
+                                    style="color: black;" class="ti-trash"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-block">
+                <p>
+                    {{avantage.description}}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<div class="row">
+    <div class="col-3">
+        <a class='btn btn-secondary' href="{{ path('app_devis_new', {'id': offre.id}) }}">
+            Demande devis
+            <i class="ti-write"></i>
+        </a>
+    </div>
+    <div class="col-3">
+        <a class='btn btn-secondary' href="{{ path('app_avantage_new', {'id': offre.id}) }}">
+            Ajouter des avantages
+        </a>
+    </div>
+    <div class="col-3">
+
+        <a class='btn btn-secondary' href="{{ path('app_offre_edit', {'id': offre.id}) }}">edit</a>
+    </div>
+
+    {{ include('offre/_delete_form.html.twig') }}
+</div>
+{% endblock %}
