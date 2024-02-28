@@ -31,6 +31,8 @@
                             <div class="d-flex align-items-center">
                                 <a href="{{ path('app_panne_show', {'id': panne.id}) }}" class="btn btn-info btn-sm mr-2">Voir</a>
                                 <a href="{{ path('app_panne_edit', {'id': panne.id}) }}" class="btn btn-primary btn-sm mr-2">Modifier</a>
+                                <!-- Bouton "Affecter" redirigeant vers la liste des ateliers disponibles -->
+                                <a href="{{ path('app_ateliers_disponibles') }}" class="btn btn-warning btn-sm mr-2">Affecter</a>
                                 <!-- Bouton de suppression avec fenêtre modale de confirmation -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ panne.id }}">
                                     <i class="fas fa-trash"></i> Supprimer
@@ -59,7 +61,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Fin du Modal -->
+                                <!-- Fin du modal -->
                             </div>
                         </td>
                     </tr>

@@ -21,6 +21,8 @@ class AtelierController extends AbstractController
             'ateliers' => $atelierRepository->findAll(),
         ]);
     }
+   
+
 
     #[Route('/new', name: 'app_atelier_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response

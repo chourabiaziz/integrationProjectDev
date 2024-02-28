@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Affecter la panne à un atelier{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Affecter la panne à un atelier</h1>
+
+    <div class="modal-body">
+        <form action="{{ path('app_panne_affecter', {'id': panne.id}) }}" method="post">
+            <input type="hidden" name="panne_id" value="{{ panne.id }}">
+            <label for="atelier">Sélectionner un atelier :</label>
+            <select name="atelier" id="atelier" class="form-control">
+                <select name="atelier" id="atelier" class="form-control">
+                    {% for atelier in ateliers %}
+                        <option value="{{ atelier.id }}">{{ atelier.nom }}</option>
+                    {% endfor %}
+                </select>
+
+            </select>
+            <button type="submit" class="btn btn-primary mt-2">Valider</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
