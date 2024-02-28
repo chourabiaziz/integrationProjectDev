@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contrat index
+{% endblock %}
+
+{% block body %}
+	<h1>Tous Les Contrats expirés</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="text-center">Ref°</th>
+				<th class="text-center">Couverture</th>
+				<th class="text-center">Prix</th>
+				<th class="text-center">DateDebut</th>
+				<th class="text-center">DateFin</th>
+				<th class="text-center">Statut</th>
+				<th class="text-center">Client</th>
+				<th class="text-center">CreatedBy</th>
+				<th class="text-center" colspan="2">actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for contrat in contrats %}
+				<tr>
+					<td class="text-center">{{ contrat.id }}</td>
+					<td class="text-center">{{ contrat.couverture }}</td>
+					<td class="text-center">{{ contrat.prix }}</td>
+					<td class="text-center">{{ contrat.dateDebut ? contrat.dateDebut|date('Y-m-d') : '' }}</td>
+					<td class="text-center">{{ contrat.dateFin ? contrat.dateFin|date('Y-m-d') : '' }}</td>
+					<td class="text-center">
+
+
+						<span class="bg-danger p-1 ">
+							expiré</span>
+					</td>
+					<td class="text-center">{{ contrat.client }}</td>
+					<td class="text-center">{{ contrat.createdBy }}</td>
+					<td class="text-center">
+						<a class=" btn-success p-2" href="{{ path('app_contrat_renew', {'id': contrat.id}) }}">Renouvellement
+							<i class="ti-reload"></i>
+						</a>
+
+
+					</td>
+					<td class="text-center">
+						<a href="{{ path('app_contrat_delete', {'id': contrat.id}) }}">
+							<i class="ti-trash bg-danger p-2"></i>
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td class="text-center" colspan="10">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class="col-3">
+		<a class="btn btn-primary" href="{{ path('app_contrat_new') }}">Ajouter un nouveau contrats</a>
+
+	</div>
+{% endblock %}
