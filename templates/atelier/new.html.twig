@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel Atelier{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Créer un nouvel Atelier</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post">
+                    {{ form_start(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.adresse) }}
+                        {{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.numeroTelephone) }}
+                        {{ form_widget(form.numeroTelephone, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.heureOverture) }}
+                        {{ form_widget(form.heureOverture, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.heureFermeture) }}
+                        {{ form_widget(form.heureFermeture, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.specialite, 'Spécialité') }}
+                        {{ form_widget(form.specialite, {'attr': {'class': 'form-control', 'multiple': 'multiple'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.avis, 'Avis') }}
+                        {{ form_widget(form.avis, {'attr': {'class': 'form-control', 'multiple': 'multiple'}}) }}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Créer</button>
+                    </div>
+                    {{ form_end(form) }}
+                </form>
+            </div>
+        </div>
+
+        <div class="text-center mt-3">
+            <a href="{{ path('app_atelier_index') }}" class="btn btn-secondary">Retour à la liste</a>
+        </div>
+    </div>
+{% endblock %}

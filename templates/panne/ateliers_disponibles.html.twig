@@ -1,0 +1,21 @@
+{# ateliers_disponibles.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Ateliers Disponibles{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Liste des Ateliers Disponibles</h1>
+
+    {% if ateliersDisponibles is not empty %}
+        <ul>
+            {% for atelier in ateliersDisponibles %}
+                <li>{{ atelier.nom }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-center">Aucun atelier disponible pour le moment.</p>
+    {% endif %}
+</div>
+{% endblock %}

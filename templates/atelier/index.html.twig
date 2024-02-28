@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Ateliers{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h1 class="text-center mb-0">Liste des Ateliers</h1>
+        </div>
+        <div class="col-md-6">
+            <!-- Formulaire de recherche -->
+            <form action="{{ path('search_ateliers') }}" method="get" class="form-inline float-md-right">
+                <div class="form-group mb-2">
+                    <input type="text" class="form-control" name="q" id="searchInput" placeholder="Rechercher par nom d'atelier">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Rechercher</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        {% if ateliers is not empty %}
+            {% for atelier in ateliers %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ atelier.nom }}</h5>
+                            <p class="card-text"><strong>Adresse:</strong> {{ atelier.adresse }}</p>
+                            <p class="card-text"><strong>Téléphone:</strong> {{ atelier.numeroTelephone }}</p>
+                            <p class="card-text"><strong>Spécialité:</strong> {{ atelier.specialite }}</p>
+                            <p class="card-text"><strong>Heures:</strong> 
+                                {% if atelier.heureOverture %}
+                                    {{ atelier.heureOverture|date('H:i') }} - {{ atelier.heureFermeture|date('H:i') }}
+                                {% else %}
+                                    Non spécifié
+                                {% endif %}
+                            </p>
+                            <p class="card-text"><strong>Avis:</strong> {{ atelier.avis }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ path('app_atelier_show', {'id': atelier.id}) }}" class="btn btn-info mr-2">Voir</a>
+                            <a href="{{ path('app_atelier_edit', {'id': atelier.id}) }}" class="btn btn-primary">Modifier</a>
+                            <!-- Bouton de suppression avec confirmation -->
+                            <button type="button" class="btn btn-danger" onclick="deleteConfirmation('{{ path('app_atelier_delete', {'id': atelier.id}) }}', '{{ csrf_token('delete' ~ atelier.id) }}')">
+                                <span class="fas fa-times"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-md-12">
+                <p class="text-center">Aucun atelier trouvé.</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="{{ path('app_atelier_new') }}" class="btn btn-success">Créer un nouvel Atelier</a>
+    </div>
+</div>
+
+<!-- Modal de confirmation de suppression -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cet atelier ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <form id="deleteForm" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" id="deleteToken" value="">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin du Modal -->
+
+<!-- Script pour la confirmation de suppression -->
+<script>
+    function deleteConfirmation(url, token) {
+        $('#deleteModal').modal('show');
+        $('#deleteToken').val(token);
+        $('#deleteForm').attr('action', url);
+    }
+</script>
+{% endblock %}
