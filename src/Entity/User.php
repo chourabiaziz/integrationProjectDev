@@ -34,9 +34,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Contrat::class, mappedBy: 'client')]
     private Collection $contrats;
 
+    #[ORM\OneToMany(targetEntity: Constat::class, mappedBy: 'createdby')]
+    private Collection $constats;
+
     public function __construct()
     {
         $this->contrats = new ArrayCollection();
+        $this->constats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,6 +88,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
 
     /**
      * @see PasswordAuthenticatedUserInterface
@@ -141,5 +146,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return (string)  $this->email;
+    }
+
+    /**
+     * @return Collection<int, Constat>
+     */
+    public function getConstats(): Collection
+    {
+        return $this->constats;
+    }
+
+    public function addConstat(Constat $constat): static
+    {
+        if (!$this->constats->contains($constat)) {
+            $this->constats->add($constat);
+            $constat->setCreatedby($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConstat(Constat $constat): static
+    {
+        if ($this->constats->removeElement($constat)) {
+            // set the owning side to null (unless already changed)
+            if ($constat->getCreatedby() === $this) {
+                $constat->setCreatedby(null);
+            }
+        }
+
+        return $this;
     }
 }

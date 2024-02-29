@@ -45,4 +45,13 @@ class AssuranceRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+public function findBySearchTerm($searchTerm)
+{
+    return $this->createQueryBuilder('a')
+        ->where('a.nomAssurance LIKE :searchTerm')
+        ->setParameter('searchTerm', '%'.$searchTerm.'%')
+        ->getQuery()
+        ->getResult();
+}
 }

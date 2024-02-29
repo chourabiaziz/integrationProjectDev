@@ -7,6 +7,7 @@ use App\Form\ConstatType;
 use App\Repository\ConstatRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -17,34 +18,59 @@ class ConstatController extends AbstractController
     #[Route('/', name: 'app_constat_index', methods: ['GET'])]
     public function index(ConstatRepository $constatRepository): Response
     {
-        return $this->render('constat/index.html.twig', [
-            'constats' => $constatRepository->findAll(),
-        ]);
+        $user = $this->getUser(); //utilisateur connecté
+
+        if ($this->isGranted("ROLE_ADMIN")) {
+            return $this->render('constat/index.html.twig', [
+                'constats' => $constatRepository->findAll(),
+            ]);
+        }else {
+            return $this->render('xfront_office/constat/index_front.html.twig', [
+                'constats' => $constatRepository->findAll(),
+            ]);        }
+       
     }
+
+
 
     #[Route('/new', name: 'app_constat_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, #[Autowire('%photo_dir%')] string $photoDir): Response
     {
-        $constat = new Constat();
-        $form = $this->createForm(ConstatType::class, $constat);
-        $form->handleRequest($request);
+    $constat = new Constat();
+    $form = $this->createForm(ConstatType::class, $constat);
+    $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($constat);
-            $entityManager->flush();
+    if ($form->isSubmitted() && $form->isValid()) {
+        $user = $this->getUser(); //utilisateur connecté
 
-            return $this->redirectToRoute('app_constat_index', [], Response::HTTP_SEE_OTHER);
+        if ($photo = $form['photo']->getData()) {
+            $fileName = uniqid().'.'.$photo->guessExtension();
+            
+            $photo->move($photoDir, $fileName);
+
+            
         }
+       // $constat->setImageFileName($fileName);
+        $constat->setCreatedby($user);
 
-        return $this->render('constat/new.html.twig', [
-            'constat' => $constat,
-            'form' => $form,
-        ]);
+        $entityManager->persist($constat);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_constat_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    return $this->render('constat/new.html.twig', [
+        'constat' => $constat,
+        'form' => $form->createView(),
+    ]);
+}
+
 
     #[Route('/{id}', name: 'app_constat_show', methods: ['GET'])]
     public function show(Constat $constat): Response
     {
+
+        
         return $this->render('constat/show.html.twig', [
             'constat' => $constat,
         ]);

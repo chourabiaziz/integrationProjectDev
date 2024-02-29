@@ -10,7 +10,7 @@
 <h1 class="my-4 text-center text-italic-3d"> Nouvelle assurance</h1> <style> .text-italic-3d { font-style: italic; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); transform: perspective(1px) translateZ(0); box-shadow: 0 0 1px rgba(0, 0, 0, 0.3); } </style>
     <div class="card" style = " width: 30pc ;">
         <div class="card-body">
-            <form action="{{ path('app_assurance_new') }}" method="post">
+            <form action="{{ path('app_assurance_new') }}" method="post"  method="post" novalidate>
                 {{ form_start(form) }}
 
                 <div class="form-group row">

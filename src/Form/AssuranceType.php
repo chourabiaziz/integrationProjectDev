@@ -16,49 +16,11 @@ class AssuranceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('nomAssurance', TextType::class, [
-            'constraints' => [
-                new Assert\NotBlank([
-                    'message' => 'Vous devez indiquer le nom de l\'assurance.',
-                ]),
-                new Assert\Length(['min' => 5, 'max' => 255]),
-            ],
-        ])
-        ->add('adresseAssurance', TextType::class, [
-            'constraints' => [
-                new Assert\NotBlank([
-                    'message' => 'Vous devez indiquer l\'adresse de l\'assurance.',
-                ]),
-                new Assert\Length(['min' => 5, 'max' => 255]),
-            ],
-        ])
-
-        ->add('codePostalAssurance', TextType::class, [
-            'constraints' => [
-                new Assert\NotBlank([
-                    'message' => 'Vous devez indiquer le code postal de l\'assurance.',
-                ]),
-                new Assert\Length(['min' => 5, 'max' => 5]),
-            ],
-        ])
-        ->add('telAssurance', TelType::class, [
-            'constraints' => [
-                new Assert\NotBlank([
-                    'message' => 'Vous devez indiquer le numéro de téléphone de l\'assurance.',
-                ]),
-                new Assert\Length(['min' => 10, 'max' => 15]),
-            ],
-        ])
-
-        ->add('emailAssurance', EmailType::class, [
-            'constraints' => [
-                new Assert\NotBlank([
-                    'message' => 'Vous devez indiquer l\'adresse e-mail de l\'assurance.',
-                ]),
-                new Assert\Email(),
-            ],
-        ])
-           
+        ->add('nomAssurance')
+        ->add('adresseAssurance')
+        ->add('codePostalAssurance')
+        ->add('telAssurance')
+        ->add('emailAssurance')   
         ;
     }
 

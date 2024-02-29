@@ -15,12 +15,29 @@ use Symfony\Component\Routing\Attribute\Route;
 class AssuranceController extends AbstractController
 {
     #[Route('/', name: 'app_assurance_index', methods: ['GET'])]
-    public function index(AssuranceRepository $assuranceRepository): Response
+    public function index( Request $request ,AssuranceRepository $assuranceRepository): Response
     {
+        $searchTerm = $request->query->get('search');
+        $assurances = [];
+    
+        if ($searchTerm) {
+            // Perform a search in the repository based on the search term
+            $assurances = $assuranceRepository->findBySearchTerm($searchTerm);
+        } else {
+            // If no search term, retrieve all assurances
+            $assurances = $assuranceRepository->findAll();
+        }
+    
         return $this->render('assurance/index.html.twig', [
-            'assurances' => $assuranceRepository->findAll(),
+            'assurances' => $assurances,
+            'searchTerm' => $searchTerm,
         ]);
     }
+
+
+
+
+
 
     #[Route('/new', name: 'app_assurance_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -78,4 +95,7 @@ class AssuranceController extends AbstractController
 
         return $this->redirectToRoute('app_assurance_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    
 }

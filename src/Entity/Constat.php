@@ -5,7 +5,11 @@ namespace App\Entity;
 use App\Repository\ConstatRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
+
 
 
 
@@ -19,15 +23,19 @@ class Constat
 
     
     #[ORM\ManyToOne(inversedBy: 'constats')]
-    private ?Assurance $relation = null; 
+    private ?Assurance $relation_assurance = null; 
 
     #[ORM\Column(type: Types::DATE_MUTABLE  )]
+   
     private ?\DateTimeInterface $date_accident = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+   
     private ?\DateTimeInterface $heure = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "entrez la localisation svp")]
     private ?string $localisation = null;
 
     #[ORM\Column]
@@ -43,88 +51,153 @@ class Constat
     private ?string $temoins = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le nom ne peut pas être vide")]
+#[Assert\Length(
+    min: 5,
+    max: 20,
+    minMessage: "Le nom doit comporter au moins {{ limit }} caractères",
+    maxMessage: "Le nom ne peut pas dépasser {{ limit }} caractères"
+)]
     private ?string $A_preneur_nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le prénom ne peut pas être vide")]
+#[Assert\Length(
+    min: 2,
+    max: 100,
+    minMessage: "Le prénom doit comporter au moins {{ limit }} caractères",
+    maxMessage: "Le prénom ne peut pas dépasser {{ limit }} caractères"
+)]
     private ?string $A_preneur_prenom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "L'adresse ne peut pas être vide")]
     private ?string $A_preneur_adresse = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le code postal ne peut pas être vide")]
+#[Assert\Regex(
+    pattern: "/^\d{5}$/",
+    message: "Le code postal doit être composé de 5 chiffres"
+)]
     private ?string $A_preneur_codePostal = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le pays ne peut pas être vide")]
     private ?string $A_preneur_pays = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le numéro de téléphone ne peut pas être vide")]
+#[Assert\Regex(
+    pattern: "/^[0-9]{10}$/",
+    message: "Le numéro de téléphone doit être composé de 10 chiffres"
+)]
     private ?string $A_preneur_tel = null;
 
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "La marque du moteur ne peut pas être vide")]
     private ?string $A_vehicule_moteur_marque = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le numéro d'immatriculation du moteur ne peut pas être vide")]
     private ?string $A_vehicule_moteur_numImmatriculation = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le pays d'immatriculation du moteur ne peut pas être vide")]
     private ?string $A_vehicule_moteur_paysImmatriculation = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le numéro d'immatriculation de la remorque ne peut pas être vide")]
     private ?string $A_vehicule_remorque_numImmatriculation = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le pays d'immatriculation de la remorque ne peut pas être vide")]
     private ?string $A_vehicule_remorque_paysImmatriculation = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le nom ne peut pas être vide")]
+#[Assert\Length(
+    min: 5,
+    max: 100,
+    minMessage: "Le nom doit comporter au moins {{ limit }} caractères",
+    maxMessage: "Le nom ne peut pas dépasser {{ limit }} caractères"
+)]
     private ?string $A_societeAssurance_nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le nul contrat ne peut pas être vide")]
     private ?string $A_societeAssurance_numContrat = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le num carte verte ne peut pas être vide")]
     private ?string $A_societeAssurance_numCarteVerte = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Assert\Date(message: "La date de début de validité de l'attestation doit être une date valide")]
     private ?\DateTimeInterface $A_societeAssurance_attestationValable_du = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE , nullable: true)]
+    #[Assert\Date(message: "La date de fin de validité de l'attestation doit être une date valide")]
     private ?\DateTimeInterface $A_societeAssurance_attestationValable_au = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le nom ne peut pas être vide")]
+#[Assert\Length(
+    min: 2,
+    max: 100,
+    minMessage: "Le prénom doit comporter au moins {{ limit }} caractères",
+    maxMessage: "Le prénom ne peut pas dépasser {{ limit }} caractères"
+)]
     private ?string $A_societeAssurance_agence_nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "L'adresse de l'agence de la société d'assurance ne peut pas être vide")]
     private ?string $A_societeAssurance_agence_adresse = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le pays de l'agence de la société d'assurance ne peut pas être vide")]
     private ?string $A_societeAssurance_agence_pays = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le numéro de téléphone de l'agence de la société d'assurance ne peut pas être vide")]
     private ?string $A_societeAssurance_agence_tel = null;
 
     #[ORM\Column]
     private ?bool $A_societeAssurance_degatsMaterielsAssureParContrat = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le nom du conducteur ne peut pas être vide")]
     private ?string $A_conducteur_nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le prénom du conducteur ne peut pas être vide")]
     private ?string $A_conducteur_prenom = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE , nullable: true)]
+    #[Assert\Date(message: "La date de naissance du conducteur doit être une date valide")]
     private ?\DateTimeInterface $A_conducteur_dateNaissance = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "L'adresse du conducteur ne peut pas être vide")]
     private ?string $A_conducteur_adresse = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le pays du conducteur ne peut pas être vide")]
     private ?string $A_conducteur_pays = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le numéro de téléphone ne peut pas être vide")]
+    #[Assert\Regex(
+        pattern: "/^[0-9]{10}$/",
+        message: "Le numéro de téléphone doit être composé de 10 chiffres"
+    )]
     private ?string $A_conducteur_tel = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le numéro de permis de conduire du conducteur ne peut pas être vide")]
     private ?string $A_conducteur_numPermisComduite = null;
 
     #[ORM\Column(length: 255)]
@@ -141,6 +214,7 @@ class Constat
     private ?string $A_observation = null;
 
     #[ORM\Column(length: 255)]
+    
     private ?string $B_preneur_nom = null;
 
     #[ORM\Column(length: 255)]
@@ -292,16 +366,76 @@ class Constat
     #[ORM\Column]
     private ?int $indiquationNombreCases = null;
 
+    #[ORM\Column]
+    private ?bool $Bstationnement_arret = null;
 
+    #[ORM\Column]
+    private ?bool $BquittaitStationnement_arret = null;
+
+    #[ORM\Column]
+    private ?bool $Bprenait_stationnement = null;
+
+    #[ORM\Column]
+    private ?bool $BsortaitDun_parking_lieu = null;
+
+    #[ORM\Column]
+    private ?bool $BsengageaitDun_parking_lieu = null;
+
+    #[ORM\Column]
+    private ?bool $BsengageaitSurUnePlace_sensGigatoire = null;
+
+    #[ORM\Column]
+    private ?bool $BroulerSurUnePlace_sensGigatoire = null;
+
+    #[ORM\Column]
+    private ?bool $Bheurtait_a_larriere = null;
+
+    #[ORM\Column]
+    private ?bool $BroulaitDansMemeSens_sureUneFileDifferente = null;
+
+    #[ORM\Column]
+    private ?bool $BchangeaitFile = null;
+
+    #[ORM\Column]
+    private ?bool $Bdoublait = null;
+
+    #[ORM\Column]
+    private ?bool $BviraitDroite = null;
+
+    #[ORM\Column]
+    private ?bool $BviraitGauche = null;
+
+    #[ORM\Column]
+    private ?bool $Breculait = null;
+
+    #[ORM\Column]
+    private ?bool $BempietaitSurUneVoie = null;
+
+    #[ORM\Column]
+    private ?bool $BvenaitDeDroite = null;
+
+    #[ORM\Column]
+    private ?bool $BobservationSignal = null;
+
+    #[ORM\Column]
+    private ?int $BindiquationNombreCases = null;
+
+    #[ORM\Column(length: 255 , nullable:true)]
+    private ?string $imageFileName = null;
+
+    #[ORM\ManyToOne(inversedBy: 'constats')]
+    private ?User $createdby = null;
+
+   
 
 public function getRelation(): ?Assurance
 {
-    return $this->relation;
+    return $this->relation_assurance;
 }
 
-public function setRelation(?Assurance $relation): static
+public function setRelation(?Assurance $relation_assurance): static
 {
-    $this->relation = $relation;
+    $this->relation_assurance = $relation_assurance;
 
     return $this;
 }
@@ -504,7 +638,7 @@ public function setRelation(?Assurance $relation): static
 
         return $this;
     }
-
+    
     public function getAVehiculeRemorqueNumImmatriculation(): ?string
     {
         return $this->A_vehicule_remorque_numImmatriculation;
@@ -517,6 +651,7 @@ public function setRelation(?Assurance $relation): static
         return $this;
     }
 
+    
     public function getAVehiculeRemorquePaysImmatriculation(): ?string
     {
         return $this->A_vehicule_remorque_paysImmatriculation;
@@ -528,6 +663,8 @@ public function setRelation(?Assurance $relation): static
 
         return $this;
     }
+
+
 
     public function getASocieteAssuranceNom(): ?string
     {
@@ -653,6 +790,8 @@ public function setRelation(?Assurance $relation): static
         return $this;
     }
 
+
+
     public function getAConducteurNom(): ?string
     {
         return $this->A_conducteur_nom;
@@ -764,13 +903,6 @@ public function setRelation(?Assurance $relation): static
     }
 
 
-
-
-
-
-
-
-
     public function getADegats(): ?string
     {
         return $this->A_degats;
@@ -794,6 +926,17 @@ public function setRelation(?Assurance $relation): static
 
         return $this;
     }
+
+
+
+
+
+
+
+
+
+
+
 
     public function getBPreneurNom(): ?string
     {
@@ -976,8 +1119,6 @@ public function setRelation(?Assurance $relation): static
 
         return $this;
     }
-
-
 
     public function getBSocieteAssuranceAttestationValableAu(): ?\DateTimeInterface
     {
@@ -1207,8 +1348,6 @@ public function setRelation(?Assurance $relation): static
         return $this;
     }
 
-
-
     public function isQuittaitStationnementArret(): ?bool
     {
         return $this->quittaitStationnement_arret;
@@ -1343,12 +1482,12 @@ public function setRelation(?Assurance $relation): static
         return $this;
     }
 
-    public function getViraitGauche(): ?string
+    public function getViraitGauche(): ?bool
     {
         return $this->viraitGauche;
     }
 
-    public function setViraitGauche(string $viraitGauche): static
+    public function setViraitGauche(bool $viraitGauche): static
     {
         $this->viraitGauche = $viraitGauche;
 
@@ -1406,11 +1545,6 @@ public function setRelation(?Assurance $relation): static
 
 
 
-
-
-
-
-
     public function getIndiquationNombreCases(): ?int
     {
         return $this->indiquationNombreCases;
@@ -1423,75 +1557,10 @@ public function setRelation(?Assurance $relation): static
         return $this;
     }
 
-      #[ORM\Column(type: 'string', length: 255, nullable: true )]
-     private ?string $photo = null ;
 
-      #[ORM\Column]
-      private ?bool $Bstationnement_arret = null;
-
-      #[ORM\Column]
-      private ?bool $BquittaitStationnement_arret = null;
-
-      #[ORM\Column]
-      private ?bool $Bprenait_stationnement = null;
-
-      #[ORM\Column]
-      private ?bool $BsortaitDun_parking_lieu = null;
-
-      #[ORM\Column]
-      private ?bool $BsengageaitDun_parking_lieu = null;
-
-      #[ORM\Column]
-      private ?bool $BsengageaitSurUnePlace_sensGigatoire = null;
-
-      #[ORM\Column]
-      private ?bool $BroulerSurUnePlace_sensGigatoire = null;
-
-      #[ORM\Column]
-      private ?bool $Bheurtait_a_larriere = null;
-
-      #[ORM\Column]
-      private ?bool $BroulaitDansMemeSens_sureUneFileDifferente = null;
-
-      #[ORM\Column]
-      private ?bool $BchangeaitFile = null;
-
-      #[ORM\Column]
-      private ?bool $Bdoublait = null;
-
-      #[ORM\Column]
-      private ?bool $BviraitDroite = null;
-
-      #[ORM\Column]
-      private ?bool $BviraitGauche = null;
-
-      #[ORM\Column]
-      private ?bool $Breculait = null;
-
-      #[ORM\Column]
-      private ?bool $BempietaitSurUneVoie = null;
-
-      #[ORM\Column]
-      private ?bool $BvenaitDeDroite = null;
-
-      #[ORM\Column]
-      private ?bool $BobservationSignal = null;
-
-      #[ORM\Column]
-      private ?int $BindiquationNombreCases = null;
-
+     
    
-    public function getPhoto(): ?string
-    {
-        return $this->photo;
-    }
-
-    public function setPhoto(?string $photo): self
-    {
-        $this->photo = $photo;
-
-        return $this;
-    }
+   
 
     public function isBstationnementArret(): ?bool
     {
@@ -1709,11 +1778,30 @@ public function setRelation(?Assurance $relation): static
         return $this;
     }
 
+    public function getImageFileName(): ?string
+    {
+        return $this->imageFileName;
+    }
+
+    public function setImageFileName(string $imageFileName): static
+    {
+        $this->imageFileName = $imageFileName;
+
+        return $this;
+    }
+
+    public function getCreatedby(): ?User
+    {
+        return $this->createdby;
+    }
+
+    public function setCreatedby(?User $createdby): static
+    {
+        $this->createdby = $createdby;
+
+        return $this;
+    }
 
   
-   
-
-
-
 
 }

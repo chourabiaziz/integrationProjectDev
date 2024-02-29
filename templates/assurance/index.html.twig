@@ -1,44 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Assurance index{% endblock %}
+{% block title %}Assurance {% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        .text-shadow {
+            text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);
+        }
+        .custom-card {
+        background-color: #DCDCDC		;
+        border: 2px solid #A9A9A9	; }
+    </style>
+{% endblock %}
+
 {% block body %}
+<div class="container mt-5 text-center">
+        <h1 class="display-4 font-weight-bold text-primary">
+            <span class="text-shadow">Assurance liste</span>
+        </h1>
+    </div>
 
-    <h1>Assurance index</h1>
+    <form method="GET" action="{{ path('app_assurance_index') }}">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Rechercher par nom d'assurance" name="search">
+            <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
+        </div>
+    </form>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>NomAssurance</th>
-                <th>AdresseAssurance</th>
-                <th>CodePostalAssurance</th>
-                <th>TelAssurance</th>
-                <th>EmailAssurance</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+  <div class="container">
+    <div class="card-columns">
+    
         {% for assurance in assurances %}
-            <tr>
-                <td>{{ assurance.id }}</td>
-                <td>{{ assurance.NomAssurance }}</td>
-                <td>{{ assurance.adresseAssurance }}</td>
-                <td>{{ assurance.codePostalAssurance }}</td>
-                <td>{{ assurance.telAssurance }}</td>
-                <td>{{ assurance.emailAssurance }}</td>
-                <td>
-                    <a href="{{ path('app\_assurance\_show', {'id': assurance.id}) }}" class="btn btn-primary btn-sm mr-2">Show</a>
-                    <a href="{{ path('app_assurance_edit', {'id': assurance.id}) }}"  class="btn btn-primary btn-sm mr-2">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class="card custom-card mb-3">
+                <div class="card-header">{{ assurance.NomAssurance }}</div>
+                <div class="card-body">
 
+                    <p class="card-text">Adresse: {{ assurance.adresseAssurance }}</p>
+                    <p class="card-text">Code Postal: {{ assurance.codePostalAssurance }}</p>
+                    <p class="card-text">Téléphone: {{ assurance.telAssurance }}</p>
+                    <p class="card-text">Email: {{ assurance.emailAssurance }}</p>
+                    <a href="{{ path('app_assurance_show', {'id': assurance.id}) }}" class="btn btn-primary btn-sm mr-2">Show</a>
+                    <a href="{{ path('app_assurance_edit', {'id': assurance.id}) }}"  class="btn btn-primary btn-sm mr-2">Edit</a>
+                </div>
+            </div>
+        {% else %}
+            <p>No records found</p>
+        {% endfor %}
+    </div>
+</div>
+
+ 
     <a href="{{ path('app_assurance_new') }}">Create new</a>
 {% endblock %}
 

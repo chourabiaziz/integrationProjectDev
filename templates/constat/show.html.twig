@@ -3,304 +3,449 @@
 {% block title %}Constat{% endblock %}
 
 {% block body %}
-    <h1>Constat</h1>
+<div class="container mt-4">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ constat.id }}</td>
-            </tr>
-            <tr>
-                <th>Date_accident</th>
-                <td>{{ constat.dateAccident ? constat.dateAccident|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Heure</th>
-                <td>{{ constat.heure ? constat.heure|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Localisation</th>
-                <td>{{ constat.localisation }}</td>
-            </tr>
-            <tr>
-                <th>Blesse_meme_leger</th>
-                <td>{{ constat.blesseMemeLeger ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Degats_autre_vehicule</th>
-                <td>{{ constat.degatsAutreVehicule ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Degats_autre_objets</th>
-                <td>{{ constat.degatsAutreObjets ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Temoins</th>
-                <td>{{ constat.temoins }}</td>
-            </tr>
-            <tr>
-                <th>A_preneur_nom</th>
-                <td>{{ constat.APreneurNom }}</td>
-            </tr>
-            <tr>
-                <th>A_preneur_prenom</th>
-                <td>{{ constat.APreneurPrenom }}</td>
-            </tr>
-            <tr>
-                <th>A_preneur_adresse</th>
-                <td>{{ constat.APreneurAdresse }}</td>
-            </tr>
-            <tr>
-                <th>A_preneur_codePostal</th>
-                <td>{{ constat.APreneurCodePostal }}</td>
-            </tr>
-            <tr>
-                <th>A_preneur_tel</th>
-                <td>{{ constat.APreneurTel }}</td>
-            </tr>
-            <tr>
-                <th>A_preneur_email</th>
-                <td>{{ constat.APreneurEmail }}</td>
-            </tr>
-            <tr>
-                <th>A_vehicule_moteur_marque</th>
-                <td>{{ constat.AVehiculeMoteurMarque }}</td>
-            </tr>
-            <tr>
-                <th>A_vehicule_moteur_numImmatriculation</th>
-                <td>{{ constat.AVehiculeMoteurNumImmatriculation }}</td>
-            </tr>
-            <tr>
-                <th>A_vehicule_moteur_paysImmatriculation</th>
-                <td>{{ constat.AVehiculeMoteurPaysImmatriculation }}</td>
-            </tr>
-            <tr>
-                <th>A_vehicule_remorque_numImmatriculation</th>
-                <td>{{ constat.AVehiculeRemorqueNumImmatriculation }}</td>
-            </tr>
-            <tr>
-                <th>A_vehicule_remorque_paysImmatriculation</th>
-                <td>{{ constat.AVehiculeRemorquePaysImmatriculation }}</td>
-            </tr>
-            <tr>
-                <th>A_societeAssurance_nom</th>
-                <td>{{ constat.ASocieteAssuranceNom }}</td>
-            </tr>
-            <tr>
-                <th>A_societeAssurance_numContrat</th>
-                <td>{{ constat.ASocieteAssuranceNumContrat }}</td>
-            </tr>
-            <tr>
-                <th>A_societeAssurance_numCarteVerte</th>
-                <td>{{ constat.ASocieteAssuranceNumCarteVerte }}</td>
-            </tr>
-            <tr>
-                <th>A_societeAssurance_attestationValable_du</th>
-                <td>{{ constat.ASocieteAssuranceAttestationValableDu ? constat.ASocieteAssuranceAttestationValableDu|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>A_societeAssurance_attestationValable_au</th>
-                <td>{{ constat.ASocieteAssuranceAttestationValableAu ? constat.ASocieteAssuranceAttestationValableAu|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>A_societeAssurance_agence_nom</th>
-                <td>{{ constat.ASocieteAssuranceAgenceNom }}</td>
-            </tr>
-            <tr>
-                <th>A_societeAssurance_agence_adresse</th>
-                <td>{{ constat.ASocieteAssuranceAgenceAdresse }}</td>
-            </tr>
-            <tr>
-                <th>A_societeAssurance_agence_pays</th>
-                <td>{{ constat.ASocieteAssuranceAgencePays }}</td>
-            </tr>
-            <tr>
-                <th>A_societeAssurance_agence_tel</th>
-                <td>{{ constat.ASocieteAssuranceAgenceTel }}</td>
-            </tr>
-            <tr>
-                <th>A_societeAssurance_degatsMaterielsAssureParContrat</th>
-                <td>{{ constat.ASocieteAssuranceDegatsMaterielsAssureParContrat ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>A_conducteur_nom</th>
-                <td>{{ constat.AConducteurNom }}</td>
-            </tr>
-            <tr>
-                <th>A_conducteur_prenom</th>
-                <td>{{ constat.AConducteurPrenom }}</td>
-            </tr>
-            <tr>
-                <th>A_conducteur_dateNaissance</th>
-                <td>{{ constat.AConducteurDateNaissance ? constat.AConducteurDateNaissance|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>A_conducteur_adresse</th>
-                <td>{{ constat.AConducteurAdresse }}</td>
-            </tr>
-            <tr>
-                <th>A_conducteur_pays</th>
-                <td>{{ constat.AConducteurPays }}</td>
-            </tr>
-            <tr>
-                <th>A_conducteur_tel</th>
-                <td>{{ constat.AConducteurTel }}</td>
-            </tr>
-            <tr>
-                <th>A_conducteur_numPermisComduite</th>
-                <td>{{ constat.AConducteurNumPermisComduite }}</td>
-            </tr>
-            <tr>
-                <th>A_conducteur_categorie</th>
-                <td>{{ constat.AConducteurCategorie }}</td>
-            </tr>
-            <tr>
-                <th>A_conducteur_permisValableJusqua</th>
-                <td>{{ constat.AConducteurPermisValableJusqua ? constat.AConducteurPermisValableJusqua|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>A_degats</th>
-                <td>{{ constat.ADegats }}</td>
-            </tr>
-            <tr>
-                <th>A_observation</th>
-                <td>{{ constat.AObservation }}</td>
-            </tr>
-            <tr>
-                <th>B_preneur_nom</th>
-                <td>{{ constat.BPreneurNom }}</td>
-            </tr>
-            <tr>
-                <th>B_preneur_prenom</th>
-                <td>{{ constat.BPreneurPrenom }}</td>
-            </tr>
-            <tr>
-                <th>B_preneur_adresse</th>
-                <td>{{ constat.BPreneurAdresse }}</td>
-            </tr>
-            <tr>
-                <th>B_preneur_codePostal</th>
-                <td>{{ constat.BPreneurCodePostal }}</td>
-            </tr>
-            <tr>
-                <th>B_preneur_pays</th>
-                <td>{{ constat.BPreneurPays }}</td>
-            </tr>
-            <tr>
-                <th>B_preneur_tel</th>
-                <td>{{ constat.BPreneurTel }}</td>
-            </tr>
-            <tr>
-                <th>B_vehicule_moteur_marque</th>
-                <td>{{ constat.BVehiculeMoteurMarque }}</td>
-            </tr>
-            <tr>
-                <th>B_vehicule_moteur_numImmatriculation</th>
-                <td>{{ constat.BVehiculeMoteurNumImmatriculation }}</td>
-            </tr>
-            <tr>
-                <th>B_vehicule_moteur_paysImmatriculation</th>
-                <td>{{ constat.BVehiculeMoteurPaysImmatriculation }}</td>
-            </tr>
-            <tr>
-                <th>B_vehicule_remorque_numImmatriculation</th>
-                <td>{{ constat.BVehiculeRemorqueNumImmatriculation }}</td>
-            </tr>
-            <tr>
-                <th>B_vehicule_remorque_paysImmatriculation</th>
-                <td>{{ constat.BVehiculeRemorquePaysImmatriculation }}</td>
-            </tr>
-            <tr>
-                <th>B_societeAssurance_nom</th>
-                <td>{{ constat.BSocieteAssuranceNom }}</td>
-            </tr>
-            <tr>
-                <th>B_societeAssurance_numContrat</th>
-                <td>{{ constat.BSocieteAssuranceNumContrat }}</td>
-            </tr>
-            <tr>
-                <th>B_societeAssurance_numCarteVerte</th>
-                <td>{{ constat.BSocieteAssuranceNumCarteVerte }}</td>
-            </tr>
-            <tr>
-                <th>B_societeAssurance_attestationValable_du</th>
-                <td>{{ constat.BSocieteAssuranceAttestationValableDu ? constat.BSocieteAssuranceAttestationValableDu|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>B_societeAssurance_attestationValable_au</th>
-                <td>{{ constat.BSocieteAssuranceAttestationValableAu ? constat.BSocieteAssuranceAttestationValableAu|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>B_societeAssurance_agence_nom</th>
-                <td>{{ constat.BSocieteAssuranceAgenceNom }}</td>
-            </tr>
-            <tr>
-                <th>B_societeAssurance_agence_adresse</th>
-                <td>{{ constat.BSocieteAssuranceAgenceAdresse }}</td>
-            </tr>
-            <tr>
-                <th>B_societeAssurance_agence_pays</th>
-                <td>{{ constat.BSocieteAssuranceAgencePays }}</td>
-            </tr>
-            <tr>
-                <th>B_societeAssurance_agence_tel</th>
-                <td>{{ constat.BSocieteAssuranceAgenceTel }}</td>
-            </tr>
-            <tr>
-                <th>B_societeAssurance_degatsMaterielsAssureParContrat</th>
-                <td>{{ constat.BSocieteAssuranceDegatsMaterielsAssureParContrat ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>B_conducteur_nom</th>
-                <td>{{ constat.BConducteurNom }}</td>
-            </tr>
-            <tr>
-                <th>B_conducteur_prenom</th>
-                <td>{{ constat.BConducteurPrenom }}</td>
-            </tr>
-            <tr>
-                <th>B_conducteur_dateNaissance</th>
-                <td>{{ constat.BConducteurDateNaissance ? constat.BConducteurDateNaissance|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>B_conducteur_adresse</th>
-                <td>{{ constat.BConducteurAdresse }}</td>
-            </tr>
-            <tr>
-                <th>B_conducteur_pays</th>
-                <td>{{ constat.BConducteurPays }}</td>
-            </tr>
-            <tr>
-                <th>B_conducteur_tel</th>
-                <td>{{ constat.BConducteurTel }}</td>
-            </tr>
-            <tr>
-                <th>B_conducteur_numPermisComduite</th>
-                <td>{{ constat.BConducteurNumPermisComduite }}</td>
-            </tr>
-            <tr>
-                <th>B_conducteur_categorie</th>
-                <td>{{ constat.BConducteurCategorie }}</td>
-            </tr>
-            <tr>
-                <th>B_conducteur_permisValableJusqua</th>
-                <td>{{ constat.BConducteurPermisValableJusqua ? constat.BConducteurPermisValableJusqua|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>B_degats</th>
-                <td>{{ constat.BDegats }}</td>
-            </tr>
-            <tr>
-                <th>B_observation</th>
-                <td>{{ constat.BObservation }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container mt-5 text-center">
+        <h1 class="display-4 font-weight-bold text-primary">
+            <span class="text-shadow"> Détails du Constat</span>
+        </h1>
+    </div>
 
-    <a href="{{ path('app_constat_index') }}">back to list</a>
+    <ul class="list-group mt-3">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Date de l'accident:
+            <span class="badge badge-primary badge-pill">{{ constat.dateAccident | date('Y-m-d') }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Heure:
+            <span class="badge badge-primary badge-pill">{{ constat.heure ? constat.heure | date('H:i:s') : '' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Localisation:
+            <span class="badge badge-primary badge-pill">{{ constat.localisation }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Dégâts autres véhicules:
+            <span class="badge badge-primary badge-pill">{{ constat.degatsAutreVehicule ? 'Oui' : 'Non' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Dégâts autres objets:
+            <span class="badge badge-primary badge-pill">{{ constat.degatsAutreObjets ? 'Oui' : 'Non' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Témoins:
+            <span class="badge badge-primary badge-pill">{{ constat.temoins }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Nom du preneur:
+            <span class="badge badge-primary badge-pill">{{ constat.APreneurNom }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Prénom du preneur:
+            <span class="badge badge-primary badge-pill">{{ constat.APreneurPrenom }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Adresse du preneur:
+            <span class="badge badge-primary badge-pill">{{ constat.APreneurAdresse }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Code postal du preneur:
+            <span class="badge badge-primary badge-pill">{{ constat.APreneurCodePostal }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Téléphone du preneur:
+            <span class="badge badge-primary badge-pill">{{ constat.APreneurTel }}</span>
+        </li>
 
-    <a href="{{ path('app_constat_edit', {'id': constat.id}) }}">edit</a>
 
-    {{ include('constat/_delete_form.html.twig') }}
+
+
+
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A vehicule moteur marque:
+            <span class="badge badge-primary badge-pill">{{ constat.AVehiculeMoteurMarque ? 'Oui' : 'Non' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_vehicule_moteur_numImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.AVehiculeMoteurNumImmatriculation }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Nom du A_vehicule_moteur_paysImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.AVehiculeMoteurPaysImmatriculation }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_vehicule_remorque_numImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.AVehiculeRemorqueNumImmatriculation }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_vehicule_remorque_paysImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.AVehiculeRemorquePaysImmatriculation }}</span>
+        </li>
+
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_societeAssurance_nom:
+            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceNom }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_societeAssurance_numContrat:
+            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceNumContrat }}</span>
+        </li>
+
+
+
+
+
+
+
+
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_societeAssurance_numCarteVerte:
+            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceNumCarteVerte ? 'Oui' : 'Non' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_societeAssurance_attestationValable_du:
+            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceAttestationValableDu ? constat.ASocieteAssuranceAttestationValableDu|date('Y-m-d') : '' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Nom du A_societeAssurance_attestationValable_au:
+            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceAttestationValableAu ? constat.ASocieteAssuranceAttestationValableAu|date('Y-m-d') : '' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_societeAssurance_agence_nom:
+            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceAgenceNom }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_societeAssurance_agence_adresse:
+            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceAgenceAdresse }}</span>
+        </li>
+
+        
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_societeAssurance_agence_pays:
+            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceAgencePays }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_societeAssurance_agence_tel:
+            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceAgenceTel }}</span>
+        </li>
+
+        
+
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A vehicule moteur marque:
+            <span class="badge badge-primary badge-pill">{{ constat.AVehiculeMoteurMarque ? 'Oui' : 'Non' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_vehicule_moteur_numImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.AVehiculeMoteurNumImmatriculation }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Nom du A_vehicule_moteur_paysImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.AVehiculeMoteurPaysImmatriculation }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_vehicule_remorque_numImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.AVehiculeRemorqueNumImmatriculation }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_vehicule_remorque_paysImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.AVehiculeRemorquePaysImmatriculation }}</span>
+        </li>
+
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_societeAssurance_nom:
+            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceNom }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_societeAssurance_numContrat:
+            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceNumContrat }}</span>
+        </li>
+
+
+
+
+
+
+
+
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_societeAssurance_degatsMaterielsAssureParContrat:
+            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceDegatsMaterielsAssureParContrat ? 'Oui' : 'Non' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_conducteur_nom:
+            <span class="badge badge-primary badge-pill">{{ constat.AConducteurNom }}</span>
+        </li>
+        
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_conducteur_prenom:
+            <span class="badge badge-primary badge-pill">{{ constat.AConducteurPrenom }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_conducteur_dateNaissance:
+            <span class="badge badge-primary badge-pill">{{ constat.AConducteurDateNaissance ? constat.AConducteurDateNaissance|date('Y-m-d') : '' }}</span>
+        </li>
+
+        
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_societeAssurance_agence_pays:
+            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceAgencePays }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_conducteur_adresse:
+            <span class="badge badge-primary badge-pill">{{ constat.AConducteurAdresse }}</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_conducteur_pays:
+            <span class="badge badge-primary badge-pill">{{ constat.AConducteurPays }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_conducteur_tel:
+            <span class="badge badge-primary badge-pill">{{ constat.AConducteurTel }}</span>
+        </li>
+        
+        
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_conducteur_numPermisComduite:
+            <span class="badge badge-primary badge-pill">{{ constat.AConducteurNumPermisComduite }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_conducteur_categorie:
+            <span class="badge badge-primary badge-pill">{{ constat.AConducteurCategorie }}</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_conducteur_permisValableJusqua:
+            <span class="badge badge-primary badge-pill">{{ constat.AConducteurPermisValableJusqua ? constat.AConducteurPermisValableJusqua|date('Y-m-d') : '' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_degats:
+            <span class="badge badge-primary badge-pill">{{ constat.ADegats }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_observation:
+            <span class="badge badge-primary badge-pill">{{ constat.AObservation }}</span>
+        </li>
+
+
+
+
+
+
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Nom du preneur:
+            <span class="badge badge-primary badge-pill">{{ constat.BPreneurNom }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Prénom du preneur:
+            <span class="badge badge-primary badge-pill">{{ constat.BPreneurPrenom }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Adresse du preneur:
+            <span class="badge badge-primary badge-pill">{{ constat.BPreneurAdresse }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Code postal du preneur:
+            <span class="badge badge-primary badge-pill">{{ constat.BPreneurCodePostal }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Téléphone du preneur:
+            <span class="badge badge-primary badge-pill">{{ constat.BPreneurTel }}</span>
+        </li>
+
+
+
+
+
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A vehicule moteur marque:
+            <span class="badge badge-primary badge-pill">{{ constat.BVehiculeMoteurMarque ? 'Oui' : 'Non' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            A_vehicule_moteur_numImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.BVehiculeMoteurNumImmatriculation }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Nom du A_vehicule_moteur_paysImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.BVehiculeMoteurPaysImmatriculation }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+           B vehicule_remorque_numImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.BVehiculeRemorqueNumImmatriculation }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B vehicule_remorque_paysImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.BVehiculeRemorquePaysImmatriculation }}</span>
+        </li>
+
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B societeAssurance_nom:
+            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceNom }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+             B societeAssurance_numContrat:
+            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceNumContrat }}</span>
+        </li>
+
+
+
+
+
+
+
+
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_societeAssurance_numCarteVerte:
+            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceNumCarteVerte ? 'Oui' : 'Non' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_societeAssurance_attestationValable_du:
+            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceAttestationValableDu ? constat.ASocieteAssuranceAttestationValableDu|date('Y-m-d') : '' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+             B_societeAssurance_attestationValable_au:
+            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceAttestationValableAu ? constat.ASocieteAssuranceAttestationValableAu|date('Y-m-d') : '' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_societeAssurance_agence_nom:
+            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceAgenceNom }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_societeAssurance_agence_adresse:
+            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceAgenceAdresse }}</span>
+        </li>
+
+        
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_societeAssurance_agence_pays:
+            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceAgencePays }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_societeAssurance_agence_tel:
+            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceAgenceTel }}</span>
+        </li>
+
+        
+
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B vehicule moteur marque:
+            <span class="badge badge-primary badge-pill">{{ constat.BVehiculeMoteurMarque ? 'Oui' : 'Non' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B vehicule_moteur_numImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.BVehiculeMoteurNumImmatriculation }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B vehicule_moteur_paysImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.BVehiculeMoteurPaysImmatriculation }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_vehicule_remorque_numImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.BVehiculeRemorqueNumImmatriculation }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_vehicule_remorque_paysImmatriculation:
+            <span class="badge badge-primary badge-pill">{{ constat.BVehiculeRemorquePaysImmatriculation }}</span>
+        </li>
+
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_societeAssurance_nom:
+            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceNom }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_societeAssurance_numContrat:
+            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceNumContrat }}</span>
+        </li>
+
+
+
+
+
+
+
+
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_societeAssurance_degatsMaterielsAssureParContrat:
+            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceDegatsMaterielsAssureParContrat ? 'Oui' : 'Non' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_conducteur_nom:
+            <span class="badge badge-primary badge-pill">{{ constat.BConducteurNom }}</span>
+        </li>
+        
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_conducteur_prenom:
+            <span class="badge badge-primary badge-pill">{{ constat.BConducteurPrenom }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_conducteur_dateNaissance:
+            <span class="badge badge-primary badge-pill">{{ constat.BConducteurDateNaissance ? constat.AConducteurDateNaissance|date('Y-m-d') : '' }}</span>
+        </li>
+
+        
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_societeAssurance_agence_pays:
+            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceAgencePays }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_conducteur_adresse:
+            <span class="badge badge-primary badge-pill">{{ constat.BConducteurAdresse }}</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_conducteur_pays:
+            <span class="badge badge-primary badge-pill">{{ constat.BConducteurPays }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_conducteur_tel:
+            <span class="badge badge-primary badge-pill">{{ constat.BConducteurTel }}</span>
+        </li>
+        
+        
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_conducteur_numPermisComduite:
+            <span class="badge badge-primary badge-pill">{{ constat.BConducteurNumPermisComduite }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_conducteur_categorie:
+            <span class="badge badge-primary badge-pill">{{ constat.BConducteurCategorie }}</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_conducteur_permisValableJusqua:
+            <span class="badge badge-primary badge-pill">{{ constat.BConducteurPermisValableJusqua ? constat.AConducteurPermisValableJusqua|date('Y-m-d') : '' }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_degats:
+            <span class="badge badge-primary badge-pill">{{ constat.BDegats }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            B_observation:
+            <span class="badge badge-primary badge-pill">{{ constat.BObservation }}</span>
+        </li>
+        
+    </ul>
+
+
+</div>
+    <div class="mt-3">
+        <a href="{{ path('app_constat_index') }}" class="btn btn-secondary">Retour à la liste</a>
+        <a href="{{ path('app_constat_edit', {'id': constat.id}) }}" class="btn btn-primary">Modifier</a>
+        <a href="{{ path('app_constat_delete', {'id': constat.id}) }}" class="btn btn-primary">delete</a>
+
+    </div>
 {% endblock %}
