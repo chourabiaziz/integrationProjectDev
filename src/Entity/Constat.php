@@ -21,16 +21,17 @@ class Constat
     #[ORM\Column]
     private ?int $id = null;
 
+
     
     #[ORM\ManyToOne(inversedBy: 'constats')]
     private ?Assurance $relation_assurance = null; 
 
+  
     #[ORM\Column(type: Types::DATE_MUTABLE  )]
-   
     private ?\DateTimeInterface $date_accident = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-   
+  
+    #[ORM\Column(type: Types::TIME_MUTABLE , nullable:true)]
     private ?\DateTimeInterface $heure = null;
 
 
@@ -50,154 +51,92 @@ class Constat
     #[ORM\Column(length: 255)]
     private ?string $temoins = null;
 
+ 
+
+
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le nom ne peut pas être vide")]
-#[Assert\Length(
-    min: 5,
-    max: 20,
-    minMessage: "Le nom doit comporter au moins {{ limit }} caractères",
-    maxMessage: "Le nom ne peut pas dépasser {{ limit }} caractères"
-)]
     private ?string $A_preneur_nom = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le prénom ne peut pas être vide")]
-#[Assert\Length(
-    min: 2,
-    max: 100,
-    minMessage: "Le prénom doit comporter au moins {{ limit }} caractères",
-    maxMessage: "Le prénom ne peut pas dépasser {{ limit }} caractères"
-)]
     private ?string $A_preneur_prenom = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "L'adresse ne peut pas être vide")]
     private ?string $A_preneur_adresse = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le code postal ne peut pas être vide")]
-#[Assert\Regex(
-    pattern: "/^\d{5}$/",
-    message: "Le code postal doit être composé de 5 chiffres"
-)]
     private ?string $A_preneur_codePostal = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le pays ne peut pas être vide")]
     private ?string $A_preneur_pays = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le numéro de téléphone ne peut pas être vide")]
-#[Assert\Regex(
-    pattern: "/^[0-9]{10}$/",
-    message: "Le numéro de téléphone doit être composé de 10 chiffres"
-)]
     private ?string $A_preneur_tel = null;
 
-
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "La marque du moteur ne peut pas être vide")]
     private ?string $A_vehicule_moteur_marque = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le numéro d'immatriculation du moteur ne peut pas être vide")]
     private ?string $A_vehicule_moteur_numImmatriculation = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le pays d'immatriculation du moteur ne peut pas être vide")]
     private ?string $A_vehicule_moteur_paysImmatriculation = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le numéro d'immatriculation de la remorque ne peut pas être vide")]
     private ?string $A_vehicule_remorque_numImmatriculation = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le pays d'immatriculation de la remorque ne peut pas être vide")]
     private ?string $A_vehicule_remorque_paysImmatriculation = null;
 
-
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le nom ne peut pas être vide")]
-#[Assert\Length(
-    min: 5,
-    max: 100,
-    minMessage: "Le nom doit comporter au moins {{ limit }} caractères",
-    maxMessage: "Le nom ne peut pas dépasser {{ limit }} caractères"
-)]
     private ?string $A_societeAssurance_nom = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le nul contrat ne peut pas être vide")]
     private ?string $A_societeAssurance_numContrat = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le num carte verte ne peut pas être vide")]
     private ?string $A_societeAssurance_numCarteVerte = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    #[Assert\Date(message: "La date de début de validité de l'attestation doit être une date valide")]
+    #[ORM\Column(type: Types::DATE_MUTABLE , nullable: true)]
     private ?\DateTimeInterface $A_societeAssurance_attestationValable_du = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE , nullable: true)]
-    #[Assert\Date(message: "La date de fin de validité de l'attestation doit être une date valide")]
     private ?\DateTimeInterface $A_societeAssurance_attestationValable_au = null;
 
+
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le nom ne peut pas être vide")]
-#[Assert\Length(
-    min: 2,
-    max: 100,
-    minMessage: "Le prénom doit comporter au moins {{ limit }} caractères",
-    maxMessage: "Le prénom ne peut pas dépasser {{ limit }} caractères"
-)]
     private ?string $A_societeAssurance_agence_nom = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "L'adresse de l'agence de la société d'assurance ne peut pas être vide")]
     private ?string $A_societeAssurance_agence_adresse = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le pays de l'agence de la société d'assurance ne peut pas être vide")]
     private ?string $A_societeAssurance_agence_pays = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le numéro de téléphone de l'agence de la société d'assurance ne peut pas être vide")]
     private ?string $A_societeAssurance_agence_tel = null;
 
     #[ORM\Column]
     private ?bool $A_societeAssurance_degatsMaterielsAssureParContrat = null;
 
-
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le nom du conducteur ne peut pas être vide")]
     private ?string $A_conducteur_nom = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le prénom du conducteur ne peut pas être vide")]
     private ?string $A_conducteur_prenom = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE , nullable: true)]
-    #[Assert\Date(message: "La date de naissance du conducteur doit être une date valide")]
     private ?\DateTimeInterface $A_conducteur_dateNaissance = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "L'adresse du conducteur ne peut pas être vide")]
     private ?string $A_conducteur_adresse = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le pays du conducteur ne peut pas être vide")]
     private ?string $A_conducteur_pays = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le numéro de téléphone ne peut pas être vide")]
-    #[Assert\Regex(
-        pattern: "/^[0-9]{10}$/",
-        message: "Le numéro de téléphone doit être composé de 10 chiffres"
-    )]
     private ?string $A_conducteur_tel = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "Le numéro de permis de conduire du conducteur ne peut pas être vide")]
     private ?string $A_conducteur_numPermisComduite = null;
 
     #[ORM\Column(length: 255)]
@@ -206,15 +145,20 @@ class Constat
     #[ORM\Column(type: Types::DATE_MUTABLE , nullable: true)]
     private ?\DateTimeInterface $A_conducteur_permisValableJusqua = null;
 
- 
     #[ORM\Column(length: 255)]
     private ?string $A_degats = null;
 
     #[ORM\Column(length: 255)]
     private ?string $A_observation = null;
 
+
+
+
+
+
+
+
     #[ORM\Column(length: 255)]
-    
     private ?string $B_preneur_nom = null;
 
     #[ORM\Column(length: 255)]
@@ -445,6 +389,7 @@ public function setRelation(?Assurance $relation_assurance): static
         return $this->id;
     }
 
+
     public function getDateAccident(): ?\DateTimeInterface
     {
         return $this->date_accident;
@@ -456,6 +401,10 @@ public function setRelation(?Assurance $relation_assurance): static
 
         return $this;
     }
+   
+   
+   
+   
 
     public function getHeure(): ?\DateTimeInterface
     {

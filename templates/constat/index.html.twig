@@ -42,13 +42,13 @@
                 <p class="card-text">{{ constat.localisation }}</p>
                 <p class="card-text">{{ constat.ASocieteAssuranceNom }}</p>
 
-                <p class="card-text">{{ constat.BConducteurPermisValableJusqua |date('Y-m-d') }}</p>
                 
                             <a href="{{ path('app\_constat\_show', {'id': constat.id}) }}" class="btn btn-primary btn-sm mr-2">Show</a>
                             <a href="{{ path('app_constat_edit', {'id': constat.id}) }}" class="btn btn-primary btn-sm mr-2">Edit</a>
-                            <a href="{{ path('app_assurance_index', {'id': constat.id}) }}" class="btn btn-primary">Consulter Assurance</a>
+                            <a href="{{ path('app_assurance_index', {'id': constat.id}) }}" class="btn btn-primary btn-sm mr-2">Consulter Assurance</a>
 
                          </div>
+
                     </div>  
                 {% else %}
                         <p>No records found</p>

@@ -24,27 +24,17 @@ class ConstatType extends AbstractType
     {
         $builder
       
-        ->add('date_accident', DateType::class, [
-            'widget' => 'single_text',
-            'format' => 'yyyy-MM-dd',
-        ])
-
-        ->add('heure', TimeType::class, [
-            'widget' => 'single_text',
-            'html5' => false,
-        ])
-    
+        
+        ->add('date_accident' )
+        ->add('heure' )
         ->add('localisation')
         ->add('blesse_meme_leger')
         ->add('degats_autre_objets')
         ->add('degats_autre_vehicule')
         ->add('temoins')
 
-        ->add('A_preneur_nom', TextType::class, [
-            'label' => 'Nom',
-            'attr' => [
-                'placeholder' => 'Saisissez le nom...',
-            ] ])
+        
+        ->add('A_preneur_nom')
         ->add('A_preneur_prenom')
         ->add('A_preneur_adresse')
         ->add('A_preneur_codePostal')
@@ -62,106 +52,88 @@ class ConstatType extends AbstractType
 
                 'Autre' => 'autre',
             ]])
-       
         ->add('A_preneur_tel')
+        ->add('A_vehicule_moteur_marque')
 
-            ->add('A_vehicule_moteur_marque')
-            ->add('A_vehicule_moteur_numImmatriculation')
-            ->add('A_vehicule_moteur_paysImmatriculation', ChoiceType::class, [
-                'choices' => [
-                    'France' => 'FR',
-                    'Belgique' => 'BE',
-                    'Luxembourg' => 'LU',
-                    'Suisse' => 'CH',
-                    'Allemagne' => 'DE',
-                    'Italie' => 'IT',
-                    'Espagne' => 'ES',
-                    'Portugal' => 'PT',
-                    'Tunisie' => 'TN',
-    
-                    'Autre' => 'autre',
-                ]])
-            ->add('A_vehicule_remorque_numImmatriculation')
-         
-            ->add('A_vehicule_remorque_paysImmatriculation', ChoiceType::class, [
-                'choices' => [
-                    'France' => 'FR',
-                    'Belgique' => 'BE',
-                    'Luxembourg' => 'LU',
-                    'Suisse' => 'CH',
-                    'Allemagne' => 'DE',
-                    'Italie' => 'IT',
-                    'Espagne' => 'ES',
-                    'Portugal' => 'PT',
-                    'Tunisie' => 'TN',
-                    'Autre' => 'autre',
-                ]])
+        ->add('A_vehicule_moteur_numImmatriculation')
 
-            ->add('A_societeAssurance_nom')
-            ->add('A_societeAssurance_numContrat')
-            ->add('A_societeAssurance_numCarteVerte')
-            ->add('A_societeAssurance_attestationValable_du', DateType::class, [
-                'widget' => 'single_text',
-                'html5' => false,
-                'format' => 'yyyy-MM-dd', // adjust the format as needed
-                'required' => false,
-            ])
-            ->add('A_societeAssurance_attestationValable_au', DateType::class, [
-                'widget' => 'single_text',
-                'html5' => false,
-                'format' => 'yyyy-MM-dd',
-                'required' => false,
-            ])
+        ->add('A_vehicule_moteur_paysImmatriculation', ChoiceType::class, [
+            'choices' => [
+                'France' => 'FR',
+                'Belgique' => 'BE',
+                'Luxembourg' => 'LU',
+                'Suisse' => 'CH',
+                'Allemagne' => 'DE',
+                'Italie' => 'IT',
+                'Espagne' => 'ES',
+                'Portugal' => 'PT',
+                'Tunisie' => 'TN',
 
-            ->add('A_societeAssurance_agence_nom')
-            ->add('A_societeAssurance_agence_adresse')
-            
-            ->add('A_societeAssurance_agence_pays', ChoiceType::class, [
-                'choices' => [
-                    'France' => 'FR',
-                    'Belgique' => 'BE',
-                    'Luxembourg' => 'LU',
-                    'Suisse' => 'CH',
-                    'Allemagne' => 'DE',
-                    'Italie' => 'IT',
-                    'Espagne' => 'ES',
-                    'Portugal' => 'PT',
-                    'Tunisie' => 'TN',
-                    'Autre' => 'autre',
-                ]])
-            ->add('A_societeAssurance_agence_tel')
-            ->add('A_societeAssurance_degatsMaterielsAssureParContrat')
+                'Autre' => 'autre',
+            ]])
+        ->add('A_vehicule_remorque_numImmatriculation')
+     
+        ->add('A_vehicule_remorque_paysImmatriculation', ChoiceType::class, [
+            'choices' => [
+                'France' => 'FR',
+                'Belgique' => 'BE',
+                'Luxembourg' => 'LU',
+                'Suisse' => 'CH',
+                'Allemagne' => 'DE',
+                'Italie' => 'IT',
+                'Espagne' => 'ES',
+                'Portugal' => 'PT',
+                'Tunisie' => 'TN',
+                'Autre' => 'autre',
+            ]])
+        ->add('A_societeAssurance_nom')
+        ->add('A_societeAssurance_numContrat')
+        ->add('A_societeAssurance_numCarteVerte')
+        ->add('A_societeAssurance_attestationValable_du')
+        ->add('A_societeAssurance_attestationValable_au')
+        ->add('A_societeAssurance_agence_nom')
+        ->add('A_societeAssurance_agence_adresse')
+        ->add('A_societeAssurance_agence_pays', ChoiceType::class, [
+            'choices' => [
+                'France' => 'FR',
+                'Belgique' => 'BE',
+                'Luxembourg' => 'LU',
+                'Suisse' => 'CH',
+                'Allemagne' => 'DE',
+                'Italie' => 'IT',
+                'Espagne' => 'ES',
+                'Portugal' => 'PT',
+                'Tunisie' => 'TN',
 
-            ->add('A_conducteur_nom')
-            ->add('A_conducteur_prenom')
-            ->add('A_conducteur_dateNaissance', DateType::class, [
-                'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
-                'html5' => false, // désactivez l'option html5
-            ])
-            ->add('A_conducteur_adresse')
-            ->add('A_conducteur_pays', ChoiceType::class, [
-                'choices' => [
-                    'France' => 'FR',
-                    'Belgique' => 'BE',
-                    'Luxembourg' => 'LU',
-                    'Suisse' => 'CH',
-                    'Allemagne' => 'DE',
-                    'Italie' => 'IT',
-                    'Espagne' => 'ES',
-                    'Portugal' => 'PT',
-                    'Tunisie' => 'TN',
-    
-                    'Autre' => 'autre',
-                ]])
-           
-            ->add('A_conducteur_tel')
-            ->add('A_conducteur_numPermisComduite')
-            ->add('A_conducteur_categorie')
-            ->add('A_conducteur_permisValableJusqua', DateTimeType::class, [
-                'required' => false, 
-                
-            ])
+                'Autre' => 'autre',
+            ]])
+        ->add('A_societeAssurance_agence_tel')
+        ->add('A_societeAssurance_degatsMaterielsAssureParContrat')
+        ->add('A_conducteur_nom')
+        ->add('A_conducteur_prenom')
+        ->add('A_conducteur_dateNaissance')
+        ->add('A_conducteur_adresse')
+        ->add('A_conducteur_pays', ChoiceType::class, [
+            'choices' => [
+                'France' => 'FR',
+                'Belgique' => 'BE',
+                'Luxembourg' => 'LU',
+                'Suisse' => 'CH',
+                'Allemagne' => 'DE',
+                'Italie' => 'IT',
+                'Espagne' => 'ES',
+                'Portugal' => 'PT',
+                'Tunisie' => 'TN',
+
+                'Autre' => 'autre',
+            ]])
+        ->add('A_conducteur_tel')
+        ->add('A_conducteur_numPermisComduite')
+        ->add('A_conducteur_categorie')
+        ->add('A_conducteur_permisValableJusqua')
+
+       
+
             ->add('A_degats')
             ->add('A_observation')
 
