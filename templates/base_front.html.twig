@@ -12,12 +12,12 @@
 	<head>
 
 		<!-- Basic Page Needs
-																																																																																																				  ================================================== -->
+																																																																																																																																																						  ================================================== -->
 		<meta
 		charset="utf-8">
 
 		<!-- Mobile Specific Metas
-																																																																																																				  ================================================== -->
+																																																																																																																																																						  ================================================== -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="description" content="Bootstrap App Landing Template">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -93,22 +93,51 @@
 
 							</li>
 						{% endif %}
+						{% if  app.user %}
+
+							<li class="nav-item dropdown  ">
+								<a class="nav-link mt-1 dropdown-toggle" href="/devis">
+									devis
+								</a>
+
+							</li>
+
+							{% else %}
+
+						{% endif %}
 
 						<li class="nav-item dropdown @@pages">
-							<a class="nav-link mt-1 dropdown-toggle" href="/constat">E-Contstat
+							<a class="nav-link mt-1 dropdown-toggle" href="#">E-Contstat
 
 							</a>
 
 						</li>
-						<li class="nav-item dropdown @@pages">
-							<a class="nav-link mt-1 dropdown-toggle" href="#" data-toggle="dropdown">Contrat(s)
+						{% if    app.user %}
 
-							</a>
+							<li class="nav-item dropdown @@pages">
+								<a class="nav-link mt-1 dropdown-toggle" href="/contrat">Contrat(s)
 
-						</li>
-						<li class="nav-item @@about">
-							<a class="nav-link mt-1" href="about.html">Factures</a>
-						</li>
+								</a>
+
+							</li>
+
+							{% else %}
+
+						{% endif %}
+						{% if    app.user %}
+
+							<li class="nav-item dropdown @@pages">
+								<a class="nav-link mt-1 dropdown-toggle" href="/facture">facture(s)
+
+								</a>
+
+							</li>
+
+							{% else %}
+
+						{% endif %}
+
+
 						<li class="nav-item @@contact">
 							<a class="nav-link mt-1" href="contact.html">Contact</a>
 						</li>
@@ -137,8 +166,8 @@
 
 
 		<!--============================
-																																																																																																=            Footer            =
-																																																																																																=============================-->
+																																																																																																																																																		=            Footer            =
+																																																																																																																																																		=============================-->
 		<footer>
 			<div class="footer-main">
 				<div class="container">

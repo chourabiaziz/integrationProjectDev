@@ -17,10 +17,8 @@ class DevisType extends AbstractType
             ->add('civilite')
             ->add('telephone')
             ->add('email')
-            ->add('voiture')
-            ->add('matricule')
-            ->add('puissance')
-            ->add('cylindre')
+             ->add('matricule')
+         
             ->add('couverture')
             ->add('description')
         ;

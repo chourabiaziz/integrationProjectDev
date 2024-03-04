@@ -8,6 +8,7 @@ use App\Form\FactureType2;
 use App\Form\FactureType3;
 use App\Repository\FactureRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,11 +19,32 @@ use Symfony\Component\Routing\Attribute\Route;
 class FactureController extends AbstractController
 {
     #[Route('/', name: 'app_facture_index', methods: ['GET'])]
-    public function index(FactureRepository $factureRepository): Response
+    public function index(FactureRepository $fr,Request $request ,PaginatorInterface $pg): Response
     {
-        return $this->render('facture/index.html.twig', [
-            'factures' => $factureRepository->findAllOrderedByAsc(),
-        ]);
+       
+        $searchQuery = $request->query->get('search');
+        $sort = $request->query->get('sort', 'asc');
+        $factures = $fr->nom($searchQuery,$sort);
+          
+        $pagination = $pg->paginate(
+
+            $factures,
+            $request->query->get('page', 1),
+            1 //element par page
+        );  
+
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->render('facture/index.html.twig', [
+                'factures' => $pagination ,
+            ]);
+         }
+        else  {
+            return $this->render('xfront_office/facture/index.html.twig', [
+                'factures' => $pagination,
+            ]);
+           
+        }
     }
 
     #[Route('/new', name: 'app_facture_new', methods: ['GET', 'POST'])]
@@ -133,16 +155,25 @@ class FactureController extends AbstractController
 
 
 
-    #[Route('/{id}/ended', name: 'app_facture_show')]
+    #[Route('/{id}/ended/template', name: 'app_facture_show_ended')]
     public function showfacture(Request $request,FactureRepository $fr , Facture $facture, EntityManagerInterface $entityManager): Response
     {
         
- 
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->render('facture/template.html.twig', [
+                'facture' => $facture,
+     
+            ]);
+         }
+        else  {
+            return $this->render('xfront_office/facture/show.html.twig', [
+                'facture' => $facture,
+     
+            ]);
+           
+        }
 
-        return $this->render('facture/template.html.twig', [
-            'facture' => $facture,
- 
-        ]);
+      
     }
     
 }

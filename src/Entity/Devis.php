@@ -28,16 +28,16 @@ class Devis
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255 ,nullable: true)]
     private ?string $voiture = null;
 
     #[ORM\Column(length: 255)]
     private ?string $matricule = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $puissance = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255 ,nullable: true)]
     private ?string $cylindre = null;
 
     #[ORM\Column(length: 255)]
