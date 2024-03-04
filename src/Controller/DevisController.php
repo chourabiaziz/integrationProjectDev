@@ -7,6 +7,7 @@ use App\Entity\Offre;
 use App\Form\DevisType;
 use App\Repository\DevisRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,19 +17,24 @@ use Symfony\Component\Routing\Attribute\Route;
 class DevisController extends AbstractController
 {
     #[Route('/', name: 'app_devis_index', methods: ['GET'])]
-    public function index(DevisRepository $devisRepository): Response
+    public function index(  DevisRepository $devisRepository , Request $request, PaginatorInterface $pg): Response
     {
+        $pagination = $pg->paginate(
 
-
+            $devisRepository->findAll(),
+            $request->query->get('page', 1),
+            4 //element par page
+        );
+       
         if ($this->isGranted('ROLE_ADMIN')) {
             return $this->render('devis/index.html.twig', [
-                'devis' => $devisRepository->findAll(),
-
+                'devis' => $pagination ,
+                
             ]);
          }
         else  {
             return $this->render('xfront_office/devis/index.html.twig', [
-                'devis' => $devisRepository->findAll(),
+                'devis' => $pagination ,
             ]);
            
         }
@@ -69,9 +75,9 @@ class DevisController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_devis_show', methods: ['GET'])]
-    public function show(Devis $devi): Response
+    public function show(Devis $devi , DevisRepository $devisRepository , Request $request, PaginatorInterface $pg): Response
     {
-        
+       
        
         if ($this->isGranted('ROLE_ADMIN')) {
             return $this->render('devis/show.html.twig', [

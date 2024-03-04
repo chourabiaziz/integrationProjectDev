@@ -45,7 +45,7 @@
 
 
             {% for offre in devis %}
-            <div class="col-md-5 col-lg-3">
+            <div class="col-md-5 col-lg-3 m-4">
 
                 <div class="card">
 
@@ -63,7 +63,22 @@
                     </a>
                     <div class="card-block p-3">
                         <div id="morris-site-visit">
+                            {% if offre.statut %}
 
+                            <span class="bg-success p-1">demande accepté</span>
+
+
+                            {% elseif offre.statut is null %}
+
+                            <span class="bg-warning p-1">demande en attente</span>
+
+
+                            {% else %}
+
+                            <span class="bg-danger p-1">demande refusé</span>
+
+
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -72,7 +87,11 @@
             <h5>Aucun offre</h5>
             {% endfor %}
         </div>
-
+        <nav class="app-pagination mt-5">
+            <ul class="pagination justify-content-center">
+                {{ knp_pagination_render(devis) }}
+            </ul>
+        </nav>
 
     </div>
 

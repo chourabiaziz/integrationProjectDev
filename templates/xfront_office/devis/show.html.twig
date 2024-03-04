@@ -29,7 +29,7 @@
 			<div class="row align-items-center">
 				<div class="col-md-6 order-2 order-md-1 text-center text-md-left">
 
-					<table class="table">
+					<table class="table table-container">
 						<tbody>
 							<tr>
 								<th>Id</th>
@@ -79,23 +79,22 @@
 								<th>Etat</th>
 								{% if devi.statut %}
 									<td>
-										<span class="bg-success">demande accepté</span>
+										<span class="bg-success p-1">demande accepté</span>
 									</td>
 
 								{% elseif devi.statut is null %}
 									<td>
-										<span class="bg-warning">demande en attente</span>
+										<span class="bg-warning p-1">demande en attente</span>
 									</td>
 
 								{% else %}
 									<td>
-										<span class="bg-danger">demande refusé</span>
+										<span class="bg-danger p-1">demande refusé</span>
 									</td>
 
 								{% endif %}
 
 
-								<td>{{ devi.statut }}</td>
 							</tr>
 						</tbody>
 

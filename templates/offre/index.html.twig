@@ -17,37 +17,44 @@
 		font-weight: bold;
 	}
 </style>
+<div class="conrainer">
+	<div class="card">
+		<div class="card-header">
+			<h1>List des offres</h1>
+		</div>
+		<div class="card-body">
+			<div class="row">
 
-<h1>List des offres</h1>
-<div class="row">
+				{% for offre in offres %}
+				<div class="col-md-3 col-lg-3">
 
-	{% for offre in offres %}
-	<div class="col-md-5 col-lg-5">
+					<div class="card">
+						<div class="offer-badge">Offre</div>
 
-		<div class="card">
-			<div class="offer-badge">Offre</div>
+						<a class='btn btn-secondary' href="{{ path('app_offre_show', {'id': offre.id}) }}">
 
-			<a class='btn btn-secondary' href="{{ path('app_offre_show', {'id': offre.id}) }}">
-
-				<div class="card-header">
-					<h5>{{ offre.titre }} | {{ offre.assurance }}</h5>
-					<span> {{ offre.description|slice(0, 30) ~ '...' }}
-					</span>
+							<div class="card-header">
+								<h5>{{ offre.titre }} | {{ offre.assurance }}</h5>
+								<span> {{ offre.description|slice(0, 30) ~ '...' }}
+								</span>
+							</div>
+						</a>
+						<div class="card-block">
+							<div id="morris-site-visit">
+								{{ offre.emailAssurance }}<br>{{ offre.numAssurance }}
+							</div>
+						</div>
+					</div>
 				</div>
-			</a>
-			<div class="card-block">
-				<div id="morris-site-visit">
-					{{ offre.emailAssurance }}<br>{{ offre.numAssurance }}
-				</div>
+
+				{% else %}
+				<h5>Aucun offre</h5>
+				{% endfor %}
 			</div>
 		</div>
 	</div>
-
-	{% else %}
-	<h5>Aucun offre</h5>
-	{% endfor %}
 </div>
 
-
-<a href="{{ path('app_offre_new') }}">Create new</a>
+<div class="text-center "><a class="btn btn-primary" href="{{ path('app_offre_new') }}">Ajouter un offre</a>
+</div>
 {% endblock %}

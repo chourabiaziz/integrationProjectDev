@@ -1,9 +1,48 @@
-{% extends 'base_front.html.twig' %}
+<!DOCTYPE html>
 
-{% block title %}Contrat
-{% endblock %}
+<!--
+ // WEBSITE: https://themefisher.com
+ // TWITTER: https://twitter.com/themefisher
+ // FACEBOOK: https://www.facebook.com/themefisher
+ // GITHUB: https://github.com/themefisher/
+-->
 
-{% block body %}
+<html lang="en">
+
+<head>
+
+	<!-- Basic Page Needs
+																																																																																																																																																						  ================================================== -->
+	<meta charset="utf-8">
+
+	<!-- Mobile Specific Metas
+																																																																																																																																																						  ================================================== -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Bootstrap App Landing Template">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+	<meta name="author" content="Themefisher">
+	<meta name="generator" content="Themefisher Small Apps Template v1.0">
+
+	<!-- theme meta -->
+	<meta name="theme-name" content="small-apps" />
+
+	<!-- Favicon -->
+	<link rel="icon" href="{{ asset('assets/images/ico.ico') }}" type="image/x-icon">
+	<!-- PLUGINS CSS STYLE -->
+	<link rel="stylesheet" href="{{asset('assets_front_office/plugins/bootstrap/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets_front_office/plugins/themify-icons/themify-icons.css')}}">
+	<link rel="stylesheet" href="{{asset('assets_front_office/plugins/slick/slick.css')}}">
+	<link rel="stylesheet" href="{{asset('assets_front_office/plugins/slick/slick-theme.css')}}">
+	<link rel="stylesheet" href="{{asset('assets_front_office/plugins/fancybox/jquery.fancybox.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets_front_office/plugins/aos/aos.css')}}">
+
+	<!-- CUSTOM CSS -->
+	<link href="{{asset('assets_front_office/css/style.css')}}" rel="stylesheet">
+
+</head>
+
+<body style="background-color: rgb(231, 231, 231);" class="body-wrapper" data-spy="scroll" data-target=".privacy-nav">
+
 	<style>
 		.input-file {
 			display: none;
@@ -35,189 +74,209 @@
 	</style>
 
 
-	<h1></h1>
-	<div class="pcoded-inner-content">
-		<div class="main-body">
-			<div class="page-body ">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="card p-5">
-								<div class="app-wrapper">
-									<div class="container-xl">
-										<div class="row justify-content-center">
-											<div class="app-card col-md-14 col-14 ">
-												<br>
-												<div class="row">
-													<div class="col-4">
-														<h3 class="text-muted mt-99 ng-star-inserted" style="text-align: center; font-size: 34px">
-															{{ contrat.client.email |upper()}}
+	<div class="container mt-5">
+		<div class="pcoded-inner-content">
+			<div class="main-body">
+				<div class="page-body ">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="card p-5">
+									<div class="app-wrapper">
+										<div class="container-xl">
+											<div class="row justify-content-center">
+												<div class="app-card col-md-14 col-14 ">
+													<br>
+													<div class="row">
+														<div class="col-4">
+															<h3 class="text-muted mt-99 ng-star-inserted"
+																style="text-align: center; font-size: 34px">
+																{{ contrat.client.email |upper()}}
 
-														</h3>
-														<h3 class="text-muted mt-99 ng-star-inserted" style="text-align: center; font-size: 34px">
-															<img class="img-100  mr-5" src="{{asset('assets/images/assurance.png')}}" alt="logo">
+															</h3>
+															<h3 class="text-muted mt-99 ng-star-inserted"
+																style="text-align: center; font-size: 34px">
+																<img class="img-50  mr-5"
+																	src="{{asset('assets/images/assurance.png')}}"
+																	alt="logo">
 
-														</h3>
-													</div>
-
-													<div class="col-4"></div>
-													<div class="col-4">
-
-														<h3 class="text-muted  " style="text-align: right; font-size: 34px">
-															AssureEase
-
-														</h3>
-														<h3 class="text-muted  " style="text-align: right; font-size: 34px">
-															<img class="img-80 img-radius mr-5" src="{{asset('assets/images/logo_off.png')}}" alt="logo">
-
-														</h3>
-													</div>
-												</div>
-												<h1 class="text-center">
-													<b>
-														<i>Contrat d'Assurance</i>
-													</b>
-												</h1>
-												<div class="container">
-
-													<div class="card-body">
-														<p>Assurance de voiture souscrite auprès de
-															<b>
-																<i>{{contrat.client.email|upper()}}</i>
-															</b>
-															, reconnue
-																																																																																																								sous le numéro 341 737 062, en collaboration avec le platforme
-															<b>
-																<i>AssureEase</i>
-															</b>.
-														</p>
-														<p>
-															<b>
-																<i>{{contrat.client.email|upper()}}</i>
-															</b>
-															Assurances s'engage
-																																																																																																								à
-																																																																																																								couvrir
-																																																																																																								une assurance
-																																																																																																								de type
-															<b>
-																<i>{{contrat.couverture |upper()}}</i>
-															</b>
-															la dette d'une
-																																																																																																								somme de
-															<b>{{contrat.prix}}
-																TND</b>
-															accordée à Mme/Mr
-															<b>{{contrat.client.email|upper()}}</b>
-															de
-															<b>
-																<i>{{contrat.dateDebut|date('d-m-Y')}}</i>
-															</b>
-															Jusqu'à
-															<b>
-																<i>{{contrat.dateFin|date('d-m-Y')}}</i>
-															</b>.
-														</p>
-													</pd<m>En cas d'incapacité de Mme/Mr
-													<b>
-														<i>{{contrat.client.email|upper()}}</i>
-													</b>
-													à payer
-																																																																																											la mensualité,
-													<b>
-														<i>{{contrat.client.email|upper()}}</i>
-													</b>
-													prendra la responsabilité de
-																																																																																											rembourser la Communauté Prêt et Finance.
-												</p>
-												<p>Ce contrat se renouvelle automatiquement. Si vous souhaitez
-																																																																																												résilier l'assurance, vous devez effectuer une déclaration de
-																																																																																												résiliation avant le mois de renouvellement</p>
-												<p>Mme/MR
-													<b>
-														<i>{{contrat.client|upper()}}</i>
-													</b>
-													devra payer une
-																																																																																												prime
-																																																																																												d'assurance de
-													<b>
-														<i>1000 TND</i>
-													</b>
-													afin de garantir son prêt
-																																																																																												en cas de perte
-																																																																																												d'emploi ou de décès.
-												</p>
-
-												<p>En foi de quoi, ce présent contrat est établi pour servir et
-																																																																																												valoir ce que de droit.</p>
-											</div>
-
-											<form action="" method="get">
-												<di6 class="row">
-													<div class="col-4">
-														<h5>
-															<b>
-																<i>Signature electronique de l'entreprise</i>
-															</b>
-														</h5>
-
-													</div>
-													<div class="col-4"></div>
-													<div class="col-4">
-														<h5>
-															<b>
-																<i>Signature electronique de client</i>
-															</b>
-														</h5>
-														<div id="signature-pad">
-															<label for="file-uploadaaa" class="custom-button">
-																<span class="custom-button-label">Choisir un
-																																																																																																																							fichier</span>
-															</label>
-															<input name="client_sign" id="file-uploadaaa" class="input-file" type="file">
+															</h3>
 														</div>
 
+														<div class="col-4"></div>
+														<div class="col-4">
+
+															<h3 class="text-muted  "
+																style="text-align: right; font-size: 34px">
+																AssureEase
+
+															</h3>
+															<h3 class="text-muted  "
+																style="text-align: right; font-size: 34px">
+																<img width="50%"
+																	src="{{asset('assets/images/logo_off.png')}}"
+																	alt="logo">
+
+															</h3>
+														</div>
+													</div>
+													<h1 class="text-center">
+														<b>
+															<i>Contrat d'Assurance</i>
+														</b>
+													</h1>
+													<div class="container">
+
+														<div class="card-body">
+															<p>Assurance de voiture souscrite auprès de
+																<b>
+																	<i>{{contrat.client.email|upper()}}</i>
+																</b>
+																, reconnue
+																sous le numéro 341 737 062, en collaboration avec le
+																platforme
+																<b>
+																	<i>AssureEase</i>
+																</b>.
+															</p>
+															<p>
+																<b>
+																	<i>{{contrat.client.email|upper()}}</i>
+																</b>
+																Assurances s'engage
+																à
+																couvrir
+																une assurance
+																de type
+																<b>
+																	<i>{{contrat.couverture |upper()}}</i>
+																</b>
+																la dette d'une
+																somme de
+																<b>{{contrat.prix}}
+																	TND</b>
+																accordée à Mme/Mr
+																<b>{{contrat.client.email|upper()}}</b>
+																de
+																<b>
+																	<i>{{contrat.dateDebut|date('d-m-Y')}}</i>
+																</b>
+																Jusqu'à
+																<b>
+																	<i>{{contrat.dateFin|date('d-m-Y')}}</i>
+																</b>.
+															</p>
+															</pd<m>En cas d'incapacité de Mme/Mr
+															<b>
+																<i>{{contrat.client.email|upper()}}</i>
+															</b>
+															à payer
+															la mensualité de {{contrat.engagement}}(mois),
+															<b>
+																<i>{{contrat.client.email|upper()}}</i>
+															</b>
+															prendra la responsabilité de
+															rembourser la Communauté Prêt et Finance.
+															</p>
+															<p>Ce contrat se renouvelle automatiquement. Si vous
+																souhaitez
+																résilier l'assurance, vous devez effectuer une
+																déclaration
+																de
+																résiliation avant le mois de renouvellement</p>
+															<p>Mme/MR
+																<b>
+																	<i>{{contrat.client|upper()}}</i>
+																</b>
+																devra payer une
+																prime
+																d'assurance de
+																<b>
+																	<i>{{contrat.prix}}
+																		TND</i>
+																</b>
+																afin de garantir son prêt
+																en cas de perte
+																d'emploi ou de décès.
+															</p>
+
+															<p>En foi de quoi, ce présent contrat est établi pour servir
+																et
+																valoir ce que de droit.</p>
+														</div>
+
+														<form action="" method="get">
+															<di6 class="row">
+																<div class="col-4">
+																	<h5>
+																		<b>
+																			<i>Signature electronique de
+																				l'entreprise</i>
+																		</b>
+																	</h5>
+
+																</div>
+																<div class="col-4"></div>
+																<div class="col-4">
+																	<h5>
+																		<b>
+																			<i>Signature electronique de client</i>
+																		</b>
+																	</h5>
+																	<div id="signature-pad">
+																		<label for="file-uploadaaa"
+																			class="custom-button">
+																			<span class="custom-button-label">Choisir un
+																				fichier</span>
+																		</label>
+																		<input name="client_sign" id="file-uploadaaa"
+																			class="input-file" type="file">
+																	</div>
+
+																</div>
+
+
 													</div>
 
-
 												</div>
+											</div>
+											<div class="text-center">
+												<a href="confirme/{{contrat.id}}"
+													class="text-center btn btn-success">Confirmé</a>
 
+											</div>
+
+
+											<h6 class="text-center">
+												Vous n'avez pas d'image de votre signature ?
+												</form>
+												<button onclick="toggleFrame()">CLiquer ici</button>
+											</h6>
+											<br><br>
+
+
+											<div id="text-container" style="display: none;">
+												<iframe id="iframe" src="https://createmysignature.com/fr"
+													height="500px" width="500px" frameborder="0"></iframe>
 											</div>
 										</div>
 
-										<input class="text-center btn btn-success" type="submit" value="Confirmé">
 
-
-										<h6 class="text-center">
-											Vous n'avez pas d'image de votre signature ?
-										</form>
-										<button onclick="toggleFrame()">CLiquer ici</button>
-									</h6>
-									<br><br>
-
-
-									<div id="text-container" style="display: none;">
-										<iframe id="iframe" src="https://createmysignature.com/fr" height="500px" width="500px" frameborder="0"></iframe>
+										<script>
+											function toggleFrame() {
+												var frameContainer = document.getElementById('text-container');
+												if (frameContainer.style.display === 'none') {
+													frameContainer.style.display = 'block';
+												} else {
+													frameContainer.style.display = 'none';
+												}
+											}
+										</script>
 									</div>
 								</div>
-
-
-								<script>
-									function toggleFrame() {
-var frameContainer = document.getElementById('text-container');
-if (frameContainer.style.display === 'none') {
-frameContainer.style.display = 'block';
-} else {
-frameContainer.style.display = 'none';
-}
-}
-								</script>
 							</div>
+
+
 						</div>
+
 					</div>
-
-
-				</div>
-
-
-			{% endblock %}
