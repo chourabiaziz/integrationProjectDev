@@ -11,6 +11,10 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+
+
 
 #[Route('/constat')]
 class ConstatController extends AbstractController
@@ -34,7 +38,7 @@ class ConstatController extends AbstractController
 
 
     #[Route('/new', name: 'app_constat_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, #[Autowire('%photo_dir%')] string $photoDir): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,SluggerInterface $slugger ): Response
     {
     $constat = new Constat();
     $form = $this->createForm(ConstatType::class, $constat);
@@ -42,19 +46,37 @@ class ConstatController extends AbstractController
 
     if ($form->isSubmitted() && $form->isValid()) {
         $user = $this->getUser(); //utilisateur connecté
-
-        if ($photo = $form['photo']->getData()) {
-            $fileName = uniqid().'.'.$photo->guessExtension();
-            
-            $photo->move($photoDir, $fileName);
-
-            
-        }
-       // $constat->setImageFileName($fileName);
         $constat->setCreatedby($user);
+ 
+        $imageFilename = $form->get('imageFilename')->getData();
+            // so the PDF file must be processed only when a file is uploaded
+            if ($imageFilename) {
+                /*pour creer le nom de fichier  */
+                // il va detecter originalName de  fichier
+                $originalFilename = pathinfo($imageFilename->getClientOriginalName(), PATHINFO_FILENAME);
+               // apres il va creer un slug de ma original name , il necessite un slugger qui est un service                
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFilename->guessExtension();
 
-        $entityManager->persist($constat);
-        $entityManager->flush();
+                // Move the file to the directory where brochures are stored
+                try {
+                    $imageFilename->move(
+                        $this->getParameter('constats_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                $constat->setImageFilename($newFilename);
+               
+            }
+
+            $entityManager->persist($constat);
+            $entityManager->flush();
+
+
+        
 
         return $this->redirectToRoute('app_constat_index', [], Response::HTTP_SEE_OTHER);
     }
@@ -71,10 +93,18 @@ class ConstatController extends AbstractController
     {
 
         
-        return $this->render('constat/show.html.twig', [
-            'constat' => $constat,
-        ]);
+        if ($this->isGranted("ROLE_ADMIN")) {
+            return $this->render('constat/show.html.twig', [
+                'show' => $constat,
+            ]);
+        } else {
+            return $this->render('constat/showClient.html.twig', [
+                'constat' => $constat,
+            ]);
+        }
     }
+
+
 
     #[Route('/{id}/edit', name: 'app_constat_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Constat $constat, EntityManagerInterface $entityManager): Response
@@ -88,11 +118,22 @@ class ConstatController extends AbstractController
             return $this->redirectToRoute('app_constat_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('constat/edit.html.twig', [
-            'constat' => $constat,
-            'form' => $form,
-        ]);
+        if ($this->isGranted("ROLE_ADMIN")) {
+            return $this->render('constat/edit.html.twig', [
+                'constat' => $constat,
+                'form' => $form,
+            ]);
+        } else {
+            return $this->render('constat/editClient.html.twig', [
+                'constat' => $constat,
+                'form' => $form,
+            ]);
+        }
+    
     }
+    
+    
+    
 
     #[Route('/{id}', name: 'app_constat_delete', methods: ['POST'])]
     public function delete(Request $request, Constat $constat, EntityManagerInterface $entityManager): Response

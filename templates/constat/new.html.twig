@@ -14,13 +14,11 @@
     <table border="1">
         <thead>
             <th style="background-color: rgb(25, 125, 188); padding-right:1pc;">2.</th>
-            <th>Sate Accident</th>
-        </thead>
+         </thead>
         <tbody>
             <tr>
                 <td></td>
-                {{ form_widget(form.date_accident) }}
-            </tr>
+             </tr>
         </tbody>
     </table>
 
@@ -201,23 +199,15 @@
 </thead>
 
 <tbody>
-  <tr>
-            <td colspan="2">Nom : {{ form_widget(form.A_societeAssurance_nom , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
-  </tr>
-  <tr>
-            <td colspan="2">num contrat : {{ form_widget(form.A_societeAssurance_numContrat , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
-  </tr>
-  <tr>
-            <td colspan="2">num carte verte: {{ form_widget(form.A_societeAssurance_numCarteVerte , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
-  </tr>
-  <tr>
-    <td colspan="2">attestation d'assurance ou carte verte valable du {{ form_widget(form.A_societeAssurance_attestationValable_du, {'type': 'date'} ) }}</td>
-</tr>
-<tr>
-    <td colspan="2">attestation d'assurance ou carte verte valable au {{ form_widget(form.A_societeAssurance_attestationValable_au, {'type': 'date'} ) }}</td>
-</tr>
 
-  <tr>
+              <tr>
+                <td>                selectionner votre assurance
+                </td>
+                <td> {{ form_widget(form.relation) }} </td>
+              </tr>
+
+   
+   <tr>
       <td colspan="2">
           <p>Agence ou ( bureau ou courtier )</p>
       </td>
@@ -283,10 +273,7 @@
                               <td colspan="2">Catégorie(A,B,...) {{ form_widget(form.A_conducteur_categorie , {'attr': {'style': 'border: 1px solid transparent; background-color :rgb(206, 234, 247);'}}) }}</td>
      
   </tr>
-  <tr>
-                                <td colspan="2">Permis valable jusqu'au {{ form_widget(form.A_conducteur_permisValableJusqua ,{'attr': {'style': ' background-color :rgb(206, 234, 247);'}}) }}</td>
-
-  </tr>
+  
 </tbody>
 </table>
 
@@ -642,16 +629,12 @@
 <div class ="col-6" style="border: 1px solid black ; height: 400px;">
 
 <div class="form-control">
-{{ form_label(form.photo, 'Choose your photo') }}
-{{ form_widget (form.photo ) }}
-<small>{{ form_help (form.photo) }}</small>
-<div class="form-error">
-{{ form_errors (form.photo) }}
-</div>
-</div>
+  <h4>Ajouter votre image</h4>
+  {{ form_widget(form.imageFilename, {'attr': {'name': 'imageFilename'}}) }}
 
 </div>
 
+</div>
 
 
      <div class="col-3  " style="border: 1px solid black; background-color :#F7DC6F ;height: 150px;  ">
@@ -703,5 +686,7 @@
 {{ form_end(form) }}
 </form>
    
+</div>
+</div>
 
 {% endblock %}

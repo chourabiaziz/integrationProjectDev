@@ -132,4 +132,9 @@ class Assurance
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->nomAssurance ;
+    }
 }

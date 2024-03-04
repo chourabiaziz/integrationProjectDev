@@ -27,8 +27,8 @@ class Constat
     private ?Assurance $relation_assurance = null; 
 
   
-    #[ORM\Column(type: Types::DATE_MUTABLE  )]
-    private ?\DateTimeInterface $date_accident = null;
+   /* #[ORM\Column(type: Types::DATE_MUTABLE  )]
+    private ?\DateTimeInterface $date_accident = null; */
 
   
     #[ORM\Column(type: Types::TIME_MUTABLE , nullable:true)]
@@ -142,8 +142,8 @@ class Constat
     #[ORM\Column(length: 255)]
     private ?string $A_conducteur_categorie = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE , nullable: true)]
-    private ?\DateTimeInterface $A_conducteur_permisValableJusqua = null;
+   /* #[ORM\Column(type: Types::DATE_MUTABLE )]
+    private ?\DateTimeInterface $A_conducteur_permisValableJusqua = null; */
 
     #[ORM\Column(length: 255)]
     private ?string $A_degats = null;
@@ -364,13 +364,12 @@ class Constat
     #[ORM\Column]
     private ?int $BindiquationNombreCases = null;
 
-    #[ORM\Column(length: 255 , nullable:true)]
-    private ?string $imageFileName = null;
+    #[ORM\Column(length: 255, nullable:true )]
+    private string $imageFilename;
 
     #[ORM\ManyToOne(inversedBy: 'constats')]
     private ?User $createdby = null;
 
-   
 
 public function getRelation(): ?Assurance
 {
@@ -389,7 +388,7 @@ public function setRelation(?Assurance $relation_assurance): static
         return $this->id;
     }
 
-
+/*
     public function getDateAccident(): ?\DateTimeInterface
     {
         return $this->date_accident;
@@ -400,7 +399,7 @@ public function setRelation(?Assurance $relation_assurance): static
         $this->date_accident = $date_accident;
 
         return $this;
-    }
+    }  */
    
    
    
@@ -838,6 +837,7 @@ public function setRelation(?Assurance $relation_assurance): static
 
         return $this;
     }
+    /*
 
     public function getAConducteurPermisValableJusqua(): ?\DateTimeInterface
     {
@@ -850,7 +850,7 @@ public function setRelation(?Assurance $relation_assurance): static
 
         return $this;
     }
-
+*/
 
     public function getADegats(): ?string
     {
@@ -1727,18 +1727,17 @@ public function setRelation(?Assurance $relation_assurance): static
         return $this;
     }
 
-    public function getImageFileName(): ?string
+    public function getImageFilename(): string
     {
-        return $this->imageFileName;
+        return $this->imageFilename ??'';
     }
 
-    public function setImageFileName(string $imageFileName): static
+    public function setImageFilename(string $imageFilename): self
     {
-        $this->imageFileName = $imageFileName;
+        $this->imageFilename = $imageFilename;
 
         return $this;
     }
-
     public function getCreatedby(): ?User
     {
         return $this->createdby;

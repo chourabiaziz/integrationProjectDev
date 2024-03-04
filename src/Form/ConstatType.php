@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Assurance;
 use App\Entity\Constat;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -25,7 +27,8 @@ class ConstatType extends AbstractType
         $builder
       
         
-        ->add('date_accident' )
+        ->add('heure' )
+
         ->add('heure' )
         ->add('localisation')
         ->add('blesse_meme_leger')
@@ -86,11 +89,7 @@ class ConstatType extends AbstractType
                 'Tunisie' => 'TN',
                 'Autre' => 'autre',
             ]])
-        ->add('A_societeAssurance_nom')
-        ->add('A_societeAssurance_numContrat')
-        ->add('A_societeAssurance_numCarteVerte')
-        ->add('A_societeAssurance_attestationValable_du')
-        ->add('A_societeAssurance_attestationValable_au')
+          
         ->add('A_societeAssurance_agence_nom')
         ->add('A_societeAssurance_agence_adresse')
         ->add('A_societeAssurance_agence_pays', ChoiceType::class, [
@@ -130,7 +129,6 @@ class ConstatType extends AbstractType
         ->add('A_conducteur_tel')
         ->add('A_conducteur_numPermisComduite')
         ->add('A_conducteur_categorie')
-        ->add('A_conducteur_permisValableJusqua')
 
        
 
@@ -276,15 +274,28 @@ class ConstatType extends AbstractType
             ->add('BvenaitDeDroite')
             ->add('BobservationSignal')
             ->add('BindiquationNombreCases')
-
-            ->add('photo', FileType::class, [
+            ->add('relation', EntityType::class, [
+                'class' => Assurance::class, // Assuming Assurance is the related entity
+                'choice_label' => 'NomAssurance', // Display the NomAssurance property of Assurance
+                'placeholder' => 'Choose an Assurance', // Optional placeholder text
+                // ... other options as needed
+            ])
+            ->add('imageFilename', FileType::class, [
+                'label' => 'Votre image d accident',
                 'required' => false,
                 'mapped' => false,
                 'constraints' =>[
-                new Image(['maxSize' => '5000k'])
+                new Image(['maxSize' => '5000k',
+                'mimeTypes' => [
+                    'image/gif',
+                    'image/jpg',
+                    'image/jpeg',
+                    'image/png',
+                ],
+                'mimeTypesMessage' => 'Please upload a valid PDF document',
+                ]) 
                 ]
                 ])
-            
         ;
     }
 

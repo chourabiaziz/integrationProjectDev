@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_front.html.twig' %}
 
 {% block title %}Assurance {% endblock %}
 
@@ -24,20 +24,19 @@
         </h1>
     </div>
 
-    
+    <div class="container">
         <input type="text" id="searchInput" class="form-control mb-3" placeholder="Rechercher une assurance...">
-            <div class="container">
-                <div id="searchResults" class="card-columns">
+        <div id="searchResults" class="card-columns">
 
         </div>
     </div>
 
 
   <div class="container">
-    <div id="normal" class="card-columns">
+    <div class="card-columns">
     
         {% for assurance in assurances %}
-            <div class="card custom-card mb-3">
+            <div  class="card custom-card mb-3">
                 <div class="card-header">{{ assurance.NomAssurance }}</div>
                 <div class="card-body">
 
@@ -73,14 +72,10 @@
 
                         if (results.length === 0) {
                             $('#searchResults').hide()
-                            $('#normal').show();
-
 
                         } else {
                             // If there are results, display them
                             $.each(results, function(index, result) {
-                                $('#normal').hide();
-
                                 $('#searchResults').append('<div class="card custom-card mb-3"><div class="card-header">' + result.NomAssurance + '</div><div class="card-body"><p class="card-text">Adresse: ' + result.adresseAssurance + '</p><p class="card-text">Code Postal: ' + result.codePostalAssurance + '</p><p class="card-text">Téléphone: ' + result.telAssurance + '</p><p class="card-text">Email: ' + result.emailAssurance + '</p><a href="/assurance/' + result.id + '" class="btn btn-primary btn-sm mr-2">Show</a><a href="/assurance/' + result.id + '/edit" class="btn btn-primary btn-sm mr-2">Edit</a></div></div>');
                             });
                         }

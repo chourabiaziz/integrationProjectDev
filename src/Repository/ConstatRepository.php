@@ -45,4 +45,15 @@ class ConstatRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+public function findBySearchTerm($searchTerm)
+{
+    return $this->createQueryBuilder('a')
+        ->where('a.APreneurPrenom LIKE :searchTerm')
+        ->setParameter('searchTerm', '%'.$searchTerm.'%')
+        ->getQuery()
+        ->getResult();
+}
+
 }
