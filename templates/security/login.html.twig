@@ -1,0 +1,72 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}Log in!
+{% endblock %}
+
+{% block body %}
+	<section class="section gradient-banner">
+		<div class="shapes-container">
+			<div class="shape" data-aos="fade-down-left" data-aos-duration="1500" data-aos-delay="100"></div>
+			<div class="shape" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100"></div>
+			<div class="shape" data-aos="fade-up-right" data-aos-duration="1000" data-aos-delay="200"></div>
+			<div class="shape" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"></div>
+			<div class="shape" data-aos="fade-down-left" data-aos-duration="1000" data-aos-delay="100"></div>
+			<div class="shape" data-aos="fade-down-left" data-aos-duration="1000" data-aos-delay="100"></div>
+			<div class="shape" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300"></div>
+			<div class="shape" data-aos="fade-down-right" data-aos-duration="500" data-aos-delay="200"></div>
+			<div class="shape" data-aos="fade-down-right" data-aos-duration="500" data-aos-delay="100"></div>
+			<div class="shape" data-aos="zoom-out" data-aos-duration="2000" data-aos-delay="500"></div>
+			<div class="shape" data-aos="fade-up-right" data-aos-duration="500" data-aos-delay="200"></div>
+			<div class="shape" data-aos="fade-down-left" data-aos-duration="500" data-aos-delay="100"></div>
+			<div class="shape" data-aos="fade-up" data-aos-duration="500" data-aos-delay="0"></div>
+			<div class="shape" data-aos="fade-down" data-aos-duration="500" data-aos-delay="0"></div>
+			<div class="shape" data-aos="fade-up-right" data-aos-duration="500" data-aos-delay="100"></div>
+			<div class="shape" data-aos="fade-down-left" data-aos-duration="500" data-aos-delay="0"></div>
+		</div>
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-6 order-2 order-md-1 text-center text-md-left">
+					<form method="post">
+						{% if error %}
+							<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+						{% endif %}
+
+						{% if app.user %}
+							<div style="color:red" class="mb-3">
+								<b>
+									tu est connecté en tant que
+									{{ app.user.userIdentifier }},
+									<a href="{{ path('app_logout') }}">cliquer ici pour déconnecter</a>
+								</b>
+							</div>
+						{% endif %}
+
+						<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+						<label for="inputEmail">Email</label>
+						<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+						<label for="inputPassword">Password</label>
+						<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+						<br>
+						<a href="/register">
+							<b>Vous n'avez pas d'un compt?</b>
+						</a>
+						<br>
+
+						<button class="btn btn-success" type="submit">
+							Connecter
+						</button>
+					</form>
+				</div>
+
+				<div class="col-md-6 text-center order-1 order-md-2">
+					<img class="img-fluid" style="filter: drop-shadow(15px 5px 5px rgb(0, 0, 0));" src="{{asset('assets_front_office/images/assure.png')}}" alt="screenshot">
+				</div>
+
+				<br><br><br><br><br><br><br><br>
+			</div>
+		</div>
+
+	</section>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Renouvellement Contrat
+{% endblock %}
+
+{% block body %}
+
+
+
+<h2>Ecrire une note pour expliquer pour quoi vous avez refusé le contrat :</h2>
+<div class="container">
+    <div class="card mt-5">
+        {{ form_start(form) }}
+
+
+        <div class="form-group row m-3">
+            <label class="col-sm-2 col-form-label">{{ form_label(form.reponse) }}
+            </label>
+            <div class="col-sm-10">
+                {{ form_widget(form.reponse, { 'attr': {'class': 'form-control form-control-capitalize' } }) }}
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-danger text-center">{{ button_label|default('REFUSE') }}</button>
+        </div>
+        <br>
+        <br>
+        {{ form_end(form) }}
+    </div>
+</div>
+
+
+
+{% endblock %}

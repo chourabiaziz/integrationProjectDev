@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devis index
+{% endblock %}
+
+{% block body %}
+<h1>Liste Devis </h1>
+<div class="container">
+    <div class="card card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Civilite</th>
+                    <th>Telephone</th>
+                    <th>Email</th>
+                    <th>Statue</th>
+
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for devi in devis %}
+                <tr>
+                    <td>{{ devi.id }}</td>
+                    <td>{{ devi.nom }}</td>
+                    <td>{{ devi.prenom }}</td>
+                    <td>{{ devi.civilite }}</td>
+                    <td>{{ devi.telephone }}</td>
+                    <td>{{ devi.email }}</td>
+                    {% if devi.statut %}
+                    <td> <span class="bg-success p-2">demande accepté</span> </td>
+
+                    {% elseif devi.statut is null %}
+                    <td> <span class="bg-warning p-2">demande en attente</span> </td>
+
+                    {% else %}
+                    <td> <span class="bg-danger p-2">demande refusé</span> </td>
+
+                    {% endif %}
+
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('app_devis_show', {'id': devi.id}) }}">show</a>
+                        <a class="btn btn-secondary" href="{{ path('app_devis_edit', {'id': devi.id}) }}">edit</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="12">no records found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <nav class="app-pagination mt-5">
+            <ul class="pagination justify-content-center">
+                {{ knp_pagination_render(devis) }}
+            </ul>
+        </nav>
+    </div>
+</div>
+
+{% endblock %}
