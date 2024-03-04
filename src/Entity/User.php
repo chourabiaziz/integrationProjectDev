@@ -34,13 +34,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Contrat::class, mappedBy: 'client')]
     private Collection $contrats;
 
-    #[ORM\OneToMany(targetEntity: Constat::class, mappedBy: 'createdby')]
-    private Collection $constats;
+    #[ORM\OneToMany(targetEntity: Facture::class, mappedBy: 'client')]
+    private Collection $factures;
 
     public function __construct()
     {
         $this->contrats = new ArrayCollection();
-        $this->constats = new ArrayCollection();
+        $this->factures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -88,7 +88,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
 
     /**
      * @see PasswordAuthenticatedUserInterface
@@ -149,29 +148,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Constat>
+     * @return Collection<int, Facture>
      */
-    public function getConstats(): Collection
+    public function getFactures(): Collection
     {
-        return $this->constats;
+        return $this->factures;
     }
 
-    public function addConstat(Constat $constat): static
+    public function addFacture(Facture $facture): static
     {
-        if (!$this->constats->contains($constat)) {
-            $this->constats->add($constat);
-            $constat->setCreatedby($this);
+        if (!$this->factures->contains($facture)) {
+            $this->factures->add($facture);
+            $facture->setClient($this);
         }
 
         return $this;
     }
 
-    public function removeConstat(Constat $constat): static
+    public function removeFacture(Facture $facture): static
     {
-        if ($this->constats->removeElement($constat)) {
+        if ($this->factures->removeElement($facture)) {
             // set the owning side to null (unless already changed)
-            if ($constat->getCreatedby() === $this) {
-                $constat->setCreatedby(null);
+            if ($facture->getClient() === $this) {
+                $facture->setClient(null);
             }
         }
 
