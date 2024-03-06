@@ -102,11 +102,7 @@ class VoitureType extends AbstractType
                     new NotBlank(['message' => 'Veuillez saisir la date d\'achat de la voiture.']),
                 ],
             ])
-            ->add('carteGrise', FileType::class, [
-                'label' => 'Carte grise',
-                'required' => false, // Le champ n'est pas obligatoire
-                // Optionnel : configurez ici d'autres contraintes de validation pour le champ de fichier
-            ]);
+           ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

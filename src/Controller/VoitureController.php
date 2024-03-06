@@ -45,12 +45,7 @@ class VoitureController extends AbstractController
             // Gérer le téléchargement de l'image de la carte grise
             $carteGriseFile = $form['carteGrise']->getData(); // Récupérer le fichier de l'image de la carte grise depuis le formulaire
     
-        /*     if ($carteGriseFile) {
-                // Utiliser la méthode "upload" pour télécharger le fichier
-                $carteGriseFileName = $uploaderHelper->upload($carteGriseFile); 
-                $voiture->setCarteGrise($carteGriseFileName); // Définir le nom du fichier dans l'entité Voiture
-            } */
-          
+    
             if ($carteGriseFile) {
                 $directory = $this->getParameter('voiture_directory');
                 $voiture->setCarteGrise($uploaderService->uploadFile($carteGriseFile, $directory));

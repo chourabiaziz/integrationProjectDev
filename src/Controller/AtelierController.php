@@ -10,17 +10,44 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Knp\Component\Pager\PaginatorInterface;
+
+
 
 #[Route('/atelier')]
 class AtelierController extends AbstractController
 {
     #[Route('/', name: 'app_atelier_index', methods: ['GET'])]
-    public function index(AtelierRepository $atelierRepository): Response
+    public function index(Request $request, AtelierRepository $atelierRepository, PaginatorInterface $paginator): Response
     {
+        $searchTerm = $request->query->get('search');
+        $queryBuilder = $atelierRepository->createQueryBuilder('a');
+    
+        if ($searchTerm) {
+            $queryBuilder->where('a.nom LIKE :searchTerm')
+                        ->setParameter('searchTerm', '%'.$searchTerm.'%');
+        }
+    
+        // Récupérer les résultats de recherche ou tous les ateliers
+        $ateliers = $queryBuilder->getQuery()->getResult();
+    
+        // Paginer les résultats
+        $query = $queryBuilder->getQuery();
+
+        // Paginer les résultats
+        $ateliersPaginated = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            10
+        );
+    
         return $this->render('atelier/index.html.twig', [
-            'ateliers' => $atelierRepository->findAll(),
+            'ateliers' => $ateliersPaginated,
         ]);
     }
+
+   
    
 
 
@@ -80,40 +107,7 @@ class AtelierController extends AbstractController
 
         return $this->redirectToRoute('app_atelier_index', [], Response::HTTP_SEE_OTHER);
     }
-    #[Route('/search', name: 'search_ateliers', methods: ['GET'])]
-    public function search1(Request $request, AtelierRepository $atelierRepository): Response
-    {
-        $searchTerm = $request->query->get('q');
-
-        if ($searchTerm) {
-            // Utilisez la méthode de recherche appropriée de votre repository pour filtrer les ateliers
-            $ateliers = $atelierRepository->searchByNom($searchTerm);
-        } else {
-            // Si aucun terme de recherche n'est fourni, redirigez simplement vers la liste des ateliers
-            return $this->redirectToRoute('app_atelier_index');
-        }
-
-        return $this->render('atelier/index.html.twig', [
-            'ateliers' => $ateliers,
-        ]);
-    }
-    #[Route('/search', name: 'search_ateliers', methods: ['GET'])]
-    public function search(Request $request, AtelierRepository $atelierRepository): Response
-    {
-        $searchTerm = $request->query->get('q');
-
-        if ($searchTerm) {
-            // Utilisez la méthode de recherche appropriée de votre repository pour filtrer les ateliers
-            $ateliers = $atelierRepository->searchByNom($searchTerm);
-        } else {
-            // Si aucun terme de recherche n'est fourni, redirigez simplement vers la liste des ateliers
-            return $this->redirectToRoute('app_atelier_index');
-        }
-
-        return $this->render('atelier/index.html.twig', [
-            'ateliers' => $ateliers,
-        ]);
-    }
+   
 
 
 }

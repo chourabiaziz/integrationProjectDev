@@ -8,14 +8,11 @@
         <div class="col-md-6">
             <h1 class="text-center mb-0">Liste des Ateliers</h1>
         </div>
-        <div class="col-md-6">
-            <!-- Formulaire de recherche -->
-            <form id="searchForm" method="get" class="form-inline float-md-right">
-        <div class="form-group mb-2">
-            <input type="text" class="form-control" name="q" id="searchInput" placeholder="Rechercher par nom d'atelier">
-        </div>
-        <button type="button" class="btn btn-primary mb-2" onclick="searchAteliers()">Rechercher</button>
-    </form>
+
+    </div>
+    <input type="text" id="searchInput" class="form-control mb-3" placeholder="Rechercher une atelier...">
+            <div class="container">
+                <div id="searchResults" class="card-columns">
 
         </div>
     </div>
@@ -81,7 +78,12 @@
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" id="deleteToken" value="">
                     <button type="submit" class="btn btn-danger">Supprimer</button>
+                
                 </form>
+                {# Affichage de la pagination #}
+<div class="text-center">
+    {{ knp_pagination_render(ateliers) }}
+</div>
             </div>
         </div>
     </div>
@@ -90,10 +92,35 @@
 
 <!-- Script pour la confirmation de suppression -->
 <script>
-    function deleteConfirmation(url, token) {
-        $('#deleteModal').modal('show');
-        $('#deleteToken').val(token);
-        $('#deleteForm').attr('action', url);
-    }
+$(document).ready(function() {
+    $('#searchInput').on('input', function() {
+        var query = $(this).val().toLowerCase();
+
+        $.ajax({
+            url: '{{ path('app_search') }}',
+            data: { query: query },
+            success: function(results) {
+                        console.log('Results:', results);  // Log the results to the console
+                        // Effacer les résultats précédents
+                        $('#searchResults').empty();
+
+                        if (results.length === 0) {
+                            $('#searchResults').hide()
+                            $('#normal').show();
+
+
+                        } else {
+                            // If there are results, display them
+                            $.each(results, function(index, result) {
+                                $('#normal').hide();
+
+                                $('#searchResults').append('<div class="card custom-card mb-3"><div class="card-header">' + result.Nom + '</div><div class="card-body"><p class="card-text">Adresse: ' + result.adresse+ '</p><p class="card-text">Numero téléphone: ' + result.numero + '</p><p class="card-text">Heure ouverture: ' + result.heure_ouverture + '</p><p class="card-text">Heure Fermeture: ' + result.heure_fermeture + '</p><a href="/atelier/' + result.id + '" class="btn btn-primary btn-sm mr-2">Show</a><a href="/atelier/' + result.id + '/edit" class="btn btn-primary btn-sm mr-2">Edit</a></div></div>');
+                            });
+                        }
+                        
+                    }
+                });
+            });
+        });
 </script>
 {% endblock %}
