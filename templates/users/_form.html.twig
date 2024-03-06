@@ -1,0 +1,44 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+<div>
+    <br>
+    <h3>Last Name:</h3>
+    <br>
+    <p>
+        {{ form_widget(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Enter your last name...'}}) }}
+        {{ form_errors(form.nom) }}
+    </p>
+</div>
+
+<div>
+    <br>
+    <h3>First Name:</h3>
+    <br>
+    <p>
+        {{ form_widget(form.prenom, {'attr': {'class': 'form-control', 'placeholder': 'Enter your first name...'}}) }}
+        {{ form_errors(form.prenom) }}
+    </p>
+</div>
+
+<div>
+    <br>
+    <h3>Email:</h3>
+    <br>
+    <p>
+        {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Enter your email...'}}) }}
+        {{ form_errors(form.email) }}
+    </p>
+</div>
+
+<div>
+    <br>
+    <h3>Password:</h3>
+    <br>
+    <p>
+        {{ form_widget(form.password, {'attr': {'class': 'form-control', 'placeholder': 'Enter your password...'}}) }}
+        {{ form_errors(form.password) }}
+    </p>
+</div>
+
+<button class="btn btn-success">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
