@@ -16,9 +16,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                <form action="{{ path('app_panne_delete', {'id': panne.id}) }}" method="post">
+                <form action="{{ path('app_voiture_delete', {'id': voiture.id}) }}" method="post">
                     <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ panne.id) }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ voiture.id) }}">
                     <button type="submit" class="btn btn-danger">Supprimer</button>
                 </form>
             </div>

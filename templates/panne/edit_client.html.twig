@@ -1,0 +1,75 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}Modifier Panne{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Modifier Panne</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <form action="{{ path('app_panne_edit', {'id': panne.id}) }}" method="post">
+                        {{ form_start(form) }}
+                        <div class="form-group row">
+                            <label for="localisation" class="col-sm-3 col-form-label">Localisation :</label>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.localisation, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="panne" class="col-sm-3 col-form-label">Panne :</label>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.panne, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="description" class="col-sm-3 col-form-label">Description :</label>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.description, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                 
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-9 offset-sm-3">
+                                <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{{ path('app_panne_index') }}" class="btn btn-secondary mr-2">Retour à la liste</a>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Supprimer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de confirmation de suppression -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cette panne ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <form action="{{ path('app_panne_delete', {'id': panne.id}) }}" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -17,6 +17,7 @@
                         <th>Description</th>
                         <th>Date</th>
                         <th>Actions</th>
+                        <th></th> {# Nouvelle colonne pour le bouton PDF #}
                     </tr>
                 </thead>
                 <tbody>
@@ -28,11 +29,22 @@
                         <td>{{ panne.description }}</td>
                         <td>{{ panne.date ? panne.date|date('Y-m-d') : '' }}</td>
                         <td>
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex">
                                 <a href="{{ path('app_panne_show', {'id': panne.id}) }}" class="btn btn-info btn-sm mr-2">Voir</a>
+                                <a href="{{ path('app_panne_accepte', {'id': panne.id}) }}" 
+                                {% if panne.etat %}
+                                    class="btn btn-success btn-sm mr-2"
+                                {% else %} 
+                                     class="btn btn-info btn-sm mr-2"
+                                {% endif %} 
+                                >
+                                {% if panne.etat %}
+                                Accepté
+                                {% else %} 
+                                     Accepter
+                                {% endif %}
+                                </a>
                                 <a href="{{ path('app_panne_edit', {'id': panne.id}) }}" class="btn btn-primary btn-sm mr-2">Modifier</a>
-                                <!-- Bouton "Affecter" redirigeant vers la liste des ateliers disponibles 
-                                <a href="{{ path('app_ateliers_disponibles') }}" class="btn btn-warning btn-sm mr-2">Affecter</a>-->
                                 <!-- Bouton de suppression avec fenêtre modale de confirmation -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ panne.id }}">
                                     <i class="fas fa-trash"></i> Supprimer
@@ -64,6 +76,10 @@
                                 <!-- Fin du modal -->
                             </div>
                         </td>
+                        <td>
+                            <!-- Ajoutez un lien pour générer le PDF pour cette panne -->
+                            <a href="{{ path('panne.pdf', {'id': panne.id}) }}" class="btn btn-secondary btn-sm">Générer PDF</a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -72,9 +88,5 @@
     {% else %}
         <p class="text-center">Aucun enregistrement trouvé.</p>
     {% endif %}
-
-    <div class="text-center mt-3">
-        <a href="{{ path('app_panne_new') }}" class="btn btn-success">Créer une nouvelle Panne</a>
-    </div>
 </div>
 {% endblock %}

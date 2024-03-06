@@ -10,12 +10,13 @@
         </div>
         <div class="col-md-6">
             <!-- Formulaire de recherche -->
-            <form action="{{ path('search_ateliers') }}" method="get" class="form-inline float-md-right">
-                <div class="form-group mb-2">
-                    <input type="text" class="form-control" name="q" id="searchInput" placeholder="Rechercher par nom d'atelier">
-                </div>
-                <button type="submit" class="btn btn-primary mb-2">Rechercher</button>
-            </form>
+            <form id="searchForm" method="get" class="form-inline float-md-right">
+        <div class="form-group mb-2">
+            <input type="text" class="form-control" name="q" id="searchInput" placeholder="Rechercher par nom d'atelier">
+        </div>
+        <button type="button" class="btn btn-primary mb-2" onclick="searchAteliers()">Rechercher</button>
+    </form>
+
         </div>
     </div>
 

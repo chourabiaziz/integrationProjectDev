@@ -1,0 +1,618 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Constat index{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+    <h1>CONSTAT AMIABLE D'ACCIDENT AUTOMOBILE</h1>
+
+    
+    
+        
+        <div class="form-container ">
+        <tbody>
+        {% for constat in constats %}
+             
+<div class="form-row"> 
+                    <div class="form-columnInfo">
+                        <label for="id">Id</label>
+                        <p>{{ constat.id }}</p>
+                    </div>
+
+                    <div class="form-columnInfo">
+                        <label for="dateAccident">Date d'accident</label>
+                        <p>{{ constat.dateAccident ? constat.dateAccident|date('Y-m-d') : '' }}</p>
+                    </div>
+
+                        <div class="form-columnInfo">
+                        <label for="Heure">Heure</label>
+                        <p>{{ constat.heure ? constat.heure|date('H:i:s') : '' }}</p>
+                    </div>
+
+                    <div class="form-columnInfo">
+                        <label for="Localisation">Localisation</label>
+                        <p>{{ constat.localisation }}</p>
+                    </div>
+
+                    <div class="form-columnInfo">
+                        <label for="blesseMemeLeger">Blessé meme léger</label>
+                      
+                        <input type="checkbox" name="blesseMemeLeger" {{ constat.blesseMemeLeger ? 'checked' }} disabled>
+                            {% if constat.blesseMemeLeger %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                    </div>
+
+                    <div class="form-columnInfo">
+                        <label for="degatsAutreVehicule">Dégats autre que véhicule</label>
+                          <input type="checkbox" name="degatsAutreVehicule" {{ constat.degatsAutreVehicule ? 'checked' }} disabled>
+                            {% if constat.degatsAutreVehicule %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                    </div>
+
+                    <div class="form-columnInfo">
+                        <label for="degatsAutreObjets">Dégats autre que objets</label>
+                         <input type="checkbox" name="degatsAutreObjets" {{ constat.degatsAutreObjets ? 'checked' }} disabled>
+                            {% if constat.degatsAutreObjets %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                    </div>
+
+                    <div class="form-columnInfo">
+                        <label for="temoins">témoins</label>
+                        <p>{{ constat.temoins }}</p>
+                    </div>
+                    
+</div>
+
+
+<div class="container">
+
+  <div class = "form-column A-section">
+                    <h3> Véhicule A  </h3> 
+
+            <div class="form-column preneur-section">
+
+                   <h5> Preneur d'assurance/assuré <h6> (voir attestation d'assurance) </h6> </h5> 
+                    <p>{{ 'Nom : ' ~ constat.APreneurNom }}</p>
+
+                         <p>{{' Prenom : ' ~  constat.APreneurPrenom }}</p>
+
+                       <p>{{' Adresse :' ~  constat.APreneurAdresse }}</p>
+
+                      <p>{{'Code postal :' ~ constat.APreneurCodePostal }}</p>
+
+                      <p>{{'Tel :'~ constat.APreneurTel }}</p>
+
+                      <p>{{'Email :' ~  constat.APreneurEmail }}</p>
+            </div>
+
+
+            <div class="form-column vehicule-section ">
+                   
+                   <h5> véhicule </h5> 
+                   <h6> A MOTEUR </h6>
+                        <label for="véhicule">Marque </label>
+                        <p>{{ constat.AVehiculeMoteurMarque }}</p>
+
+                        <label for="véhicule">num immatriculation </label>
+                         <p>{{ constat.AVehiculeMoteurNumImmatriculation }}</p>
+
+                         <label for="véhicule">Pays immatriculation </label>
+                       <p>{{ constat.AVehiculeMoteurPaysImmatriculation }}</p>
+
+                          <h6>REMORQUE </h6>
+                        <label for="véhicule">num immatriculation</label>
+                      <p>{{ constat.AVehiculeRemorqueNumImmatriculation }}</p>
+
+                       <label for="véhicule">Pays immatriculation </label>
+                      <p>{{ constat.AVehiculeRemorquePaysImmatriculation }}</p>
+                    
+            </div>
+
+
+            <div class="form-column insurance-section ">
+                   <h5> Société d'assurance </h5> 
+                   
+                        <label for="insurance">Nom  </label>
+                        <p>{{ constat.ASocieteAssuranceNom }}</p>
+
+                        <label for="insurance">num  contrat</label>
+                         <p>{{ constat.ASocieteAssuranceNumContrat }}</p>
+
+                         <label for="insurance">num carte verte </label>
+                       <p>{{ constat.ASocieteAssuranceNumCarteVerte }}</p>
+
+                        <label for="insurance">attestation d'assurance ou carte verte valable du</label>
+                      <p>{{ constat.ASocieteAssuranceAttestationValableDu ? constat.ASocieteAssuranceAttestationValableDu|date('Y-m-d') : '' }}</p>
+
+                       <label for="insurance">attestation d'assurance ou carte verte valable au </label>
+                      <p>{{ constat.ASocieteAssuranceAttestationValableAu ? constat.ASocieteAssuranceAttestationValableAu|date('Y-m-d') : '' }}</p>
+                       <h6> Agence (ou bureau ou courtier) </h6>  <br>
+                        <label for="insurance-">Nom</label>
+                        <p>{{ constat.ASocieteAssuranceAgenceNom }}</p>
+
+                        <label for="insurance-">Adresse</label>
+                         <p>{{ constat.ASocieteAssuranceAgenceAdresse }}</p>
+
+                         <label for="insurance"> Tel ou Email </label>
+                       <p>{{ constat.ASocieteAssuranceAgenceTel }}</p>
+
+
+                        <label for="insurance">les dégats matériels au véhicule sont-ils assurés par le contrat ? </label>
+                      <input type="checkbox" name="ASocieteAssuranceDegatsMaterielsAssureParContrat" {{ constat.ASocieteAssuranceDegatsMaterielsAssureParContrat ? 'checked' }} disabled>
+                            {% if constat.ASocieteAssuranceDegatsMaterielsAssureParContrat %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+          </div>
+
+          <div class="form-column conducteur-section ">
+                   <h5> Conducteur (voir permis de consuite) </h5> 
+                   
+                        <label for="Conducteur">Nom</label>
+                        <p>{{ constat.AConducteurNom }}</p>
+
+                        <label for="Conducteur">Prenom</label>
+                         <p>{{ constat.AConducteurPrenom }}</p>
+
+                         <label for="Conducteur">date de naissance </label>
+                       <p>{{ constat.AConducteurDateNaissance ? constat.AConducteurDateNaissance|date('Y-m-d') : '' }}</p>
+
+                        
+                        <label for="Conducteur-">Adresse</label>
+                        <p>{{ constat.AConducteurAdresse }}</p>
+
+                        <label for="Conducteur-">Pays </label>
+                         <p>{{ constat.AConducteurPays }}</p>
+
+                         <label for="Conducteur">Tel ou Email </label>
+                       <p>{{ constat.AConducteurTel }}</p>
+
+                       <label for="Conducteur-">Num permis de conduite</label>
+                        <p>{{ constat.AConducteurNumPermisComduite }}</p>
+
+                        <label for="Conducteur-">Catégorie(A,B,...)</label>
+                         <p>{{ constat.AConducteurCategorie }}</p>
+
+                         <label for="Conducteur">Perms valable jusqu'au </label>
+                       <p>{{ constat.AConducteurPermisValableJusqua ? constat.AConducteurPermisValableJusqua|date('Y-m-d') : '' }}</p>
+
+          </div>
+
+
+          <div class="form-column autre-section"> 
+                  <h6>  Dégats apparents au véhicule A </h6>
+                        <p>{{ constat.ADegats }}</p>
+                   <h6>  Mes observations </h6>
+                         <p>{{ constat.AObservation }}</p>
+          </div>
+
+  </div>
+
+<div class="form-column circonstance-section"> 
+    
+                  <h4>  circonstance </h4>
+
+          <div classe "circonstance-sectionA"> 
+                  <div>
+                          <label for="circonstance">en stationnement / à l'arrêt </label>
+                           <input type="checkbox" name="stationnementArret" {{ constat.stationnementArret ? 'checked' }}disabled>
+                               {% if constat.stationnementArret %}
+                               <span>&#10003;</span>
+                               {% endif %}
+                  </div>
+                  <div>
+                          <label for="circonstance">quittait un stationnement/ ouvrait une portière  </label>
+                          <input type="checkbox" name="quittaitStationnementArret" {{ constat.quittaitStationnementArret ? 'checked' }} disabled>
+                              {% if constat.quittaitStationnementArret %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                  </div>
+                  <div>
+                          <label for="circonstance"> prenait un stationnement</label>
+                          <input type="checkbox" name="prenaitStationnement" {{ constat.prenaitStationnement ? 'checked' }} disabled>
+                          {% if constat.prenaitStationnement %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                          <label for="circonstance"> sortait d'un parking, d'un lieu privé, d'un chemin de terre </label>
+                           <input type="checkbox" name="sortaitDunParkingLieu" {{ constat.sortaitDunParkingLieu ? 'checked' }} disabled>
+                           {% if constat.sortaitDunParkingLieu %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                  </div>
+                  <div>
+                          <label for="circonstance">s'engageait dans un parking, un lieu privé, un chemin de terre </label>
+                          <input type="checkbox" name="sengageaitDunParkingLieu" {{ constat.sengageaitDunParkingLieu ? 'checked' }} disabled>
+                               {% if constat.sengageaitDunParkingLieu %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                  </div>
+                  <div>
+                          <label for="circonstance">s'engageait sur une place à sens giratoire </label>
+                          <input type="checkbox" name="sengageaitSurUnePlaceSensGigatoire" {{ constat.sengageaitSurUnePlaceSensGigatoire ? 'checked' }} disabled >
+                           {% if constat.sengageaitSurUnePlaceSensGigatoire %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                  </div>
+                  <div>
+                          <label for="circonstance"> roulait sur une place à sens giratoire </label>
+                           <input type="checkbox" name="roulerSurUnePlaceSensGigatoire" {{ constat.roulerSurUnePlaceSensGigatoire ? 'checked' }} disabled>
+                             {% if constat.roulerSurUnePlaceSensGigatoire %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                  </div>
+                  <div>
+                          <label for="circonstance">heurtait à l'arrière, en roulant dans le même sens et sur une même file </label>
+                          <input type="checkbox" name="sortaitDunParkingLieu" {{ constat.sortaitDunParkingLieu ? 'checked' }} disabled>
+                            {% if constat.sortaitDunParkingLieu %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                  </div>
+                  <div>
+                          <label for="circonstance">  roulait dans le même sens et sur une file différente</label>
+                          <input type="checkbox" name="roulaitDansMemeSensSureUneFileDifferente" {{ constat.roulaitDansMemeSensSureUneFileDifferente ? 'checked' }} disabled>
+                            {% if constat.roulaitDansMemeSensSureUneFileDifferente %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                  </div>
+                  <div>
+                          <label for="circonstance">changeait de file </label>
+                          <input type="checkbox" name="changeaitFile" {{ constat.changeaitFile ? 'checked' }} disabled>
+                            {% if constat.changeaitFile %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                          <label for="circonstance">doublait </label>
+                         
+                          <input type="checkbox" name="doublait" {{ constat.doublait ? 'checked' }} disabled>
+                            {% if constat.doublait %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                          <label for="circonstance">virait à droite </label>
+                         <input type="checkbox" name="viraitDroite" {{ constat.viraitDroite ? 'checked' }} disabled>
+                           {% if constat.viraitDroite %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                          <label for="circonstance">virait à gauche </label>
+                         <input type="checkbox" name="viraitGauche" {{ constat.viraitGauche ? 'checked' }} disabled>
+                           {% if constat.viraitGauche %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                          <label for="circonstance">reculait </label>
+                          <input type="checkbox" name="reculait" {{ constat.reculait ? 'checked' }} disabled>
+                            {% if constat.reculait %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>         
+                          <label for="circonstance">empiétait sur une voie réservée à la circulation en sens inverse </label>
+                          <input type="checkbox" name="empietaitSurUneVoie" {{ constat.empietaitSurUneVoie ? 'checked' }} disabled>
+                            {% if constat.empietaitSurUneVoie %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                          <label for="circonstance"> venait de droite (dans un carrefour) </label>
+                          <input type="checkbox" name="venaitDeDroite" {{ constat.venaitDeDroite ? 'checked' }} disabled>
+                            {% if constat.venaitDeDroite %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                          <label for="circonstance">n'avait pas observé un signal de priorité ou un feu rouge</label>
+                           <input type="checkbox" name="observationSignal" {{ constat.observationSignal ? 'checked' }} disabled >
+                             {% if constat.observationSignal %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                          <label for="circonstance">indiquer le nombre de cases marquées d'une croix </label>
+                           <input type="text" name="indiquationNombreCases" value="{{ constat.indiquationNombreCases }}" readonly style="width: 20px;">
+                  </div>
+   </div>
+
+          
+
+
+
+
+
+
+      <div classe "circonstance-sectionB">
+
+                   <div>
+                           <input type="checkbox" name="BstationnementArret" {{ constat.BstationnementArret ? 'checked' }}disabled>
+                               {% if constat.BstationnementArret %}
+                               <span>&#10003;</span>
+                               {% endif %}
+                  </div>
+                  <div>
+                          <input type="checkbox" name="BquittaitStationnementArret" {{ constat.BquittaitStationnementArret ? 'checked' }} disabled>
+                              {% if constat.BquittaitStationnementArret %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                  </div>
+                  <div>
+                          <input type="checkbox" name="BprenaitStationnement" {{ constat.BprenaitStationnement ? 'checked' }} disabled>
+                          {% if constat.BprenaitStationnement %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                           <input type="checkbox" name="BsortaitDunParkingLieu" {{ constat.BsortaitDunParkingLieu ? 'checked' }} disabled>
+                           {% if constat.BsortaitDunParkingLieu %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                  </div>
+                  <div>
+                          <input type="checkbox" name="BsengageaitDunParkingLieu" {{ constat.BsengageaitDunParkingLieu ? 'checked' }} disabled>
+                               {% if constat.BsengageaitDunParkingLieu %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                  </div>
+                  <div>
+                          <input type="checkbox" name="BsengageaitSurUnePlaceSensGigatoire" {{ constat.BsengageaitSurUnePlaceSensGigatoire ? 'checked' }} disabled >
+                           {% if constat.BsengageaitSurUnePlaceSensGigatoire %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                  </div>
+                  <div>
+                           <input type="checkbox" name="BroulerSurUnePlaceSensGigatoire" {{ constat.BroulerSurUnePlaceSensGigatoire ? 'checked' }} disabled>
+                             {% if constat.BroulerSurUnePlaceSensGigatoire %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                  </div>
+                  <div>
+                          <input type="checkbox" name="BsortaitDunParkingLieu" {{ constat.BsortaitDunParkingLieu ? 'checked' }} disabled>
+                            {% if constat.BsortaitDunParkingLieu %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                  </div>
+                  <div>
+                          <input type="checkbox" name="BroulaitDansMemeSensSureUneFileDifferente" {{ constat.BroulaitDansMemeSensSureUneFileDifferente ? 'checked' }} disabled>
+                            {% if constat.BroulaitDansMemeSensSureUneFileDifferente %}
+                              <span>&#10003;</span>
+                              {% endif %}
+                  </div>
+                  <div>
+                          <input type="checkbox" name="BchangeaitFile" {{ constat.BchangeaitFile ? 'checked' }} disabled>
+                            {% if constat.BchangeaitFile %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                         
+                          <input type="checkbox" name="Bdoublait" {{ constat.Bdoublait ? 'checked' }} disabled>
+                            {% if constat.Bdoublait %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                         <input type="checkbox" name="BviraitDroite" {{ constat.BviraitDroite ? 'checked' }} disabled>
+                           {% if constat.BviraitDroite %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                         <input type="checkbox" name="BviraitGauche" {{ constat.BviraitGauche ? 'checked' }} disabled>
+                           {% if constat.BviraitGauche %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                          <input type="checkbox" name="Breculait" {{ constat.Breculait ? 'checked' }} disabled>
+                            {% if constat.Breculait %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>         
+                          <input type="checkbox" name="BempietaitSurUneVoie" {{ constat.BempietaitSurUneVoie ? 'checked' }} disabled>
+                            {% if constat.BempietaitSurUneVoie %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                          <input type="checkbox" name="BvenaitDeDroite" {{ constat.BvenaitDeDroite ? 'checked' }} disabled>
+                            {% if constat.BvenaitDeDroite %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                           <input type="checkbox" name="BobservationSignal" {{ constat.BobservationSignal ? 'checked' }} disabled >
+                             {% if constat.BobservationSignal %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                  </div>
+                  <div>
+                           <input type="text" name="BindiquationNombreCases" value="{{ constat.BindiquationNombreCases }}" readonly style="width: 20px;">
+                  </div>
+
+    </div>
+
+
+
+
+
+
+
+
+</div>
+
+
+  <div class = "form-column B-section">
+                      <h3> Véhicule B  </h3> 
+          <div class="form-column preneur-sectionB">
+                   <h5> Preneur d'assurance/assuré <h6> (voir attestation d'assurance) </h6> </h5> 
+                        <p>{{'Nom : ' ~ constat.BPreneurNom }}</p>
+
+                         <p>{{' Prenom :' ~ constat.BPreneurPrenom }}</p>
+
+                       <p>{{' Adresse :' ~ constat.BPreneurAdresse }}</p>
+
+                      <p>{{'Code postal :'~ constat.BPreneurCodePostal }}</p>
+
+                      <p>{{'Tel :'~ constat.BPreneurPays }}</p>
+
+                      <p>{{'Email :' ~ constat.BPreneurTel }}</p>
+
+          </div>
+
+          <div class="form-column vehicule-sectionB ">
+                   
+                   <h5> véhicule </h5> 
+                   <h6> A MOTEUR </h6>
+                        <label for="véhicule">Marque </label>
+                        <p>{{ constat.BVehiculeMoteurMarque }}</p>
+
+                        <label for="véhicule">num immatriculation </label>
+                         <p>{{ constat.BVehiculeMoteurNumImmatriculation }}</p>
+
+                         <label for="véhicule">Pays immatriculation </label>
+                       <p>{{ constat.BVehiculeMoteurPaysImmatriculation }}</p>
+
+                          <h6>REMORQUE </h6>
+                        <label for="véhicule">num immatriculation</label>
+                      <p>{{ constat.BVehiculeRemorqueNumImmatriculation }}</p>
+
+                       <label for="véhicule">Pays immatriculation </label>
+                      <p>{{ constat.BVehiculeRemorquePaysImmatriculation }}</p>
+                    
+          </div>
+
+          <div class="form-column insurance-sectionB ">
+                   <h5> Société d'assurance </h5> 
+                   
+                        <label for="insurance">Nom  </label>
+                        <p>{{ constat.BSocieteAssuranceNom }}</p>
+
+                        <label for="insurance">num  contrat</label>
+                         <p>{{ constat.BSocieteAssuranceNumContrat }}</p>
+
+                         <label for="insurance">num carte verte </label>
+                       <p>{{ constat.BSocieteAssuranceNumCarteVerte }}</p>
+
+                        <label for="insurance">attestation d'assurance ou carte verte valable du</label>
+                      <p>{{ constat.BSocieteAssuranceAttestationValableDu ? constat.ASocieteAssuranceAttestationValableDu|date('Y-m-d') : '' }}</p>
+
+                       <label for="insurance">attestation d'assurance ou carte verte valable au </label>
+                      <p>{{ constat.BSocieteAssuranceAttestationValableAu ? constat.ASocieteAssuranceAttestationValableAu|date('Y-m-d') : '' }}</p>
+                       <h6> Agence (ou bureau ou courtier) </h6> 
+                        <label for="insurance-">Nom</label>
+                        <p>{{ constat.BSocieteAssuranceAgenceNom }}</p>
+
+                        <label for="insurance-">Adresse</label>
+                         <p>{{ constat.ASocieteAssuranceAgenceAdresse }}</p>
+
+                         <label for="insurance">Tel ou Email </label>
+                       <p>{{ constat.BSocieteAssuranceAgenceTel }}</p>
+                       
+                          <label for="insurance">les dégats matériels au véhicule sont-ils assurés par le contrat ? </label>
+                      <input type="checkbox" name="BSocieteAssuranceDegatsMaterielsAssureParContrat" {{ constat.BSocieteAssuranceDegatsMaterielsAssureParContrat ? 'checked' }} disabled>
+                            {% if constat.BSocieteAssuranceDegatsMaterielsAssureParContrat %}
+                              <span>&#10003;</span>
+                              {% endif %}
+
+                        
+
+          </div>
+
+          <div class="form-column conducteur-sectionB ">
+                   <h5> Conducteur (voir permis de consuite) </h5> 
+                   
+                        <label for="Conducteur">Nom</label>
+                        <p>{{ constat.BConducteurNom }}</p>
+
+                        <label for="Conducteur">Prenom</label>
+                         <p>{{ constat.BConducteurPrenom }}</p>
+
+                         <label for="Conducteur">date de naissance </label>
+                       <p>{{ constat.BConducteurDateNaissance ? constat.AConducteurDateNaissance|date('Y-m-d') : '' }}</p>
+
+                        <label for="Conducteur-">Adresse</label>
+                        <p>{{ constat.BConducteurAdresse }}</p>
+
+                        <label for="Conducteur-">Pays </label>
+                         <p>{{ constat.BConducteurPays }}</p>
+
+                         <label for="Conducteur">Tel ou Email </label>
+                       <p>{{ constat.BConducteurTel }}</p>
+
+                       <label for="Conducteur-">Num permis de conduite</label>
+                        <p>{{ constat.BConducteurNumPermisComduite }}</p>
+
+                        <label for="Conducteur-">Catégorie(A,B,...)</label>
+                         <p>{{ constat.BConducteurCategorie }}</p>
+
+                         <label for="Conducteur">Permis valable jusqu'au </label>
+                       <p>{{ constat.BConducteurPermisValableJusqua ? constat.AConducteurPermisValableJusqua|date('Y-m-d') : '' }}</p>
+          </div>
+
+          <div class="form-column autre-sectionB"> 
+                  <h6>  Dégats apparents au véhicule B </h6>
+                        <p>{{ constat.ADegats }}</p>
+                   <h6>  Mes observations </h6>
+                         <p>{{ constat.AObservation }}</p>
+          </div>
+          
+  </div>               
+              <div class = " boutton-section" >
+                    <a href="{{ path('app_constat_show', {'id': constat.id}) }}"  >show</a>
+              </div>
+              <div class = " boutton-section" >      
+                    <a href="{{ path('app_constat_edit', {'id': constat.id}) }}">edit</a>
+              </div>
+
+
+                
+  </div>
+
+              
+
+      
+
+                
+           
+        {% else %}
+            <tr>
+                <td colspan="73">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_constat_new') }}">Create new</a>
+{% endblock %}

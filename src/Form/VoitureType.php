@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Form\Extension\Core\Type\FileType; // Importer le type de fichier
 
 class VoitureType extends AbstractType
 {
@@ -100,6 +101,11 @@ class VoitureType extends AbstractType
                 'constraints' => [
                     new NotBlank(['message' => 'Veuillez saisir la date d\'achat de la voiture.']),
                 ],
+            ])
+            ->add('carteGrise', FileType::class, [
+                'label' => 'Carte grise',
+                'required' => false, // Le champ n'est pas obligatoire
+                // Optionnel : configurez ici d'autres contraintes de validation pour le champ de fichier
             ]);
     }
 

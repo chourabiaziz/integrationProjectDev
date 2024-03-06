@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}Welcome!
+        {% endblock %}
+    </title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+
+
+    <link rel="icon" href="{{ asset('assets/images/ico.ico') }}" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="{{ asset('assets/pages/waves/css/waves.min.css') }}" type="text/css" media="all">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap/css/bootstrap.min.css') }}">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="{{ asset('assets/pages/waves/css/waves.min.css') }}" type="text/css" media="all">
+    <!-- themify icon -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/icon/themify-icons/themify-icons.css') }}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/icon/font-awesome/css/font-awesome.min.css') }}">
+    <!-- scrollbar.css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.mCustomScrollbar.css') }}">
+    <!-- am chart export.css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css"
+        media="all" />
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}"> {% block stylesheets %}{%
+    endblock %}
+</head>
+
+<body>
+    {% block body %}{% endblock %}
+</body>
+
+</html>
+
+<script type="text/javascript" src="{{ asset('assets/js/jquery/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/jquery-ui/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/popper.js/popper.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/bootstrap/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/pages/widget/excanvas.js') }}"></script><!-- waves js -->
+<script src="{{ asset('assets/pages/waves/js/waves.min.js') }}"></script><!-- jquery slimscroll js -->
+<script type="text/javascript" src="{{ asset('assets/js/jquery-slimscroll/jquery.slimscroll.js') }}"></script>
+<!-- modernizr js -->
+<script type="text/javascript" src="{{ asset('assets/js/modernizr/modernizr.js') }}"></script><!-- slimscroll js -->
+<script type="text/javascript" src="{{ asset('assets/js/SmoothScroll.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.mCustomScrollbar.concat.min.js') }}"></script><!-- Chart js -->
+<script type="text/javascript" src="{{ asset('assets/js/chart.js/Chart.js') }}"></script><!-- amchart js -->
+<script src="{{ asset('https://www.amcharts.com/lib/3/amcharts.js') }}"></script>
+<script src="{{ asset('assets/pages/widget/amchart/gauge.js') }}"></script>
+<script src="{{ asset('assets/pages/widget/amchart/serial.js') }}"></script>
+<script src="{{ asset('assets/pages/widget/amchart/light.js') }}"></script>
+<script src="{{ asset('assets/pages/widget/amchart/pie.min.js') }}"></script>
+<script src="{{ asset('https://www.amcharts.com/lib/3/plugins/export/export.min.js') }}"></script><!-- menu js -->
+<script src="{{ asset('assets/js/pcoded.min.js') }}"></script>
+<script src="{{ asset('assets/js/vertical-layout.min.js') }}"></script><!-- custom js -->
+<script type="text/javascript" src="{{ asset('assets/pages/dashboard/custom-dashboard.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/script.js') }}"></script>

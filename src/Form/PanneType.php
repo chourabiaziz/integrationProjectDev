@@ -15,8 +15,7 @@ class PanneType extends AbstractType
             ->add('localisation')
             ->add('panne')
             ->add('description')
-            ->add('date')
-            ->add('atelier')
+             ->add('atelier')
         ;
     }
 

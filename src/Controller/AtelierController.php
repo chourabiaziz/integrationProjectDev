@@ -81,6 +81,23 @@ class AtelierController extends AbstractController
         return $this->redirectToRoute('app_atelier_index', [], Response::HTTP_SEE_OTHER);
     }
     #[Route('/search', name: 'search_ateliers', methods: ['GET'])]
+    public function search1(Request $request, AtelierRepository $atelierRepository): Response
+    {
+        $searchTerm = $request->query->get('q');
+
+        if ($searchTerm) {
+            // Utilisez la méthode de recherche appropriée de votre repository pour filtrer les ateliers
+            $ateliers = $atelierRepository->searchByNom($searchTerm);
+        } else {
+            // Si aucun terme de recherche n'est fourni, redirigez simplement vers la liste des ateliers
+            return $this->redirectToRoute('app_atelier_index');
+        }
+
+        return $this->render('atelier/index.html.twig', [
+            'ateliers' => $ateliers,
+        ]);
+    }
+    #[Route('/search', name: 'search_ateliers', methods: ['GET'])]
     public function search(Request $request, AtelierRepository $atelierRepository): Response
     {
         $searchTerm = $request->query->get('q');
@@ -97,5 +114,6 @@ class AtelierController extends AbstractController
             'ateliers' => $ateliers,
         ]);
     }
+
 
 }

@@ -34,6 +34,9 @@ class Panne
     #[ORM\ManyToOne(inversedBy: 'pannes')]
     private ?Atelier $atelier = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $etat = null;
+
     public function __construct()
     {
         $this->id_voiture = new ArrayCollection();
@@ -130,6 +133,18 @@ class Panne
     public function setAtelier(?Atelier $atelier): static
     {
         $this->atelier = $atelier;
+
+        return $this;
+    }
+
+    public function isEtat(): ?bool
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(?bool $etat): static
+    {
+        $this->etat = $etat;
 
         return $this;
     }

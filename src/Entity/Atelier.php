@@ -179,4 +179,9 @@ class Atelier
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->nom; // Supposons que 'nom' est le champ représentant le nom de l'atelier
+    }
 }

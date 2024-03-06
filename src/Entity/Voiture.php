@@ -52,6 +52,12 @@ class Voiture
     #[ORM\ManyToOne(inversedBy: 'id_voiture')]
     private ?Panne $panne = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?string $carteGrise = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $nomImage = null;
+
 
     public function __construct()
     {
@@ -236,4 +242,29 @@ class Voiture
 
         return $this;
     }
+
+    public function getCarteGrise(): ?string
+    {
+        return $this->carteGrise;
+    }
+
+    public function setCarteGrise(?string $carteGrise): static
+    {
+        $this->carteGrise = $carteGrise;
+    
+        return $this;
+    }
+
+    public function getNomImage(): ?string
+    {
+        return $this->nomImage;
+    }
+
+    public function setNomImage(?string $nomImage): static
+    {
+        $this->nomImage = $nomImage;
+
+        return $this;
+    }
+    
 }

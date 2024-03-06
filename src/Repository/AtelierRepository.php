@@ -20,6 +20,17 @@ class AtelierRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Atelier::class);
     }
+    public function searchByNom(string $nom): array
+{
+    return $this->createQueryBuilder('a')
+        ->andWhere('a.nom LIKE :nom')
+        ->setParameter('nom', '%'.$nom.'%')
+        ->orderBy('a.nom', 'ASC')
+        ->getQuery()
+        ->getResult();
+}
+
+
 
 //    /**
 //     * @return Atelier[] Returns an array of Atelier objects
