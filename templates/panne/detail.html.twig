@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Détails de la panne
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Détails de la panne</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>ID de la panne :</strong> {{ panne.id }}</p>
+                <p><strong>Localisation :</strong> {{ panne.localisation }}</p>
+                <p><strong>Description :</strong> {{ panne.description }}</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Date de la panne :</strong> {{ panne.date|date('d/m/Y') }}</p>
+                {# Ajoutez d'autres détails de la panne si nécessaire #}
+            </div>
+        </div>
+       
+    </div>
+{% endblock %}

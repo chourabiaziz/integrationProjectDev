@@ -1,0 +1,306 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Constat{% endblock %}
+
+{% block body %}
+    <h1>Constat</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ constat.id }}</td>
+            </tr>
+            <tr>
+                <th>Date_accident</th>
+                <td>{{ constat.dateAccident ? constat.dateAccident|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Heure</th>
+                <td>{{ constat.heure ? constat.heure|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Localisation</th>
+                <td>{{ constat.localisation }}</td>
+            </tr>
+            <tr>
+                <th>Blesse_meme_leger</th>
+                <td>{{ constat.blesseMemeLeger ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Degats_autre_vehicule</th>
+                <td>{{ constat.degatsAutreVehicule ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Degats_autre_objets</th>
+                <td>{{ constat.degatsAutreObjets ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Temoins</th>
+                <td>{{ constat.temoins }}</td>
+            </tr>
+            <tr>
+                <th>A_preneur_nom</th>
+                <td>{{ constat.APreneurNom }}</td>
+            </tr>
+            <tr>
+                <th>A_preneur_prenom</th>
+                <td>{{ constat.APreneurPrenom }}</td>
+            </tr>
+            <tr>
+                <th>A_preneur_adresse</th>
+                <td>{{ constat.APreneurAdresse }}</td>
+            </tr>
+            <tr>
+                <th>A_preneur_codePostal</th>
+                <td>{{ constat.APreneurCodePostal }}</td>
+            </tr>
+            <tr>
+                <th>A_preneur_tel</th>
+                <td>{{ constat.APreneurTel }}</td>
+            </tr>
+            <tr>
+                <th>A_preneur_email</th>
+                <td>{{ constat.APreneurEmail }}</td>
+            </tr>
+            <tr>
+                <th>A_vehicule_moteur_marque</th>
+                <td>{{ constat.AVehiculeMoteurMarque }}</td>
+            </tr>
+            <tr>
+                <th>A_vehicule_moteur_numImmatriculation</th>
+                <td>{{ constat.AVehiculeMoteurNumImmatriculation }}</td>
+            </tr>
+            <tr>
+                <th>A_vehicule_moteur_paysImmatriculation</th>
+                <td>{{ constat.AVehiculeMoteurPaysImmatriculation }}</td>
+            </tr>
+            <tr>
+                <th>A_vehicule_remorque_numImmatriculation</th>
+                <td>{{ constat.AVehiculeRemorqueNumImmatriculation }}</td>
+            </tr>
+            <tr>
+                <th>A_vehicule_remorque_paysImmatriculation</th>
+                <td>{{ constat.AVehiculeRemorquePaysImmatriculation }}</td>
+            </tr>
+            <tr>
+                <th>A_societeAssurance_nom</th>
+                <td>{{ constat.ASocieteAssuranceNom }}</td>
+            </tr>
+            <tr>
+                <th>A_societeAssurance_numContrat</th>
+                <td>{{ constat.ASocieteAssuranceNumContrat }}</td>
+            </tr>
+            <tr>
+                <th>A_societeAssurance_numCarteVerte</th>
+                <td>{{ constat.ASocieteAssuranceNumCarteVerte }}</td>
+            </tr>
+            <tr>
+                <th>A_societeAssurance_attestationValable_du</th>
+                <td>{{ constat.ASocieteAssuranceAttestationValableDu ? constat.ASocieteAssuranceAttestationValableDu|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>A_societeAssurance_attestationValable_au</th>
+                <td>{{ constat.ASocieteAssuranceAttestationValableAu ? constat.ASocieteAssuranceAttestationValableAu|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>A_societeAssurance_agence_nom</th>
+                <td>{{ constat.ASocieteAssuranceAgenceNom }}</td>
+            </tr>
+            <tr>
+                <th>A_societeAssurance_agence_adresse</th>
+                <td>{{ constat.ASocieteAssuranceAgenceAdresse }}</td>
+            </tr>
+            <tr>
+                <th>A_societeAssurance_agence_pays</th>
+                <td>{{ constat.ASocieteAssuranceAgencePays }}</td>
+            </tr>
+            <tr>
+                <th>A_societeAssurance_agence_tel</th>
+                <td>{{ constat.ASocieteAssuranceAgenceTel }}</td>
+            </tr>
+            <tr>
+                <th>A_societeAssurance_degatsMaterielsAssureParContrat</th>
+                <td>{{ constat.ASocieteAssuranceDegatsMaterielsAssureParContrat ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>A_conducteur_nom</th>
+                <td>{{ constat.AConducteurNom }}</td>
+            </tr>
+            <tr>
+                <th>A_conducteur_prenom</th>
+                <td>{{ constat.AConducteurPrenom }}</td>
+            </tr>
+            <tr>
+                <th>A_conducteur_dateNaissance</th>
+                <td>{{ constat.AConducteurDateNaissance ? constat.AConducteurDateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>A_conducteur_adresse</th>
+                <td>{{ constat.AConducteurAdresse }}</td>
+            </tr>
+            <tr>
+                <th>A_conducteur_pays</th>
+                <td>{{ constat.AConducteurPays }}</td>
+            </tr>
+            <tr>
+                <th>A_conducteur_tel</th>
+                <td>{{ constat.AConducteurTel }}</td>
+            </tr>
+            <tr>
+                <th>A_conducteur_numPermisComduite</th>
+                <td>{{ constat.AConducteurNumPermisComduite }}</td>
+            </tr>
+            <tr>
+                <th>A_conducteur_categorie</th>
+                <td>{{ constat.AConducteurCategorie }}</td>
+            </tr>
+            <tr>
+                <th>A_conducteur_permisValableJusqua</th>
+                <td>{{ constat.AConducteurPermisValableJusqua ? constat.AConducteurPermisValableJusqua|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>A_degats</th>
+                <td>{{ constat.ADegats }}</td>
+            </tr>
+            <tr>
+                <th>A_observation</th>
+                <td>{{ constat.AObservation }}</td>
+            </tr>
+            <tr>
+                <th>B_preneur_nom</th>
+                <td>{{ constat.BPreneurNom }}</td>
+            </tr>
+            <tr>
+                <th>B_preneur_prenom</th>
+                <td>{{ constat.BPreneurPrenom }}</td>
+            </tr>
+            <tr>
+                <th>B_preneur_adresse</th>
+                <td>{{ constat.BPreneurAdresse }}</td>
+            </tr>
+            <tr>
+                <th>B_preneur_codePostal</th>
+                <td>{{ constat.BPreneurCodePostal }}</td>
+            </tr>
+            <tr>
+                <th>B_preneur_pays</th>
+                <td>{{ constat.BPreneurPays }}</td>
+            </tr>
+            <tr>
+                <th>B_preneur_tel</th>
+                <td>{{ constat.BPreneurTel }}</td>
+            </tr>
+            <tr>
+                <th>B_vehicule_moteur_marque</th>
+                <td>{{ constat.BVehiculeMoteurMarque }}</td>
+            </tr>
+            <tr>
+                <th>B_vehicule_moteur_numImmatriculation</th>
+                <td>{{ constat.BVehiculeMoteurNumImmatriculation }}</td>
+            </tr>
+            <tr>
+                <th>B_vehicule_moteur_paysImmatriculation</th>
+                <td>{{ constat.BVehiculeMoteurPaysImmatriculation }}</td>
+            </tr>
+            <tr>
+                <th>B_vehicule_remorque_numImmatriculation</th>
+                <td>{{ constat.BVehiculeRemorqueNumImmatriculation }}</td>
+            </tr>
+            <tr>
+                <th>B_vehicule_remorque_paysImmatriculation</th>
+                <td>{{ constat.BVehiculeRemorquePaysImmatriculation }}</td>
+            </tr>
+            <tr>
+                <th>B_societeAssurance_nom</th>
+                <td>{{ constat.BSocieteAssuranceNom }}</td>
+            </tr>
+            <tr>
+                <th>B_societeAssurance_numContrat</th>
+                <td>{{ constat.BSocieteAssuranceNumContrat }}</td>
+            </tr>
+            <tr>
+                <th>B_societeAssurance_numCarteVerte</th>
+                <td>{{ constat.BSocieteAssuranceNumCarteVerte }}</td>
+            </tr>
+            <tr>
+                <th>B_societeAssurance_attestationValable_du</th>
+                <td>{{ constat.BSocieteAssuranceAttestationValableDu ? constat.BSocieteAssuranceAttestationValableDu|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>B_societeAssurance_attestationValable_au</th>
+                <td>{{ constat.BSocieteAssuranceAttestationValableAu ? constat.BSocieteAssuranceAttestationValableAu|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>B_societeAssurance_agence_nom</th>
+                <td>{{ constat.BSocieteAssuranceAgenceNom }}</td>
+            </tr>
+            <tr>
+                <th>B_societeAssurance_agence_adresse</th>
+                <td>{{ constat.BSocieteAssuranceAgenceAdresse }}</td>
+            </tr>
+            <tr>
+                <th>B_societeAssurance_agence_pays</th>
+                <td>{{ constat.BSocieteAssuranceAgencePays }}</td>
+            </tr>
+            <tr>
+                <th>B_societeAssurance_agence_tel</th>
+                <td>{{ constat.BSocieteAssuranceAgenceTel }}</td>
+            </tr>
+            <tr>
+                <th>B_societeAssurance_degatsMaterielsAssureParContrat</th>
+                <td>{{ constat.BSocieteAssuranceDegatsMaterielsAssureParContrat ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>B_conducteur_nom</th>
+                <td>{{ constat.BConducteurNom }}</td>
+            </tr>
+            <tr>
+                <th>B_conducteur_prenom</th>
+                <td>{{ constat.BConducteurPrenom }}</td>
+            </tr>
+            <tr>
+                <th>B_conducteur_dateNaissance</th>
+                <td>{{ constat.BConducteurDateNaissance ? constat.BConducteurDateNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>B_conducteur_adresse</th>
+                <td>{{ constat.BConducteurAdresse }}</td>
+            </tr>
+            <tr>
+                <th>B_conducteur_pays</th>
+                <td>{{ constat.BConducteurPays }}</td>
+            </tr>
+            <tr>
+                <th>B_conducteur_tel</th>
+                <td>{{ constat.BConducteurTel }}</td>
+            </tr>
+            <tr>
+                <th>B_conducteur_numPermisComduite</th>
+                <td>{{ constat.BConducteurNumPermisComduite }}</td>
+            </tr>
+            <tr>
+                <th>B_conducteur_categorie</th>
+                <td>{{ constat.BConducteurCategorie }}</td>
+            </tr>
+            <tr>
+                <th>B_conducteur_permisValableJusqua</th>
+                <td>{{ constat.BConducteurPermisValableJusqua ? constat.BConducteurPermisValableJusqua|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>B_degats</th>
+                <td>{{ constat.BDegats }}</td>
+            </tr>
+            <tr>
+                <th>B_observation</th>
+                <td>{{ constat.BObservation }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_constat_index') }}">back to list</a>
+
+    <a href="{{ path('app_constat_edit', {'id': constat.id}) }}">edit</a>
+
+    {{ include('constat/_delete_form.html.twig') }}
+{% endblock %}

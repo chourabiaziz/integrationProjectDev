@@ -1,0 +1,66 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}Voiture{% endblock %}
+
+{% block body %}
+    <h1>Voiture</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ voiture.id }}</td>
+            </tr>
+            <tr>
+                <th>Marque</th>
+                <td>{{ voiture.marque }}</td>
+            </tr>
+            <tr>
+                <th>Modele</th>
+                <td>{{ voiture.modele }}</td>
+            </tr>
+            <tr>
+                <th>Annee_fabrication</th>
+                <td>{{ voiture.anneeFabrication }}</td>
+            </tr>
+            <tr>
+                <th>Numero_serie</th>
+                <td>{{ voiture.numeroSerie }}</td>
+            </tr>
+            <tr>
+                <th>Type_carburant</th>
+                <td>{{ voiture.typeCarburant }}</td>
+            </tr>
+            <tr>
+                <th>Numero_immatriculation</th>
+                <td>{{ voiture.numeroImmatriculation }}</td>
+            </tr>
+            <tr>
+                <th>Kilometrage</th>
+                <td>{{ voiture.kilometrage }}</td>
+            </tr>
+            <tr>
+                <th>Couleur</th>
+                <td>{{ voiture.couleur }}</td>
+            </tr>
+            <tr>
+                <th>Prix_achat</th>
+                <td>{{ voiture.prixAchat }}</td>
+            </tr>
+            <tr>
+                <th>Prix_actuel</th>
+                <td>{{ voiture.prixActuel }}</td>
+            </tr>
+            <tr>
+                <th>Date_achat</th>
+                <td>{{ voiture.dateAchat ? voiture.dateAchat|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_voiture_index') }}">back to list</a>
+
+    <a href="{{ path('app_voiture_edit', {'id': voiture.id}) }}">edit</a>
+
+    {{ include('voiture/_delete_form.html.twig') }}
+{% endblock %}

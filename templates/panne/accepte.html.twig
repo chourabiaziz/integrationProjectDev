@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Panne{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Modifier Panne</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <form   method="post">
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                       
+ 
+                        
+                        <div class="form-group row">
+                            <div class="col-sm-9 offset-sm-3">
+                                <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </form>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de confirmation de suppression -->
+ 
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}Liste des Voitures{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Liste des Voitures</h1>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Marque</th>
+                        <th>Modèle</th>
+                        <th>Numéro de série</th>
+                        <th>Type de carburant</th>
+                        <th>Numéro d'immatriculation</th>
+                        <th>Kilométrage</th>
+                        <th>Prix d'achat</th>
+                        <th>Prix actuel</th>
+                        <th>Date d'achat</th>
+                        <th>Carte grise</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for voiture in voitures %}
+                        <tr>
+                            <td>{{ voiture.id }}</td>
+                            <td>{{ voiture.marque }}</td>
+                            <td>{{ voiture.modele }}</td>
+                            <td>{{ voiture.numeroSerie }}</td>
+                            <td>{{ voiture.typeCarburant }}</td>
+                            <td>{{ voiture.numeroImmatriculation }}</td>
+                            <td>{{ voiture.kilometrage }}</td>
+                            <td>{{ voiture.prixAchat }}</td>
+                            <td>{{ voiture.prixActuel }}</td>
+                            <td>{{ voiture.dateAchat ? voiture.dateAchat|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>
+                                {% if voiture.carteGrise %}
+                                    <img src="{{ asset('uploads/voitures/' ~ voiture.carteGrise) }}" alt="Carte grise de la voiture" style="width: 100px; height: 100px;">
+                                {% endif %}
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <a href="{{ path('app_voiture_show', {'id': voiture.id}) }}" class="btn btn-info btn-sm mr-2">Voir</a>
+                                    <a href="{{ path('app_voiture_edit', {'id': voiture.id}) }}" class="btn btn-primary btn-sm mr-2">Modifier</a>
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="deleteConfirmation('{{ path('app_voiture_delete', {'id': voiture.id}) }}', '{{ csrf_token('delete' ~ voiture.id) }}')">Supprimer</button>
+                                </div>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="12" class="text-center">Aucun enregistrement trouvé</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bouton pour créer une nouvelle voiture -->
+        <div class="text-center mt-3">
+            <a href="{{ path('app_voiture_new') }}" class="btn btn-success">Créer une nouvelle voiture</a>
+        </div>
+    </div>
+
+    <!-- Modal de confirmation de suppression -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <!-- Contenu du modal de confirmation de suppression -->
+    </div>
+    <!-- Fin du Modal -->
+
+    <!-- Script pour la notification de suppression -->
+    <script>
+        function deleteConfirmation(url, token) {
+            $('#deleteModal').modal('show');
+            $('#deleteToken').val(token);
+            $('#deleteForm').attr('action', url);
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Pannes{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Liste des Pannes</h1>
+
+    {% if pannes is not empty %}
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Localisation</th>
+                        <th>Panne</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                        <th></th> {# Nouvelle colonne pour le bouton PDF #}
+                    </tr>
+                </thead>
+                <tbody>
+                {% for panne in pannes %}
+                    <tr>
+                        <td>{{ panne.id }}</td>
+                        <td>{{ panne.localisation }}</td>
+                        <td>{{ panne.panne }}</td>
+                        <td>{{ panne.description }}</td>
+                        <td>{{ panne.date ? panne.date|date('Y-m-d') : '' }}</td>
+                        <td>
+                            <div class="d-flex">
+                                <a href="{{ path('app_panne_show', {'id': panne.id}) }}" class="btn btn-info btn-sm mr-2">Voir</a>
+                                <a href="{{ path('app_panne_accepte', {'id': panne.id}) }}" 
+                                {% if panne.etat %}
+                                    class="btn btn-success btn-sm mr-2"
+                                {% else %} 
+                                     class="btn btn-info btn-sm mr-2"
+                                {% endif %} 
+                                >
+                                {% if panne.etat %}
+                                Accepté
+                                {% else %} 
+                                     Accepter
+                                {% endif %}
+                                </a>
+                                <a href="{{ path('app_panne_edit', {'id': panne.id}) }}" class="btn btn-primary btn-sm mr-2">Modifier</a>
+                                <!-- Bouton de suppression avec fenêtre modale de confirmation -->
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal{{ panne.id }}">
+                                    <i class="fas fa-trash"></i> Supprimer
+                                </button>
+                                <!-- Modal de confirmation de suppression -->
+                                <div class="modal fade" id="deleteModal{{ panne.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ panne.id }}" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteModalLabel{{ panne.id }}">Confirmation de suppression</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Êtes-vous sûr de vouloir supprimer cette panne ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                <form action="{{ path('app_panne_delete', {'id': panne.id}) }}" method="post">
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ panne.id) }}">
+                                                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Fin du modal -->
+                            </div>
+                        </td>
+                        <td>
+                            <!-- Ajoutez un lien pour générer le PDF pour cette panne -->
+                            <a href="{{ path('panne.pdf', {'id': panne.id}) }}" class="btn btn-secondary btn-sm">Générer PDF</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="text-center">Aucun enregistrement trouvé.</p>
+    {% endif %}
+</div>
+{% endblock %}

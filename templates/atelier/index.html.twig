@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Ateliers{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h1 class="text-center mb-0">Liste des Ateliers</h1>
+        </div>
+
+    </div>
+    <input type="text" id="searchInput" class="form-control mb-3" placeholder="Rechercher une atelier...">
+            <div class="container">
+                <div id="searchResults" class="card-columns">
+
+        </div>
+    </div>
+
+    <div class="row">
+        {% if ateliers is not empty %}
+            {% for atelier in ateliers %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ atelier.nom }}</h5>
+                            <p class="card-text"><strong>Adresse:</strong> {{ atelier.adresse }}</p>
+                            <p class="card-text"><strong>Téléphone:</strong> {{ atelier.numeroTelephone }}</p>
+                            <p class="card-text"><strong>Spécialité:</strong> {{ atelier.specialite }}</p>
+                            <p class="card-text"><strong>Heures:</strong> 
+                                {% if atelier.heureOverture %}
+                                    {{ atelier.heureOverture|date('H:i') }} - {{ atelier.heureFermeture|date('H:i') }}
+                                {% else %}
+                                    Non spécifié
+                                {% endif %}
+                            </p>
+                            <p class="card-text"><strong>Avis:</strong> {{ atelier.avis }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ path('app_atelier_show', {'id': atelier.id}) }}" class="btn btn-info mr-2">Voir</a>
+                            <a href="{{ path('app_atelier_edit', {'id': atelier.id}) }}" class="btn btn-primary">Modifier</a>
+                            <!-- Bouton de suppression avec confirmation -->
+                            <button type="button" class="btn btn-danger" onclick="deleteConfirmation('{{ path('app_atelier_delete', {'id': atelier.id}) }}', '{{ csrf_token('delete' ~ atelier.id) }}')">
+                                <span class="fas fa-times"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-md-12">
+                <p class="text-center">Aucun atelier trouvé.</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="{{ path('app_atelier_new') }}" class="btn btn-success">Créer un nouvel Atelier</a>
+    </div>
+</div>
+
+<!-- Modal de confirmation de suppression -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirmation de suppression</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Êtes-vous sûr de vouloir supprimer cet atelier ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <form id="deleteForm" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" id="deleteToken" value="">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                
+                </form>
+                {# Affichage de la pagination #}
+<div class="text-center">
+    {{ knp_pagination_render(ateliers) }}
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fin du Modal -->
+
+<!-- Script pour la confirmation de suppression -->
+<script>
+$(document).ready(function() {
+    $('#searchInput').on('input', function() {
+        var query = $(this).val().toLowerCase();
+
+        $.ajax({
+            url: '{{ path('app_search') }}',
+            data: { query: query },
+            success: function(results) {
+                        console.log('Results:', results);  // Log the results to the console
+                        // Effacer les résultats précédents
+                        $('#searchResults').empty();
+
+                        if (results.length === 0) {
+                            $('#searchResults').hide()
+                            $('#normal').show();
+
+
+                        } else {
+                            // If there are results, display them
+                            $.each(results, function(index, result) {
+                                $('#normal').hide();
+
+                                $('#searchResults').append('<div class="card custom-card mb-3"><div class="card-header">' + result.Nom + '</div><div class="card-body"><p class="card-text">Adresse: ' + result.adresse+ '</p><p class="card-text">Numero téléphone: ' + result.numero + '</p><p class="card-text">Heure ouverture: ' + result.heure_ouverture + '</p><p class="card-text">Heure Fermeture: ' + result.heure_fermeture + '</p><a href="/atelier/' + result.id + '" class="btn btn-primary btn-sm mr-2">Show</a><a href="/atelier/' + result.id + '/edit" class="btn btn-primary btn-sm mr-2">Edit</a></div></div>');
+                            });
+                        }
+                        
+                    }
+                });
+            });
+        });
+</script>
+{% endblock %}
