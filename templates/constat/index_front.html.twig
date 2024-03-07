@@ -42,17 +42,20 @@
 
                 <p class="card-text">{{ constat.localisation }}</p>
                 <p class="card-text">{{ constat.relation }}</p>
+       
+                <a href="{{ path('app\_constat\_show', {'id': constat.id}) }}"
+                    class="btn btn-primary btn-sm mr-2">Show</a>
+        
+        
+                <a href="{{ path('app_constat_edit', {'id': constat.id}) }}"
+                    class="btn btn-primary btn-sm mr-2">Edit</a>
          
-                <a href="{{ path('app\_constat\_show', {'id': constat.id}) }}" class="btn btn-primary btn-sm mr-2 mb-2">Show</a>
+                <a href="{{ path('app_assurance_index_front', {'id': constat.id}) }}"
+                    class="btn btn-primary btn-sm mr-2">Consulter Assurance</a>
 
-                <a href="{{ path('app_constat_edit', {'id': constat.id}) }}" class="btn btn-primary btn-sm mr-2 mb-2">Edit</a>
-                
-                <a href="{{ path('app_assurance_index', {'id': constat.id}) }}" class="btn btn-primary btn-sm mr-2 mb-2">Consulter Assurance</a>
-                
-                <a href="{{ path('constat_pdf', {'id': constat.id}) }}" class="btn btn-secondary btn-sm m-2 mb-2">
-                    <i class="fas fa-file-pdf"></i> Télécharger PDF
-                </a>
-                
+                    <a href="{{ path('constat_pdf', {'id': constat.id}) }}" class="btn btn-secondary btn-sm m-2">
+                        <i class="fas fa-file-pdf"></i> Télécharger PDF
+                    </a>
 
             </div>
 

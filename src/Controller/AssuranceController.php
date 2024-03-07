@@ -17,16 +17,28 @@ class AssuranceController extends AbstractController
     #[Route('/', name: 'app_assurance_index', methods: ['GET'])]
     public function index( Request $request ,AssuranceRepository $assuranceRepository): Response
     {
+        $user = $this->getUser(); //utilisateur connecté
         $searchTerm = $request->query->get('search');
         $assurances = [];
     
-        if ($searchTerm) {
-            // Perform a search in the repository based on the search term
-            $assurances = $assuranceRepository->findBySearchTerm($searchTerm);
-        } else {
-            // If no search term, retrieve all assurances
-            $assurances = $assuranceRepository->findAll();
-        }
+            if ($searchTerm) {
+                // Perform a search in the repository based on the search term
+                $assurances = $assuranceRepository->findBySearchTerm($searchTerm);
+            } else {
+                // If no search term, retrieve all assurances
+                $assurances = $assuranceRepository->findAll();
+            }
+
+            if ($this->isGranted("ROLE_ADMIN")) {
+                return $this->render('assurance/index.html.twig', [
+                    'assurances' => $assuranceRepository->findAll(),
+                ]);
+            }else {
+                return $this->render('assurance/indexClient.html.twig', [
+                    'assurances' => $assuranceRepository->findAll(),
+                ]);       
+             }
+
     
         return $this->render('assurance/index.html.twig', [
             'assurances' => $assurances,
@@ -47,6 +59,10 @@ class AssuranceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $user = $this->getUser(); //utilisateur connecté
+            $assurance->setCreatedby($user);
+
             $entityManager->persist($assurance);
             $entityManager->flush();
 
@@ -55,17 +71,27 @@ class AssuranceController extends AbstractController
 
         return $this->render('assurance/new.html.twig', [
             'assurance' => $assurance,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
+
+
     #[Route('/{id}', name: 'app_assurance_show', methods: ['GET'])]
     public function show(Assurance $assurance): Response
-    {
-        return $this->render('assurance/show.html.twig', [
+    { 
+         if ($this->isGranted("ROLE_ADMIN")) {
+        return $this->render('constat/show.html.twig', [
+            'assurance' => $assurance,
+        ]);
+    } else {
+        return $this->render('assurance/showClient.html.twig', [
             'assurance' => $assurance,
         ]);
     }
+    }
+
+
 
     #[Route('/{id}/edit', name: 'app_assurance_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Assurance $assurance, EntityManagerInterface $entityManager): Response
@@ -79,10 +105,18 @@ class AssuranceController extends AbstractController
             return $this->redirectToRoute('app_assurance_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('assurance/edit.html.twig', [
-            'assurance' => $assurance,
-            'form' => $form,
-        ]);
+        if ($this->isGranted("ROLE_ADMIN")) {
+            return $this->render('assurance/edit.html.twig', [
+                'assurance' => $assurance,
+                'form' => $form->createView(),
+            ]);
+        } else {
+            return $this->render('assurance/editClient.html.twig', [
+                'assurance' => $assurance,
+                'form' => $form,
+            ]);
+        }
+    
     }
 
     #[Route('/{id}', name: 'app_assurance_delete', methods: ['POST'])]

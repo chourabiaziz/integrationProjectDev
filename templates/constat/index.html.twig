@@ -27,7 +27,7 @@
 
 <form method="GET" action="{{ path('app_constat_index') }}">
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Rechercher pA preneur prenom" name="search">
+        <input type="text" class="form-control" placeholder="Rechercher  preneur " name="search">
         <button class="btn btn-outline-secondary" type="submit">Rechercher</button>
     </div>
 </form>
@@ -41,8 +41,7 @@
             <div class="card-body">
 
                 <p class="card-text">{{ constat.localisation }}</p>
-                <p class="card-text">{{ constat.ASocieteAssuranceNom }}</p>
-
+                <p class="card-text">{{ constat.relation }}</p>
 
                 <a href="{{ path('app\_constat\_show', {'id': constat.id}) }}"
                     class="btn btn-primary btn-sm mr-2">Show</a>
@@ -50,6 +49,10 @@
                     class="btn btn-primary btn-sm mr-2">Edit</a>
                 <a href="{{ path('app_assurance_index', {'id': constat.id}) }}"
                     class="btn btn-primary btn-sm mr-2">Consulter Assurance</a>
+
+                    <a href="{{ path('constat_pdf', {'id': constat.id}) }}" class="btn btn-secondary btn-sm m-2">
+                        <i class="fas fa-file-pdf"></i> Télécharger PDF
+                    </a>
 
             </div>
 
@@ -59,6 +62,6 @@
         {% endfor %}
     </div>
 </div>
-<div class=""><a href="{{ path('app_constat_new') }}" class="btn btn-success">Create new</a>
+
 </div>
 {% endblock %}

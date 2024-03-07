@@ -1,0 +1,55 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}Assurance{% endblock %}
+
+{% block body %}
+    
+
+    <div class="container mt-4">
+        
+         <div class="container mt-5 text-center">
+        <h1 class="display-4 font-weight-bold text-primary">
+            <span class="text-shadow"> Détails du Assurance</span>
+        </h1>
+    </div>
+    
+    
+        <ul class="list-group mt-3">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                id:
+                <span class="badge badge-primary badge-pill">{{ assurance.id }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Nom Assurance:
+                <span class="badge badge-primary badge-pill">{{ assurance.NomAssurance }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+               adresse Assurance:
+                <span class="badge badge-primary badge-pill">{{ assurance.adresseAssurance }}</span>
+            </li>    
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                 codePostal Assurance:
+                <span class="badge badge-primary badge-pill">{{ assurance.codePostalAssurance }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+               tel Assurance
+                <span class="badge badge-primary badge-pill">{{ assurance.telAssurance }}</span>
+            </li> 
+             <li class="list-group-item d-flex justify-content-between align-items-center">
+                Email Assurance
+                <span class="badge badge-primary badge-pill">{{ assurance.emailAssurance }}</span>
+            </li>      
+     </ul>
+
+
+</div>
+    <div class="mt-3">
+        <a href="{{ path('app_assurance_index') }}" class="btn btn-secondary">Retour à la liste</a>
+        <a href="{{ path('app_assurance_edit', {'id': assurance.id}) }}" class="btn btn-primary">Modifier</a>
+        
+        <div class="btn btn-primary">
+            {{ include('assurance/_delete_form.html.twig') }}
+        </div>
+        
+    </div>
+{% endblock %}

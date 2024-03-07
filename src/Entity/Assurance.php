@@ -6,6 +6,7 @@ use App\Repository\AssuranceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AssuranceRepository::class)]
 class Assurance
@@ -16,22 +17,54 @@ class Assurance
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le nom Assurance doit être non vide")]
+    #[Assert\Length(
+        min: 5,
+        minMessage: "Entrer un nom Assurance d'au moins 5 caractères"
+    )]
     private ?string $nomAssurance = null;
 
+
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "L'adresse doit être non vide")]
+    #[Assert\Length(
+        min: 5,
+        minMessage: "Entrer une adresse  d'au moins 5 caractères"
+    )]
     private ?string $adresseAssurance = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le code postal doit être non vide")]
+    #[Assert\Regex(
+    pattern :"/^\d{4}$/",
+    message :"Le code postal doit être un nombre de 4 chiffres."
+)]
     private ?string $codePostalAssurance = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $telAssurance = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message :"Le numéro de téléphone ne peut pas être vide.")]
+     #[Assert\Regex(
+    pattern :"/^\d{8}$/",
+    message :"Le numéro de téléphone doit contenir exactement 8 chiffres."
+)]
+    private ?string $telAssurance = null;
+
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"L'adresse e-mail ne peut pas être vide.")]
+    #[Assert\Email(
+    message:"L'adresse e-mail '{{ value }}' n'est pas une adresse e-mail valide."
+)]
     private ?string $emailAssurance = null;
 
     #[ORM\OneToMany(targetEntity: Constat::class, mappedBy: 'relation')]
     private Collection $constats;
+
+    #[ORM\ManyToOne(inversedBy: 'assurances')]
+    private ?User $createdby = null;
 
     public function __construct()
     {
@@ -102,6 +135,20 @@ class Assurance
 
         return $this;
     }
+
+
+    public function getCreatedby(): ?User
+    {
+        return $this->createdby;
+    }
+
+    public function setCreatedby(?User $createdby): static
+    {
+        $this->createdby = $createdby;
+
+        return $this;
+    }
+
 
     /**
      * @return Collection<int, Constat>

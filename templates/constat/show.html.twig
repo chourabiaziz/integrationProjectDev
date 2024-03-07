@@ -12,7 +12,10 @@
     </div>
 
     <ul class="list-group mt-3">
-        
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            id:
+            <span class="badge badge-primary badge-pill">{{ constat.id }}</span>
+        </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
             Heure:
             <span class="badge badge-primary badge-pill">{{ constat.heure ? constat.heure | date('H:i:s') : '' }}</span>
@@ -82,43 +85,10 @@
 
 
         <li class="list-group-item d-flex justify-content-between align-items-center">
-            A_societeAssurance_nom:
-            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceNom }}</span>
+            societe Assurance nom:
+            <span class="badge badge-primary badge-pill">{{ constat.relation }}</span>
         </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            A_societeAssurance_numContrat:
-            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceNumContrat }}</span>
-        </li>
-
-
-
-
-
-
-
-
-
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            A_societeAssurance_numCarteVerte:
-            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceNumCarteVerte ? 'Oui' : 'Non' }}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            A_societeAssurance_attestationValable_du:
-            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceAttestationValableDu ? constat.ASocieteAssuranceAttestationValableDu|date('Y-m-d') : '' }}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            Nom du A_societeAssurance_attestationValable_au:
-            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceAttestationValableAu ? constat.ASocieteAssuranceAttestationValableAu|date('Y-m-d') : '' }}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            A_societeAssurance_agence_nom:
-            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceAgenceNom }}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            A_societeAssurance_agence_adresse:
-            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceAgenceAdresse }}</span>
-        </li>
-
+       
         
         <li class="list-group-item d-flex justify-content-between align-items-center">
             A_societeAssurance_agence_pays:
@@ -130,46 +100,6 @@
         </li>
 
         
-
-
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            A vehicule moteur marque:
-            <span class="badge badge-primary badge-pill">{{ constat.AVehiculeMoteurMarque ? 'Oui' : 'Non' }}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            A_vehicule_moteur_numImmatriculation:
-            <span class="badge badge-primary badge-pill">{{ constat.AVehiculeMoteurNumImmatriculation }}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            Nom du A_vehicule_moteur_paysImmatriculation:
-            <span class="badge badge-primary badge-pill">{{ constat.AVehiculeMoteurPaysImmatriculation }}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            A_vehicule_remorque_numImmatriculation:
-            <span class="badge badge-primary badge-pill">{{ constat.AVehiculeRemorqueNumImmatriculation }}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            A_vehicule_remorque_paysImmatriculation:
-            <span class="badge badge-primary badge-pill">{{ constat.AVehiculeRemorquePaysImmatriculation }}</span>
-        </li>
-
-
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            A_societeAssurance_nom:
-            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceNom }}</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            A_societeAssurance_numContrat:
-            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceNumContrat }}</span>
-        </li>
-
-
-
-
-
-
-
-
 
         <li class="list-group-item d-flex justify-content-between align-items-center">
             A_societeAssurance_degatsMaterielsAssureParContrat:
@@ -189,11 +119,6 @@
             <span class="badge badge-primary badge-pill">{{ constat.AConducteurDateNaissance ? constat.AConducteurDateNaissance|date('Y-m-d') : '' }}</span>
         </li>
 
-        
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            A_societeAssurance_agence_pays:
-            <span class="badge badge-primary badge-pill">{{ constat.ASocieteAssuranceAgencePays }}</span>
-        </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
             A_conducteur_adresse:
             <span class="badge badge-primary badge-pill">{{ constat.AConducteurAdresse }}</span>
@@ -305,11 +230,11 @@
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
             B_societeAssurance_attestationValable_du:
-            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceAttestationValableDu ? constat.ASocieteAssuranceAttestationValableDu|date('Y-m-d') : '' }}</span>
+            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceAttestationValableDu ? constat.BSocieteAssuranceAttestationValableDu|date('Y-m-d') : '' }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
              B_societeAssurance_attestationValable_au:
-            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceAttestationValableAu ? constat.ASocieteAssuranceAttestationValableAu|date('Y-m-d') : '' }}</span>
+            <span class="badge badge-primary badge-pill">{{ constat.BSocieteAssuranceAttestationValableAu ? constat.BSocieteAssuranceAttestationValableAu|date('Y-m-d') : '' }}</span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
             B_societeAssurance_agence_nom:
@@ -439,4 +364,4 @@
         <a href="{{ path('app_constat_delete', {'id': constat.id}) }}" class="btn btn-primary">delete</a>
 
     </div>
-{% endblock %}
+{% endblock %} 

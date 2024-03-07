@@ -7,12 +7,14 @@ use App\Form\ConstatType;
 use App\Repository\ConstatRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use App\Service\UploaderService;
+use App\Service\PdfService;
+
+
 
 
 
@@ -31,53 +33,44 @@ class ConstatController extends AbstractController
         }else {
             return $this->render('xfront_office/constat/index_front.html.twig', [
                 'constats' => $constatRepository->findAll(),
-            ]);        }
+            ]);       
+         }
        
     }
 
+    public function generatePdfConstat(int $id, PdfService $pdf, ConstatRepository $constatRepository) {
+        $constat = $constatRepository->find($id);
+    
+        if (!$constat) {
+            throw $this->createNotFoundException('Constat not found');
+        }
+    
+        $html = $this->render('Constat/show.html.twig', ['constat' => $constat]);
+        $pdf->showPdfFile($html);
+    }
 
 
     #[Route('/new', name: 'app_constat_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager,SluggerInterface $slugger ): Response
+    public function new(Request $request, EntityManagerInterface $entityManager,SluggerInterface $slugger ,UploaderService $uploaderService): Response
     {
     $constat = new Constat();
     $form = $this->createForm(ConstatType::class, $constat);
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+        
         $user = $this->getUser(); //utilisateur connecté
         $constat->setCreatedby($user);
  
-        $imageFilename = $form->get('imageFilename')->getData();
-            // so the PDF file must be processed only when a file is uploaded
-            if ($imageFilename) {
-                /*pour creer le nom de fichier  */
-                // il va detecter originalName de  fichier
-                $originalFilename = pathinfo($imageFilename->getClientOriginalName(), PATHINFO_FILENAME);
-               // apres il va creer un slug de ma original name , il necessite un slugger qui est un service                
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFilename->guessExtension();
-
-                // Move the file to the directory where brochures are stored
-                try {
-                    $imageFilename->move(
-                        $this->getParameter('constats_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-
-                $constat->setImageFilename($newFilename);
-               
-            }
+      /*  $photo = $form->get('photo')->getData();
+        if ($photo) {
+            $directory = $this->getParameter('constats_directory');
+            $constat->setImage($uploaderService->uploadFile($photo, $directory));
+        }   */        
 
             $entityManager->persist($constat);
             $entityManager->flush();
-
-
-        
-
+ 
         return $this->redirectToRoute('app_constat_index', [], Response::HTTP_SEE_OTHER);
     }
 
@@ -91,11 +84,9 @@ class ConstatController extends AbstractController
     #[Route('/{id}', name: 'app_constat_show', methods: ['GET'])]
     public function show(Constat $constat): Response
     {
-
-        
         if ($this->isGranted("ROLE_ADMIN")) {
             return $this->render('constat/show.html.twig', [
-                'show' => $constat,
+                'constat' => $constat,
             ]);
         } else {
             return $this->render('constat/showClient.html.twig', [
@@ -104,8 +95,7 @@ class ConstatController extends AbstractController
         }
     }
 
-
-
+   
     #[Route('/{id}/edit', name: 'app_constat_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Constat $constat, EntityManagerInterface $entityManager): Response
     {
@@ -145,4 +135,11 @@ class ConstatController extends AbstractController
 
         return $this->redirectToRoute('app_constat_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+  
+
+
+
+
 }

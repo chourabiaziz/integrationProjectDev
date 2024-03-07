@@ -47,7 +47,6 @@ class AssuranceRepository extends ServiceEntityRepository
 //    }
 
 
-
  public function searchAssurances($query)
     {
         return $this->createQueryBuilder('a')

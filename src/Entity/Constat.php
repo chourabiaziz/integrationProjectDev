@@ -6,14 +6,16 @@ use App\Repository\ConstatRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 
 
 #[ORM\Entity(repositoryClass: ConstatRepository::class)]
+
+#[Vich\Uploadable]
 class Constat
 {
     #[ORM\Id]
@@ -30,13 +32,25 @@ class Constat
    /* #[ORM\Column(type: Types::DATE_MUTABLE  )]
     private ?\DateTimeInterface $date_accident = null; */
 
+
+    #[ORM\Column(length: 255, nullable:true )]
+    private  $image=null;
+
+    #[Vich\UploadableField(mapping:"constats_images", fileNameProperty:"image")]
+    private $imageFile;
+
+
   
     #[ORM\Column(type: Types::TIME_MUTABLE , nullable:true)]
-    private ?\DateTimeInterface $heure = null;
+    private ?\DateTimeInterface $heure  = null ;
 
 
     #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: "entrez la localisation svp")]
+    #[Assert\NotBlank(message: "La localisation doit être non vide")]
+    #[Assert\Length(
+        min: 5,
+        minMessage: "Entrer La localisation d'au moins 5 caractères"
+    )]
     private ?string $localisation = null;
 
     #[ORM\Column]
@@ -55,38 +69,84 @@ class Constat
 
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le nom Assurance doit être non vide")]
+    #[Assert\Length(
+        min: 3,
+        minMessage: "Entrer un nom Assurance d'au moins 5 caractères"
+    )]
     private ?string $A_preneur_nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le prennom Assurance doit être non vide")]
+    #[Assert\Length(
+        min: 3,
+        minMessage: "Entrer un prennom Assurance d'au moins 5 caractères"
+    )]
     private ?string $A_preneur_prenom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "L adresse doit être non vide")]
+    #[Assert\Length(
+        min: 5,
+        minMessage: "Entrer une adresse  d'au moins 5 caractères"
+    )]
     private ?string $A_preneur_adresse = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le code postal doit être non vide")]
+    #[Assert\Regex(
+    pattern :"/^\d{4}$/",
+    message :"Le code postal doit être un nombre de 4 chiffres."
+)]
     private ?string $A_preneur_codePostal = null;
+
 
     #[ORM\Column(length: 255)]
     private ?string $A_preneur_pays = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message :"Le numéro de téléphone ne peut pas être vide.")]
+     #[Assert\Regex(
+    pattern :"/^\d{8}$/",
+    message :"Le numéro de téléphone doit contenir exactement 8 chiffres."
+)]
     private ?string $A_preneur_tel = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $A_vehicule_moteur_marque = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le nom moteur doit être non vide")]
+    #[Assert\Length(
+        min: 3,
+        minMessage: "Entrer un nom moteur d'au moins 5 caractères"
+    )]
+    private ?string $A_vehicule_moteur_marque = null;
+
+
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Numéro d'immatriculation ne doit pas être vide")]
+    #[Assert\Length(
+    max : 255,
+    maxMessage : "Numéro d'immatriculation doit contenir au maximum {{ limit }} caractères"
+)]
     private ?string $A_vehicule_moteur_numImmatriculation = null;
+
 
     #[ORM\Column(length: 255)]
     private ?string $A_vehicule_moteur_paysImmatriculation = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Numéro d'immatriculation ne doit pas être vide")]
+    #[Assert\Length(
+    max : 255,
+    maxMessage : "Numéro d'immatriculation doit contenir au maximum {{ limit }} caractères")]
     private ?string $A_vehicule_remorque_numImmatriculation = null;
 
     #[ORM\Column(length: 255)]
     private ?string $A_vehicule_remorque_paysImmatriculation = null;
 
+/*
     #[ORM\Column(length: 255)]
     private ?string $A_societeAssurance_nom = null;
 
@@ -101,44 +161,90 @@ class Constat
 
     #[ORM\Column(type: Types::DATE_MUTABLE , nullable: true)]
     private ?\DateTimeInterface $A_societeAssurance_attestationValable_au = null;
-
+*/
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le nom Assurance doit être non vide")]
+    #[Assert\Length(
+        min: 3,
+        minMessage: "Entrer un nom Assurance d'au moins 3 caractères"
+    )]
     private ?string $A_societeAssurance_agence_nom = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "L'adresse doit être non vide")]
+    #[Assert\Length(
+        min: 5,
+        minMessage: "Entrer une adresse  d'au moins 3 caractères"
+    )]
     private ?string $A_societeAssurance_agence_adresse = null;
+
 
     #[ORM\Column(length: 255)]
     private ?string $A_societeAssurance_agence_pays = null;
 
+
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message :"Le numéro de téléphone ne peut pas être vide.")]
+    #[Assert\Regex(
+   pattern :"/^\d{8}$/",
+   message :"Le numéro de téléphone doit contenir exactement 8 chiffres."
+)]
     private ?string $A_societeAssurance_agence_tel = null;
 
     #[ORM\Column]
     private ?bool $A_societeAssurance_degatsMaterielsAssureParContrat = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le nom Assurance doit être non vide")]
+    #[Assert\Length(
+        min: 3,
+        minMessage: "Entrer un nom Assurance d'au moins 5 caractères"
+    )]
     private ?string $A_conducteur_nom = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le prenom Assurance doit être non vide")]
+    #[Assert\Length(
+        min: 3,
+        minMessage: "Entrer un prenom Assurance d'au moins 5 caractères"
+    )]
     private ?string $A_conducteur_prenom = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE , nullable: true)]
     private ?\DateTimeInterface $A_conducteur_dateNaissance = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "L'adresse doit être non vide")]
+    #[Assert\Length(
+        min: 5,
+        minMessage: "Entrer une adresse  d'au moins 5 caractères"
+    )]
     private ?string $A_conducteur_adresse = null;
 
     #[ORM\Column(length: 255)]
     private ?string $A_conducteur_pays = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message :"Le numéro de téléphone ne peut pas être vide.")]
+    #[Assert\Regex(
+   pattern :"/^\d{8}$/",
+   message :"Le numéro de téléphone doit contenir exactement 8 chiffres."
+)]
     private ?string $A_conducteur_tel = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message:"Le numéro de permis de conduire ne doit pas être vide.")]
+    #[Assert\Length(
+    min:5,
+    max:255,
+    minMessage:"Le numéro de permis de conduire doit contenir au moins {{ limit }} caractères.",
+    maxMessage:"Le numéro de permis de conduire ne peut pas dépasser {{ limit }} caractères."
+)]
     private ?string $A_conducteur_numPermisComduite = null;
 
+    
     #[ORM\Column(length: 255)]
     private ?string $A_conducteur_categorie = null;
 
@@ -247,7 +353,7 @@ class Constat
     private ?string $B_conducteur_categorie = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE , nullable: true)]
-    private ?\DateTimeInterface $B_conducteur_permisValableJusqua = null;
+    private ?\DateTimeInterface $B_conducteur_permisValableJusqua ;
 
     #[ORM\Column(length: 255)]
     private ?string $B_degats = null;
@@ -364,8 +470,7 @@ class Constat
     #[ORM\Column]
     private ?int $BindiquationNombreCases = null;
 
-    #[ORM\Column(length: 255, nullable:true )]
-    private string $imageFilename;
+   
 
     #[ORM\ManyToOne(inversedBy: 'constats')]
     private ?User $createdby = null;
@@ -410,10 +515,12 @@ public function setRelation(?Assurance $relation_assurance): static
         return $this->heure;
     }
 
-    public function setHeure(\DateTimeInterface $heure): static
+    public function setHeure(?\DateTimeInterface $heure): self
     {
-        $this->heure = $heure;
-
+        if ($heure !== null) {
+            $this->heure = $heure;
+        }
+    
         return $this;
     }
 
@@ -613,7 +720,7 @@ public function setRelation(?Assurance $relation_assurance): static
     }
 
 
-
+/*
     public function getASocieteAssuranceNom(): ?string
     {
         return $this->A_societeAssurance_nom;
@@ -675,6 +782,7 @@ public function setRelation(?Assurance $relation_assurance): static
         return $this;
     }
 
+    */
     public function getASocieteAssuranceAgenceNom(): ?string
     {
         return $this->A_societeAssurance_agence_nom;
@@ -1247,12 +1355,14 @@ public function setRelation(?Assurance $relation_assurance): static
         return $this->B_conducteur_permisValableJusqua;
     }
 
-    public function setBConducteurPermisValableJusqua(\DateTimeInterface $B_conducteur_permisValableJusqua): static
-    {
+   public function setBConducteurPermisValableJusqua(?\DateTimeInterface $B_conducteur_permisValableJusqua): self
+{
+    if ($B_conducteur_permisValableJusqua !== null) {
         $this->B_conducteur_permisValableJusqua = $B_conducteur_permisValableJusqua;
-
-        return $this;
     }
+
+    return $this;
+}
 
     public function getBDegats(): ?string
     {
@@ -1727,17 +1837,36 @@ public function setRelation(?Assurance $relation_assurance): static
         return $this;
     }
 
-    public function getImageFilename(): string
+  
+
+
+    public function getImage(): ?string
     {
-        return $this->imageFilename ??'';
+        return $this->image ;
     }
 
-    public function setImageFilename(string $imageFilename): self
+    public function setImage(?string $image): self
     {
-        $this->imageFilename = $imageFilename;
+        $this->image = $image;
 
         return $this;
     }
+
+
+    public function  getimageFile(): ?File
+    {
+        return $this->imageFile ;
+    }
+
+    public function setimageFile(?File $imageFile=null)
+    {
+        $this->imageFile = $imageFile;
+
+        return $this;
+    }
+
+
+
     public function getCreatedby(): ?User
     {
         return $this->createdby;

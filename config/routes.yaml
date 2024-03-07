@@ -8,3 +8,8 @@ controllers:
 search_assurances:
     path: /search-assurances
     controller: App\Controller\SearchController::searchAssurances
+
+constat_pdf:
+    path: '/pdf/{id}'
+    controller: 'App\Controller\ConstatController::generatePdfConstat'
+    methods: ['GET']

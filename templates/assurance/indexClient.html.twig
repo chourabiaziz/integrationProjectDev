@@ -4,8 +4,6 @@
 
 {% block stylesheets %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <style>
         .text-shadow {
@@ -31,7 +29,6 @@
         </div>
     </div>
 
-
   <div class="container">
     <div class="card-columns">
     
@@ -54,8 +51,9 @@
     </div>
 </div>
 
- 
     <a href="{{ path('app_assurance_new') }}">Create new</a>
+
+          <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -72,10 +70,12 @@
 
                         if (results.length === 0) {
                             $('#searchResults').hide()
-
+                            $('#normal').show();
                         } else {
                             // If there are results, display them
                             $.each(results, function(index, result) {
+                                $('#normal').hide();
+
                                 $('#searchResults').append('<div class="card custom-card mb-3"><div class="card-header">' + result.NomAssurance + '</div><div class="card-body"><p class="card-text">Adresse: ' + result.adresseAssurance + '</p><p class="card-text">Code Postal: ' + result.codePostalAssurance + '</p><p class="card-text">Téléphone: ' + result.telAssurance + '</p><p class="card-text">Email: ' + result.emailAssurance + '</p><a href="/assurance/' + result.id + '" class="btn btn-primary btn-sm mr-2">Show</a><a href="/assurance/' + result.id + '/edit" class="btn btn-primary btn-sm mr-2">Edit</a></div></div>');
                             });
                         }

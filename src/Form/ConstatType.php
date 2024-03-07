@@ -8,11 +8,14 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
@@ -27,7 +30,8 @@ class ConstatType extends AbstractType
         $builder
       
         
-        ->add('heure' )
+        
+        
 
         ->add('heure' )
         ->add('localisation')
@@ -275,27 +279,15 @@ class ConstatType extends AbstractType
             ->add('BobservationSignal')
             ->add('BindiquationNombreCases')
             ->add('relation', EntityType::class, [
-                'class' => Assurance::class, // Assuming Assurance is the related entity
+                'class' => Assurance::class, 
                 'choice_label' => 'NomAssurance', // Display the NomAssurance property of Assurance
                 'placeholder' => 'Choose an Assurance', // Optional placeholder text
-                // ... other options as needed
+                
             ])
-            ->add('imageFilename', FileType::class, [
+            ->add('imageFile', VichFileType::class, [
                 'label' => 'Votre image d accident',
                 'required' => false,
-                'mapped' => false,
-                'constraints' =>[
-                new Image(['maxSize' => '5000k',
-                'mimeTypes' => [
-                    'image/gif',
-                    'image/jpg',
-                    'image/jpeg',
-                    'image/png',
-                ],
-                'mimeTypesMessage' => 'Please upload a valid PDF document',
-                ]) 
-                ]
-                ])
+            ])
         ;
     }
 
