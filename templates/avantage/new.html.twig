@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Avantage{% endblock %}
+
+{% block body %}
+    <h1>Create new Avantage</h1>
+
+    {{ include('avantage/_form.html.twig') }}
+
+    <a href="{{ path('app_avantage_index') }}">back to list</a>
+{% endblock %}

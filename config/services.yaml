@@ -4,13 +4,18 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    constats_directory: "%kernel.project_dir%/public/uploads/constat"
+    knp_snappy.pdf.binary: '"C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf"'
 services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-
+        autoconfigure: true
+        public: false
+         # Automatically registers your services as commands, event subscribers, etc.
+    Knp\Snappy\Pdf:
+        arguments:
+            - '%knp_snappy.pdf.binary%'
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
@@ -19,6 +24,9 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-
+    App\Entity\:
+        resource: '../src/Entity/'
+        # Exclure les entités spécifiques que vous ne voulez pas autowire
+        exclude: '../src/Entity/{FactureExclue}.php'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

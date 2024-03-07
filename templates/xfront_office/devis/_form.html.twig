@@ -1,0 +1,86 @@
+{{ form_start(form) }}
+
+
+<style>
+	label {
+		color: black;
+		text-decoration: solid;
+	}
+</style>
+
+<div class="form-group row">
+	<label class="col-sm-2 col-form-label">{{ form_label(form.nom) }}
+	</label>
+	<div class="col-sm-10">
+		{{ form_widget(form.nom, { 'attr': {'class': 'form-control form-control-capitalize'} }) }}
+	</div>
+</div>
+
+<div class="form-group row">
+	<label class="col-sm-2 col-form-label">{{ form_label(form.prenom) }}
+	</label>
+	<div class="col-sm-10">
+		{{ form_widget(form.prenom, { 'attr': {'class': 'form-control form-control-capitalize'} }) }}
+	</div>
+</div>
+<div class="form-group row">
+	<label class="col-sm-2 col-form-label">{{ form_label(form.civilite) }}
+	</label>
+	<div class="col-sm-10">
+		{{ form_widget(form.civilite, { 'attr': {'class': 'form-control form-control-capitalize'} }) }}
+	</div>
+</div>
+<div class="form-group row">
+	<label class="col-sm-2 col-form-label">{{ form_label(form.email) }}
+	</label>
+	<div class="col-sm-10">
+		{{ form_widget(form.email, { 'attr': {'class': 'form-control form-control-capitalize'} }) }}
+	</div>
+</div>
+<div class="form-group row">
+	<label class="col-sm-2 col-form-label">{{ form_label(form.telephone) }}
+	</label>
+	<div class="col-sm-10">
+		{{ form_widget(form.telephone, { 'attr': {'class': 'form-control form-control-capitalize'} }) }}
+	</div>
+</div>
+<div class="form-group row">
+	<label class="col-sm-2 col-form-label">{{ form_label(form.voiture) }}
+	</label>
+	<div class="col-sm-10">
+		{{ form_widget(form.voiture, { 'attr': {'class': 'form-control form-control-capitalize'} }) }}
+	</div>
+</div>
+
+<div class="form-group row">
+	<label class="col-sm-2 col-form-label">{{ form_label(form.matricule) }}
+	</label>
+	<div class="col-sm-10">
+		{{ form_widget(form.matricule, { 'attr': {'class': 'form-control form-control-capitalize'} }) }}
+	</div>
+</div>
+<div class="form-group row">
+	<label class="col-sm-2 col-form-label">{{ form_label(form.puissance) }}
+	</label>
+	<div class="col-sm-10">
+		{{ form_widget(form.puissance, { 'attr': {'class': 'form-control form-control-capitalize'} }) }}
+	</div>
+</div>
+<div class="form-group row">
+	<label class="col-sm-2 col-form-label">{{ form_label(form.cylindre) }}
+	</label>
+	<div class="col-sm-10">
+		{{ form_widget(form.cylindre, { 'attr': {'class': 'form-control form-control-capitalize'} }) }}
+	</div>
+</div>
+<div class="form-group row">
+	<label class="col-sm-2 col-form-label">{{ form_label(form.description) }}
+	</label>
+	<div class="col-sm-10">
+		{{ form_widget(form.description, { 'attr': {'class': 'form-control form-control-capitalize'} }) }}
+	</div>
+</div>
+
+<button class="btn btn-success">{{ button_label|default('Envoyer') }}</button>
+
+{{ form_end(form) }}
