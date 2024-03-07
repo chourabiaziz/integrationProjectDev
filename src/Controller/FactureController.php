@@ -9,8 +9,9 @@ use App\Form\FactureType3;
 use App\Repository\FactureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Knp\Snappy\Pdf;
+ use Knp\Snappy\Pdf;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+ 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -24,7 +25,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/facture')]
 class FactureController extends AbstractController
 {
-    private $pdfService;
+     private $pdfService;
 
     public function __construct(Pdf $pdfService)
     {
@@ -101,6 +102,7 @@ class FactureController extends AbstractController
 
 
       
+ 
     }
 
     #[Route('/new', name: 'app_facture_new', methods: ['GET', 'POST'])]
@@ -228,7 +230,7 @@ class FactureController extends AbstractController
 
 
 
-    #[Route('/{id}/ended', name: 'app_facture_show')]
+    #[Route('/{id}/ended/template', name: 'app_facture_show_ended')]
     public function showfacture(Request $request,FactureRepository $fr , Facture $facture, EntityManagerInterface $entityManager): Response
     {
         
@@ -242,10 +244,11 @@ class FactureController extends AbstractController
         else  {
             return $this->render('xfront_office/facture/show.html.twig', [
                 'facture' => $facture,
-              ]);
+               ]);
            
         }
        
+ 
     }
     
 }

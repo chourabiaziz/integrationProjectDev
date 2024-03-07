@@ -16,7 +16,7 @@ class DevisType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-             ->add('typeassurance', ChoiceType::class, [
+              ->add('typeassurance', ChoiceType::class, [
                 'choices' => [
                     'Vol' => 'Vol',
                     'Tous risuqe' => 'Toues risque',
@@ -46,6 +46,7 @@ class DevisType extends AbstractType
                 ],
                 // Autres options facultatives
             ])
+
         ;
     }
 

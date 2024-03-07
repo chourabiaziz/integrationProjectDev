@@ -1,10 +1,15 @@
 {% extends 'base_front.html.twig' %}
 
+<<<<<<< HEAD
 {% block title %}Devis index
+=======
+{% block title %}Offre index
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
 {% endblock %}
 
 {% block body %}
 
+<<<<<<< HEAD
 	<section class="section gradient-banner">
 
 		<div class="shapes-container">
@@ -76,3 +81,105 @@
 		</div>
 	</section>
 {% endblock %}
+=======
+
+<style>
+    .offer-badge {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: red;
+        color: white;
+        margin-right: 10px;
+        padding: 5px;
+        font-weight: bold;
+    }
+</style>
+
+
+<section class="section gradient-banner">
+
+    <div class="shapes-container">
+        <div class="shape" data-aos="fade-down-left" data-aos-duration="1500" data-aos-delay="100"></div>
+        <div class="shape" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100"></div>
+        <div class="shape" data-aos="fade-up-right" data-aos-duration="1000" data-aos-delay="200"></div>
+        <div class="shape" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"></div>
+        <div class="shape" data-aos="fade-down-left" data-aos-duration="1000" data-aos-delay="100"></div>
+        <div class="shape" data-aos="fade-down-left" data-aos-duration="1000" data-aos-delay="100"></div>
+        <div class="shape" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300"></div>
+        <div class="shape" data-aos="fade-down-right" data-aos-duration="500" data-aos-delay="200"></div>
+        <div class="shape" data-aos="fade-down-right" data-aos-duration="500" data-aos-delay="100"></div>
+        <div class="shape" data-aos="zoom-out" data-aos-duration="2000" data-aos-delay="500"></div>
+        <div class="shape" data-aos="fade-up-right" data-aos-duration="500" data-aos-delay="200"></div>
+        <div class="shape" data-aos="fade-down-left" data-aos-duration="500" data-aos-delay="100"></div>
+        <div class="shape" data-aos="fade-up" data-aos-duration="500" data-aos-delay="0"></div>
+        <div class="shape" data-aos="fade-down" data-aos-duration="500" data-aos-delay="0"></div>
+        <div class="shape" data-aos="fade-up-right" data-aos-duration="500" data-aos-delay="100"></div>
+        <div class="shape" data-aos="fade-down-left" data-aos-duration="500" data-aos-delay="0"></div>
+    </div>
+    <div class="container">
+        <div class="row align-items-center">
+
+
+            {% for offre in devis %}
+            <div class="col-md-5 col-lg-3 m-4">
+
+                <div class="card">
+
+                    <div class="offer-badge">
+                        <br>Devis
+                    </div>
+
+                    <a class='btn btn-secondary' href="{{ path('app_devis_show', {'id': offre.id}) }}">
+
+                        <div class="card-header">
+                            <h5>{{ offre.voiture }}
+
+
+                        </div>
+                    </a>
+                    <div class="card-block p-3">
+                        <div id="morris-site-visit">
+                            {% if offre.statut %}
+
+                            <span class="bg-success p-1">demande accepté</span>
+
+
+                            {% elseif offre.statut is null %}
+
+                            <span class="bg-warning p-1">demande en attente</span>
+
+
+                            {% else %}
+
+                            <span class="bg-danger p-1">demande refusé</span>
+
+
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <h5>Aucun offre</h5>
+            {% endfor %}
+        </div>
+        <nav class="app-pagination mt-5">
+            <ul class="pagination justify-content-center">
+                {{ knp_pagination_render(devis) }}
+            </ul>
+        </nav>
+
+    </div>
+
+
+    <br><br><br><br><br><br><br><br>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</section><br><br><br>{% endblock %}
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a

@@ -8,7 +8,8 @@ use App\Form\Contratreponse;
 use App\Form\ContratType;
 use App\Form\ContratType2;
 use App\Form\ContratTypeaffectation;
-use App\Form\ContratTypeEdit;
+ use App\Form\ContratTypeEdit;
+
 use App\Repository\ContratRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
@@ -234,7 +235,8 @@ class ContratController extends AbstractController
 
 
     #[Route('/accepte/{id}', name: 'app_contrat_accepte', methods: ['GET', 'POST'])]
-    public function accepte(Request $request,MailerInterface $mailer ,Contrat $contrat, EntityManagerInterface $entityManager): Response
+     public function accepte(Request $request,MailerInterface $mailer ,Contrat $contrat, EntityManagerInterface $entityManager): Response
+ 
     {
         $form = $this->createForm(Contratreponse::class, $contrat);
         $form->handleRequest($request);
@@ -244,7 +246,7 @@ class ContratController extends AbstractController
             $contrat->setSent(true);
 
             $entityManager->flush();
-
+ 
             $user = $this->getUser();
             $email = (new TemplatedEmail())
                 ->from(new Address('Admin@AssureEase', 'ADMIN'))
@@ -261,6 +263,7 @@ class ContratController extends AbstractController
             } catch (TransportExceptionInterface $e) {
                
             }    
+ 
             return $this->redirectToRoute('app_contrat_index', [], Response::HTTP_SEE_OTHER);
         }
 

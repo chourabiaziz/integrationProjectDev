@@ -16,7 +16,7 @@ class Devis
     
  
 
-  
+
 
     #[ORM\ManyToOne(inversedBy: 'devis')]
     private ?Offre $offre = null;

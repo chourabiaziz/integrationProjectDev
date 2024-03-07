@@ -64,8 +64,6 @@ class Contrat
 
     private ?string $reponse = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $signatureclient = null;
 
         public function __construct()
     {
@@ -263,16 +261,4 @@ class Contrat
 
         return $this;
     }
-
-    public function getSignatureclient(): ?string
-    {
-        return $this->signatureclient;
-    }
-
-    public function setSignatureclient(?string $signatureclient): static
-    {
-        $this->signatureclient = $signatureclient;
-
-        return $this;
-    }
-}
+ }

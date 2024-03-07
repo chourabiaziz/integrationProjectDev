@@ -11,6 +11,7 @@
 
 <head>
 
+<<<<<<< HEAD
 	<!-- Basic Page Needs
 																																																																																																																														  ================================================== -->
 	<meta charset="utf-8">
@@ -22,6 +23,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 	<meta name="author" content="Themefisher">
 	<meta name="generator" content="Themefisher Small Apps Template v1.0">
+=======
+		<!-- Basic Page Needs
+																																																																																																																																																						  ================================================== -->
+		<meta
+		charset="utf-8">
+
+		<!-- Mobile Specific Metas
+																																																																																																																																																						  ================================================== -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="Bootstrap App Landing Template">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+		<meta name="author" content="Themefisher">
+		<meta
+		name="generator" content="Themefisher Small Apps Template v1.0">
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
 
 	<!-- theme meta -->
 	<meta name="theme-name" content="small-apps" />
@@ -207,20 +223,80 @@
 						<a class="nav-link mt-1 dropdown-toggle" href="/offre">
 							nos offres
 
+<<<<<<< HEAD
 						</a>
 
 					</li>
 					{% endif %}
+=======
+							</li>
+						{% endif %}
+						{% if  app.user %}
+
+							<li class="nav-item dropdown  ">
+								<a class="nav-link mt-1 dropdown-toggle" href="/devis">
+									devis
+								</a>
+
+							</li>
+
+							{% else %}
+
+						{% endif %}
+
+						<li class="nav-item dropdown @@pages">
+							<a class="nav-link mt-1 dropdown-toggle" href="#">E-Contstat
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
 
 					<li class="nav-item dropdown @@pages">
 						<a class="nav-link mt-1 dropdown-toggle" href="/constat">E-Contstat
 
+<<<<<<< HEAD
 						</a>
 
 					</li>
 					<li class="nav-item dropdown @@pages">
 						<a class="nav-link mt-1 dropdown-toggle" href="/contrat">Contrat(s)</a>
 
+=======
+						</li>
+						{% if    app.user %}
+
+							<li class="nav-item dropdown @@pages">
+								<a class="nav-link mt-1 dropdown-toggle" href="/contrat">Contrat(s)
+
+								</a>
+
+							</li>
+
+							{% else %}
+
+						{% endif %}
+						{% if    app.user %}
+
+							<li class="nav-item dropdown @@pages">
+								<a class="nav-link mt-1 dropdown-toggle" href="/facture">facture(s)
+
+								</a>
+
+							</li>
+
+							{% else %}
+
+						{% endif %}
+
+
+						<li class="nav-item @@contact">
+							<a class="nav-link mt-1" href="contact.html">Contact</a>
+						</li>
+						{% if app.user %}
+							<li class="nav-item @@contact">
+								<a class="nav-link bg-danger mt-1 bordure   " href="/logout">Déconnexion</a>
+							</li>
+						{% else %}
+							<li class="nav-item @@contact">
+								<a class="nav-link btn btn-success mb-2 mt-1 mr-1" href="/register">Inscription</a>
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
 
 
 					</li>
@@ -254,6 +330,7 @@
 	{% block body %}{% endblock %}
 
 
+<<<<<<< HEAD
 	<!--============================
 																																																																																																																										=            Footer            =
 																																																																																																																										=============================-->
@@ -283,6 +360,37 @@
 									</a>
 								</li>
 							</ul>
+=======
+		<!--============================
+																																																																																																																																																		=            Footer            =
+																																																																																																																																																		=============================-->
+		<footer>
+			<div class="footer-main">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-4 col-md-12 m-md-auto align-self-center">
+							<div class="block">
+								<a href="index.html"><img src="{{asset('assets_front_office/images/logo-alt.png')}}" alt="footer-logo"></a>
+								<!-- Social Site Icons -->
+								<ul class="social-icon list-inline">
+									<li class="list-inline-item">
+										<a href="https://www.facebook.com/themefisher">
+											<i class="ti-facebook"></i>
+										</a>
+									</li>
+									<li class="list-inline-item">
+										<a href="https://twitter.com/themefisher">
+											<i class="ti-twitter"></i>
+										</a>
+									</li>
+									<li class="list-inline-item">
+										<a href="https://www.instagram.com/themefisher/">
+											<i class="ti-instagram"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
 						</div>
 					</div>
 					<div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">

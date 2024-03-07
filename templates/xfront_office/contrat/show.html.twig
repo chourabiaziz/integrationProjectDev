@@ -12,11 +12,19 @@
 <head>
 
 	<!-- Basic Page Needs
+<<<<<<< HEAD
 																																																																																																																																																																		  ================================================== -->
 	<meta charset="utf-8">
 
 	<!-- Mobile Specific Metas
 																																																																																																																																																																		  ================================================== -->
+=======
+																																																																																																																																																						  ================================================== -->
+	<meta charset="utf-8">
+
+	<!-- Mobile Specific Metas
+																																																																																																																																																						  ================================================== -->
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Bootstrap App Landing Template">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -90,9 +98,23 @@
 													<div class="row">
 														<div class="col-4">
 															<h3 class="text-muted mt-99 ng-star-inserted"
+<<<<<<< HEAD
 																style="text-align: center; font-size: 34px"></h3>
 															<h3 class="text-muted mt-99 ng-star-inserted"
 																style="text-align: center; font-size: 34px"></h3>
+=======
+																style="text-align: center; font-size: 34px">
+																{{ contrat.client.email |upper()}}
+
+															</h3>
+															<h3 class="text-muted mt-99 ng-star-inserted"
+																style="text-align: center; font-size: 34px">
+																<img class="img-50  mr-5"
+																	src="{{asset('assets/images/assurance.png')}}"
+																	alt="logo">
+
+															</h3>
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
 														</div>
 
 														<div class="col-4"></div>
@@ -163,8 +185,12 @@
 																<i>{{contrat.client.email|upper()}}</i>
 															</b>
 															à payer
+<<<<<<< HEAD
 															la mensualité de
 															{{contrat.engagement}}(mois),
+=======
+															la mensualité de {{contrat.engagement}}(mois),
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
 															<b>
 																<i>{{contrat.client.email|upper()}}</i>
 															</b>
@@ -200,25 +226,59 @@
 
 														<form action="" method="get">
 															<di6 class="row">
+<<<<<<< HEAD
 																<div class="col-4"></div>
 																<div class="col-4"></div>
 																<div class="col-4"></div>
+=======
+																<div class="col-4">
+																	<h5>
+																		<b>
+																			<i>Signature electronique de
+																				l'entreprise</i>
+																		</b>
+																	</h5>
+
+																</div>
+																<div class="col-4"></div>
+																<div class="col-4">
+																	<h5>
+																		<b>
+																			<i>Signature electronique de client</i>
+																		</b>
+																	</h5>
+																	<div id="signature-pad">
+																		<label for="file-uploadaaa"
+																			class="custom-button">
+																			<span class="custom-button-label">Choisir un
+																				fichier</span>
+																		</label>
+																		<input name="client_sign" id="file-uploadaaa"
+																			class="input-file" type="file">
+																	</div>
+
+																</div>
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
 
 
 													</div>
 
 												</div>
 											</div>
+<<<<<<< HEAD
 											{% if contrat.confirmed %}
 
 
 
 											{% else %}
+=======
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
 											<div class="text-center">
 												<a href="confirme/{{contrat.id}}"
 													class="text-center btn btn-success">Confirmé</a>
 
 											</div>
+<<<<<<< HEAD
 											{% endif %}
 
 
@@ -228,6 +288,35 @@
 										</div>
 
 
+=======
+
+
+											<h6 class="text-center">
+												Vous n'avez pas d'image de votre signature ?
+												</form>
+												<button onclick="toggleFrame()">CLiquer ici</button>
+											</h6>
+											<br><br>
+
+
+											<div id="text-container" style="display: none;">
+												<iframe id="iframe" src="https://createmysignature.com/fr"
+													height="500px" width="500px" frameborder="0"></iframe>
+											</div>
+										</div>
+
+
+										<script>
+											function toggleFrame() {
+												var frameContainer = document.getElementById('text-container');
+												if (frameContainer.style.display === 'none') {
+													frameContainer.style.display = 'block';
+												} else {
+													frameContainer.style.display = 'none';
+												}
+											}
+										</script>
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
 									</div>
 								</div>
 							</div>

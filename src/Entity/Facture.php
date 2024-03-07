@@ -19,7 +19,7 @@ class Facture
  
     private Collection $contrat;
 
-     
+
 
     #[ORM\Column(nullable: true)]
 
@@ -38,12 +38,14 @@ class Facture
     private ?\DateTime $CreatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'factures')]
-    #[ORM\JoinColumn(nullable: false)]
+     #[ORM\JoinColumn(nullable: false)]
     private ?User $client = null;
 
      
 
-    public function __construct()
+ 
+ 
+     public function __construct()
     {
         $this->contrat = new ArrayCollection();
     }
@@ -77,7 +79,6 @@ class Facture
         return $this;
     }
 
-     
 
     public function isStatut(): ?bool
     {

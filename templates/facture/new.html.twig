@@ -4,8 +4,16 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Générer votre facture</h1>
+<div class="container">
 
-	{{ include('facture/_form.html.twig') }}
+	<div class="card">
+		<div class="card-header">
+			<h1>Générer votre facture</h1>
+		</div>
+		<div class="card-body">{{ include('facture/_form.html.twig') }}
+		</div>
+	</div>
+</div>
+
 
 {% endblock %}

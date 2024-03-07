@@ -40,14 +40,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Facture::class, mappedBy: 'client')]
     private Collection $factures;
 
-   
-
     public function __construct()
     {
         $this->contrats = new ArrayCollection();
         $this->constats = new ArrayCollection();
         $this->factures = new ArrayCollection();
-     }
+    }
 
     public function getId(): ?int
     {
@@ -213,8 +211,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-     
- 
- 
 }
