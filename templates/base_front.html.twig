@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<!--
+ // WEBSITE: https://themefisher.com
+ // TWITTER: https://twitter.com/themefisher
+ // FACEBOOK: https://www.facebook.com/themefisher
+ // GITHUB: https://github.com/themefisher/
+-->
+
+<html lang="en">
+
+<head>
+
+<<<<<<< HEAD
+	<!-- Basic Page Needs
+																																																																																																																														  ================================================== -->
+	<meta charset="utf-8">
+
+	<!-- Mobile Specific Metas
+																																																																																																																														  ================================================== -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Bootstrap App Landing Template">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+	<meta name="author" content="Themefisher">
+	<meta name="generator" content="Themefisher Small Apps Template v1.0">
+=======
+		<!-- Basic Page Needs
+																																																																																																																																																						  ================================================== -->
+		<meta
+		charset="utf-8">
+
+		<!-- Mobile Specific Metas
+																																																																																																																																																						  ================================================== -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="Bootstrap App Landing Template">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+		<meta name="author" content="Themefisher">
+		<meta
+		name="generator" content="Themefisher Small Apps Template v1.0">
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
+
+	<!-- theme meta -->
+	<meta name="theme-name" content="small-apps" />
+
+	<!-- Favicon -->
+	<link rel="icon" href="{{ asset('assets/images/ico.ico') }}" type="image/x-icon">
+	<!-- PLUGINS CSS STYLE -->
+	<link rel="stylesheet" href="{{asset('assets_front_office/plugins/bootstrap/bootstrap.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets_front_office/plugins/themify-icons/themify-icons.css')}}">
+	<link rel="stylesheet" href="{{asset('assets_front_office/plugins/slick/slick.css')}}">
+	<link rel="stylesheet" href="{{asset('assets_front_office/plugins/slick/slick-theme.css')}}">
+	<link rel="stylesheet" href="{{asset('assets_front_office/plugins/fancybox/jquery.fancybox.min.css')}}">
+	<link rel="stylesheet" href="{{asset('assets_front_office/plugins/aos/aos.css')}}">
+
+	<!-- CUSTOM CSS -->
+	<link href="{{asset('assets_front_office/css/style.css')}}" rel="stylesheet">
+
+</head>
+<style>
+	/* CSS */
+	.button-64 {
+		align-items: center;
+		background-image: linear-gradient(144deg, #AF40FF, #5B42F3 50%, #00DDEB);
+		border: 0;
+		box-sizing: border-box;
+		color: #FFFFFF;
+		display: flex;
+		font-family: Phantomsans, sans-serif;
+		font-size: 20px;
+		justify-content: center;
+		line-height: 1em;
+		max-width: 100%;
+		min-width: 140px;
+		padding: 3px;
+		text-decoration: none;
+		user-select: none;
+		-webkit-user-select: none;
+		touch-action: manipulation;
+		white-space: nowrap;
+		cursor: pointer;
+	}
+
+	.button-64:active,
+	.button-64:hover {
+		outline: 0;
+	}
+
+	.button-64 span {
+		padding: 16px 24px;
+		border-radius: 6px;
+		width: 100%;
+		height: 100%;
+		transition: 300ms;
+	}
+
+	.button-64:hover span {
+		background: none;
+	}
+
+	@media (min-width: 768px) {
+		.button-64 {
+			font-size: 24px;
+			min-width: 196px;
+		}
+	}
+</style>
+
+<style>
+	/* CSS */
+	.button-85 {
+		padding: 0.6em 2em;
+		border: none;
+		outline: none;
+		color: rgb(255, 255, 255);
+		background: #111;
+		cursor: pointer;
+		position: relative;
+		z-index: 0;
+		border-radius: 10px;
+		user-select: none;
+		-webkit-user-select: none;
+		touch-action: manipulation;
+	}
+
+	.button-85:before {
+		content: "";
+		background: linear-gradient(45deg,
+				#000000,
+				#6600ff,
+				#000000,
+				#4000ff,
+				#000000,
+				#002bff,
+				#000000,
+				#3700ff,
+				#000000);
+		position: absolute;
+		top: -2px;
+		left: -2px;
+		background-size: 400%;
+		z-index: -1;
+		filter: blur(5px);
+		-webkit-filter: blur(5px);
+		width: calc(100% + 4px);
+		height: calc(100% + 4px);
+		animation: glowing-button-85 20s linear infinite;
+		transition: opacity 0.3s ease-in-out;
+		border-radius: 10px;
+	}
+
+	@keyframes glowing-button-85 {
+		0% {
+			background-position: 0 0;
+		}
+
+		50% {
+			background-position: 400% 0;
+		}
+
+		100% {
+			background-position: 0 0;
+		}
+	}
+
+	.button-85:after {
+		z-index: -1;
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: #222;
+		left: 0;
+		top: 0;
+		border-radius: 10px;
+	}
+</style>
+
+<body style="background-color: rgb(231, 231, 231);" class="body-wrapper" data-spy="scroll" data-target=".privacy-nav">
+
+
+	<nav class="navbar   main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0">
+		<div class="container">
+
+			<p class="button-85"> <a class="navbar-brand" href="index.html"><img class="img-fluid" width="25px"
+						height="150px" src="{{asset('assets_front_office/images/assure.png')}}" alt="screenshot">
+					AssureEase</p>
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="ti-menu"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					{% if app.request.get('_route') == ('app_home') %}
+					<li class="nav-item dropdown active">
+						<a class="nav-link mt-1 dropdown-toggle" href="{{path('app_home')}}">Home
+							<span></span>
+						</a>
+						<!-- Dropdown list -->
+
+					</li>
+					{% else %}
+					<li class="nav-item dropdown">
+						<a class="nav-link mt-1 dropdown-toggle" href="{{path('app_home')}}">Home
+							<span></span>
+						</a>
+						<!-- Dropdown list -->
+
+					</li>
+					{% endif %}
+					{% if app.request.get('_route') == ('app_offre_index') %}
+
+					<li class="nav-item dropdown active">
+						<a class="nav-link mt-1 dropdown-toggle" href="/offre">
+							nos offres
+
+						</a>
+
+					</li>
+
+					{% else %}
+					<li class="nav-item dropdown @@pages">
+						<a class="nav-link mt-1 dropdown-toggle" href="/offre">
+							nos offres
+
+<<<<<<< HEAD
+						</a>
+
+					</li>
+					{% endif %}
+=======
+							</li>
+						{% endif %}
+						{% if  app.user %}
+
+							<li class="nav-item dropdown  ">
+								<a class="nav-link mt-1 dropdown-toggle" href="/devis">
+									devis
+								</a>
+
+							</li>
+
+							{% else %}
+
+						{% endif %}
+
+						<li class="nav-item dropdown @@pages">
+							<a class="nav-link mt-1 dropdown-toggle" href="#">E-Contstat
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
+
+					<li class="nav-item dropdown @@pages">
+						<a class="nav-link mt-1 dropdown-toggle" href="/constat">E-Contstat
+
+<<<<<<< HEAD
+						</a>
+
+					</li>
+					<li class="nav-item dropdown @@pages">
+						<a class="nav-link mt-1 dropdown-toggle" href="/contrat">Contrat(s)</a>
+
+=======
+						</li>
+						{% if    app.user %}
+
+							<li class="nav-item dropdown @@pages">
+								<a class="nav-link mt-1 dropdown-toggle" href="/contrat">Contrat(s)
+
+								</a>
+
+							</li>
+
+							{% else %}
+
+						{% endif %}
+						{% if    app.user %}
+
+							<li class="nav-item dropdown @@pages">
+								<a class="nav-link mt-1 dropdown-toggle" href="/facture">facture(s)
+
+								</a>
+
+							</li>
+
+							{% else %}
+
+						{% endif %}
+
+
+						<li class="nav-item @@contact">
+							<a class="nav-link mt-1" href="contact.html">Contact</a>
+						</li>
+						{% if app.user %}
+							<li class="nav-item @@contact">
+								<a class="nav-link bg-danger mt-1 bordure   " href="/logout">Déconnexion</a>
+							</li>
+						{% else %}
+							<li class="nav-item @@contact">
+								<a class="nav-link btn btn-success mb-2 mt-1 mr-1" href="/register">Inscription</a>
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
+
+
+					</li>
+					<li class="nav-item @@about">
+						<a class="nav-link mt-1" href="/facture">Factures</a>
+					</li>
+					<li class="nav-item @@contact">
+						<a class="nav-link mt-1" href="contact.html">Contact</a>
+					</li>
+					{% if app.user %}
+					<li class="nav-item @@contact">
+						<a class="nav-link mt-1 text-danger" href="/logout">Déconnexion</a>
+					</li>
+					{% else %}
+					<li class="nav-item @@contact">
+						<a class="nav-link mt-1" href="/register">Inscription</a>
+
+					</li>
+					<li class="nav-item @@contact">
+						<a class="nav-link mt-1" href="/login">Connexion</a>
+					</li>
+					{% endif %}
+
+				</ul>
+
+			</div>
+		</div>
+	</nav>
+
+
+	{% block body %}{% endblock %}
+
+
+<<<<<<< HEAD
+	<!--============================
+																																																																																																																										=            Footer            =
+																																																																																																																										=============================-->
+	<footer>
+		<div class="footer-main">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 col-md-12 m-md-auto align-self-center">
+						<div class="block">
+							<a href="index.html"><img src="{{asset('assets_front_office/images/logo-alt.png')}}"
+									alt="footer-logo"></a>
+							<!-- Social Site Icons -->
+							<ul class="social-icon list-inline">
+								<li class="list-inline-item">
+									<a href="https://www.facebook.com/themefisher">
+										<i class="ti-facebook"></i>
+									</a>
+								</li>
+								<li class="list-inline-item">
+									<a href="https://twitter.com/themefisher">
+										<i class="ti-twitter"></i>
+									</a>
+								</li>
+								<li class="list-inline-item">
+									<a href="https://www.instagram.com/themefisher/">
+										<i class="ti-instagram"></i>
+									</a>
+								</li>
+							</ul>
+=======
+		<!--============================
+																																																																																																																																																		=            Footer            =
+																																																																																																																																																		=============================-->
+		<footer>
+			<div class="footer-main">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-4 col-md-12 m-md-auto align-self-center">
+							<div class="block">
+								<a href="index.html"><img src="{{asset('assets_front_office/images/logo-alt.png')}}" alt="footer-logo"></a>
+								<!-- Social Site Icons -->
+								<ul class="social-icon list-inline">
+									<li class="list-inline-item">
+										<a href="https://www.facebook.com/themefisher">
+											<i class="ti-facebook"></i>
+										</a>
+									</li>
+									<li class="list-inline-item">
+										<a href="https://twitter.com/themefisher">
+											<i class="ti-twitter"></i>
+										</a>
+									</li>
+									<li class="list-inline-item">
+										<a href="https://www.instagram.com/themefisher/">
+											<i class="ti-instagram"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
+						<div class="block-2">
+							<!-- heading -->
+							<h6>Product</h6>
+							<!-- links -->
+							<ul>
+								<li><a href="team.html">Teams</a></li>
+								<li><a href="blog.html">Blogs</a></li>
+								<li><a href="FAQ.html">FAQs</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
+						<div class="block-2">
+							<!-- heading -->
+							<h6>Resources</h6>
+							<!-- links -->
+							<ul>
+								<li><a href="sign-up.html">Singup</a></li>
+								<li><a href="sign-in.html">Login</a></li>
+								<li><a href="blog.html">Blog</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
+						<div class="block-2">
+							<!-- heading -->
+							<h6>Company</h6>
+							<!-- links -->
+							<ul>
+								<li><a href="career.html">Career</a></li>
+								<li><a href="contact.html">Contact</a></li>
+								<li><a href="team.html">Investor</a></li>
+								<li><a href="privacy.html">Terms</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
+						<div class="block-2">
+							<!-- heading -->
+							<h6>Company</h6>
+							<!-- links -->
+							<ul>
+								<li><a href="about.html">About</a></li>
+								<li><a href="contact.html">Contact</a></li>
+								<li><a href="team.html">Team</a></li>
+								<li><a href="privacy-policy.html">Privacy Policy</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="text-center bg-dark py-4">
+			<small class="text-secondary">Copyright &copy;
+				<script>
+					document.write(new Date().getFullYear())
+				</script>. Designed &amp; Developed by
+				<a href="https://themefisher.com/">Themefisher</a>
+				</smallclass="text-secondary">
+		</div>
+	</footer>
+
+
+	<!-- To Top -->
+	<div class="scroll-top-to">
+		<i class="ti-angle-up"></i>
+	</div>
+
+	<!-- JAVASCRIPTS -->
+	<script src="{{asset('assets_front_office/plugins/jquery/jquery.min.js')}}"></script>
+	<script src="{{asset('assets_front_office/plugins/bootstrap/bootstrap.min.js')}}"></script>
+	<script src="{{asset('assets_front_office/plugins/slick/slick.min.js')}}"></script>
+	<script src="{{asset('assets_front_office/plugins/fancybox/jquery.fancybox.min.js')}}"></script>
+	<script src="{{asset('assets_front_office/plugins/syotimer/jquery.syotimer.min.js')}}"></script>
+	<script src="{{asset('assets_front_office/plugins/aos/aos.js')}}"></script>
+
+	<script
+		src="{{asset('assets_front_office/https://maps.googleapis.com/maps/api/js?key=AIzaSyAgeuuDfRlweIs7D6uo4wdIHVvJ0LonQ6g')}}"></script>
+	<script src="{{asset('assets_front_office/plugins/google-map/gmap.js')}}"></script>
+
+	<script src="{{asset('assets_front_office/js/script.js')}}"></script>
+</body>
+
+</html>
