@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Renouvellement Contrat
+{% endblock %}
+
+{% block body %}
+<div class="card">
+    <div class="card-header">
+        <h1>Demande de Contrat</h1>
+    </div>
+    <style>
+        dd {
+            text-align: center;
+            justify-content: center;
+        }
+    </style>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-6">
+                <h4>Information sur le Client :</h4>
+
+                <dl>
+                    <dt>Email : </dt>
+                    <dd>{{c.client.email}}</dd>
+
+                    <dt>Num : </dt>
+                    <dd>{{c.client.email}}</dd>
+                    <dt>Année de permis : </dt>
+                    <dd>10-10-2010</dd>
+                    <dt>Classe de permis </dt>
+                    <dd>AA-B</dd>
+
+                </dl>
+            </div>
+            <div class="col-6 ">
+                <h4>Informations sur l'Offre : </h4>
+
+                <dl>
+                    <dt>Titre</dt>
+                    <dd>{{c.offre.titre}}</dd>
+                    <dt>nom d'Assurance</dt>
+                    <dd>{{c.offre.assurance}}</dd>
+                    <dt>contact assurance</dt>
+                    <dd>{{c.offre.emailAssurance}}</dd>
+                    <dd>+216 {{c.offre.numAssurance}}</dd>
+                </dl>
+            </div>
+            <div class="col-6 mt-3">
+                <h4>Couverture d'assurance ancienne :
+
+                </h4>
+
+                <dl>
+                    <dt>No Data</dt>
+                </dl>
+            </div>
+            <div class="col-6 mt-3">
+                <h4>Informations sur le véhicule :
+
+                </h4>
+
+                <dl>
+                    <dt>Matricule</dt>
+                    <dd>102 TN 7500</dd>
+                    <dt>Numéro de châssis (VIN)</dt>
+                    <dd>102 TN 7500</dd>
+                    <dt>Kilométrage</dt>
+                    <dd>276 MK/H</dd>
+                    <dt>Type de carburant</dt>
+                    <dd>Diesel</dd>
+                    <dt>Mise en circulation en</dt>
+                    <dd>12-12-2010</dd>
+                    <dt>Utilisation du véhicule </dt>
+                    <dd>commerciale</dd>
+                    <dt>Valeur déclarée du véhicule</dt>
+                    <dd>150000 dt</dd>
+                    <dt>Lieu de stationnement habituel</dt>
+                    <dd>parking public</dd>
+                    <dt> prix comme neuf </dt>
+                    <dd>450000 dt</dd>
+                </dl>
+            </div>
+
+
+
+        </div>
+
+        {% if not c.confirmed %}
+        <div class="text-center ">
+            <a href="/contrat/accepte/{{c.id}}" class="btn btn-success m-4">Accepte</a>
+            <a href="/contrat/refuse/{{c.id}}" class="btn btn-danger m-4">Refusé</a>
+        </div>
+        {% else %}
+        <a class="btn btn-primary" href="/contrat/{{c.id}}">afficher en mode professionnel</a>
+        {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}

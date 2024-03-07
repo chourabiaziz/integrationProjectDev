@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Renouvellement Contrat
+{% endblock %}
+
+{% block body %}
+<<<<<<< HEAD
+	<h1>Modifier contrat
+	</h1>
+=======
+<h1>Renouvellement</h1>
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
+
+{{ form_start(form) }}
+
+<<<<<<< HEAD
+	<div class="container">
+
+		<div class="card p-5">
+			<div class="form-group row  ">
+				<label class="col-sm-2 col-form-label">{{ form_label(form.couverture) }}
+				</label>
+				<div class="col-sm-10">
+					{{ form_widget(form.couverture, { 'attr': {'class': 'form-control form-control-capitalize' } }) }}
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">{{ form_label(form.prix) }}
+					<b>TND</b>
+				</label>
+				<div class="col-sm-10 ">
+					{{ form_widget(form.prix, { 'attr': {'class': 'form-control form-control-capitalize' } }) }}
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">{{ form_label(form.dateDebut) }}
+				</label>
+				<div class="col-sm-10">
+					{{ form_widget(form.dateDebut, { 'attr': {'class': 'form-control form-control-capitalize'} }) }}
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">{{ form_label(form.dateFin) }}
+				</label>
+				<div class="col-sm-10">
+					{{ form_widget(form.dateFin, { 'attr': {'class': 'form-control form-control-capitalize'} }) }}
+				</div>
+			</div>
+
+
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">{{ form_label(form.engagement) }}
+				</label>
+				<div class="col-sm-10">
+					{{ form_widget(form.engagement, { 'attr': {'class': 'form-control form-control-capitalize' } }) }}
+				</div>
+			</div>
+			<h5>Note de la client :
+				{{contrat.description}}</h5>
+
+			<div class="text-center">
+				<button class="btn btn-primary">{{ button_label|default('mise a jour') }}</button>
+			</div>
+			<br>
+			<br>
+			{{ form_end(form) }}
+
+
+			{{ include('contrat/_delete_form.html.twig') }}
+=======
+<div class="container">
+
+	<div class="card p-5">
+		<div class="form-group row  ">
+			<label class="col-sm-2 col-form-label">{{ form_label(form.couverture) }}
+			</label>
+			<div class="col-sm-10">
+				{{ form_widget(form.couverture, { 'attr': {'class': 'form-control form-control-capitalize' } }) }}
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">{{ form_label(form.prix) }}
+				<b>TND</b>
+			</label>
+			<div class="col-sm-10 ">
+				{{ form_widget(form.prix, { 'attr': {'class': 'form-control form-control-capitalize' } }) }}
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">{{ form_label(form.dateDebut) }}
+			</label>
+			<div class="col-sm-10">
+				{{ form_widget(form.dateDebut, { 'attr': {'class': 'form-control form-control-capitalize'} }) }}
+			</div>
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
+		</div>
+
+<<<<<<< HEAD
+{% endblock %}
+=======
+
+		<div class="form-group row">
+			<label class="col-sm-2 col-form-label">{{ form_label(form.engagement) }}
+			</label>
+			<div class="col-sm-10">
+				{{ form_widget(form.engagement, { 'attr': {'class': 'form-control form-control-capitalize' } }) }}
+			</div>
+		</div>
+		<h5>Description par le client :
+			{{contrat.description}}</h5>
+
+		<div class="text-center"> <button class="btn btn-primary">{{ button_label|default('affecter') }}</button>
+		</div>
+		<br>
+		<br>
+		{{ form_end(form) }}
+
+
+		{{ include('contrat/_delete_form.html.twig') }}
+	</div>
+</div>
+
+{% endblock %}
+>>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a

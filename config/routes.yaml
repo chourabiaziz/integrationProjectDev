@@ -3,3 +3,16 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+
+generate_pdf:
+    path: /generate-pdf
+    controller: App\Controller\FactureController::generatePdf
+
+download_pdf:
+    path: /download-pdf/{filename}
+    controller: App\Controller\FactureController::downloadPdf
+
+search_assurances:
+    path: /search-assurances
+    controller: App\Controller\SearchController::searchAssurances

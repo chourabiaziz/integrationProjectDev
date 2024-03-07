@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Renouvellement Contrat
+{% endblock %}
+
+{% block body %}
+	<h1>
+		Modifier contrat</h1>
+
+	{{ form_start(form) }}
+
+	<h4>
+		contrat   
+								de
+		{{contrat.client}}</h4>
+	<div class="form-group row">
+
+		<div class="col-sm-10"></div>
+	</div>
+
+	<div class="form-group row">
+
+		<div class="col-sm-10">
+			{{ form_widget(form.couverture, { 'attr': {'class': 'form-control form-control-capitalize' , 'hidden' :'hidden'  } }) }}
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">{{ form_label(form.prix) }}
+			<b>TND</b>
+		</label>
+		<div class="col-sm-10 ">
+			{{ form_widget(form.prix, { 'attr': {'class': 'form-control form-control-capitalize' } }) }}
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-sm-2 col-form-label">{{ form_label(form.renew) }}
+			<b>TND</b>
+		</label>
+		<div class="col-sm-10 ">
+			{{ form_widget(form.renew, { 'attr': {'class': 'form-control form-control-capitalize' } }) }}
+		</div>
+	</div>
+
+
+	<button class="btn btn-primary">{{ button_label|default('Mettre à jour') }}</button>
+	<br>
+	<br>
+	{{ form_end(form) }}
+
+	{{ include('contrat/_delete_form.html.twig') }}
+{% endblock %}
