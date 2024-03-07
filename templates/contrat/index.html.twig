@@ -36,15 +36,9 @@
                                     <input type="text" name="search" class="form-control"
                                         placeholder="Vous cherche quelqu'un?">
 
-<<<<<<< HEAD
                                     <button class="btn btn-primary" type="submit">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-search" viewbox="0 0 16 16">
-=======
-                                    <button class="btn btn-primary" type="submit"><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
->>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
                                             <path
                                                 d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                                         </svg>
@@ -71,12 +65,8 @@
                 <td class="text-center">
                     {% if contrat.dateFin %}
                     <span class="bg-success b-2 p-2 bordure">
-<<<<<<< HEAD
                         {{ contrat.engagement }}
                         Mois
-=======
-                        {{ contrat.engagement }} Mois
->>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
                     </span>
                     {% elseif contrat.sent is null %}
                     <span class="bg-warning b-2 p-2 bordure">
@@ -97,18 +87,12 @@
                     {% elseif contrat.statut is null %}
                     <span class="bg-warning b-2 p-2 bordure">
                         Demande</span>
-<<<<<<< HEAD
                     {% elseif contrat.sent %}
                     <span class="bg-warning b-2 p-2 bordure">
                         confirmation par client </span>
                     {% else %}
                     <span class="bg-warning b-2 p-2 bordure">
                         affecter un prix ! </span>
-=======
-                    {% else %}
-                    <span class="bg-danger b-2 p-2 bordure">
-                        Non actif</span>
->>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
                     {% endif %}
                 </td>
                 <td class="text-center">
@@ -130,13 +114,8 @@
                     {% elseif contrat.statut == 0 and contrat.sent == 1 %}
 
                     <a class=" btn-success p-2" style="border-radius: 15px;"
-<<<<<<< HEAD
                         href="{{ path('app_contrat_new_affect', {'id': contrat.id}) }}">
                         <i class="ti-hand-point-left"></i>
-=======
-                        href="{{ path('app_contrat_new_affect', {'id': contrat.id}) }}"> <i
-                            class="ti-hand-point-left"></i>
->>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
                         Affecter prix
                     </a>
 
@@ -163,12 +142,4 @@
         {% endfor %}
         </tbody>
     </table>
-<<<<<<< HEAD
 </div>{% endblock %}
-=======
-
-
-
-</div>
-{% endblock %}
->>>>>>> d167c0f7cd11baeaf686b21aaf2c13507097d88a
