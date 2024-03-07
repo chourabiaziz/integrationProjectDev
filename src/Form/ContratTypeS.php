@@ -12,34 +12,34 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\Image;
 
-class ContratType extends AbstractType
+class ContratTypeS extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-      /*  ->add('client', EntityType::class, [
-            // Autres options de champ
-            'class' => User::class, // Remplacez VotreClasseEntite par la classe de votre entité
-            'constraints' => [
-                new NotNull()
-            ]
-        ])*/
-
-             ->add('couverture')
-             ->add('dateDebut')
-               ->add('engagement', ChoiceType::class, [
-            'required' => true,
-
-            'choices' => [
-                '6 mois' => 6,
-                '12 mois' => 12,
-            ],
-         ])           
-         ->add('description')
-
-          //  ->add('createdBy')
+       
+              ->add('signatureclient', FileType::class, [
+                'label' => 'Votre image d accident',
+                'required' => false,
+                'mapped' => false,
+                'constraints' =>[
+                new Image(['maxSize' => '5000k',
+                'mimeTypes' => [
+                    'image/gif',
+                    'image/jpg',
+                    'image/jpeg',
+                    'image/png',
+                ],
+                'mimeTypesMessage' => 'Please upload a valid PDF document',
+                ]) 
+                ]
+                ])
         ;
+
+         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

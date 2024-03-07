@@ -5,7 +5,39 @@
 
 {% block body %}
 
+	<style>
+		button {
+			cursor: pointer;
+			font-weight: 700;
+			font-family: Helvetica, "sans-serif";
+			transition: all 0.2s;
+			padding: 10px 20px;
+			border-radius: 100px;
+			background: #cfef00;
+			border: 1px solid transparent;
+			display: flex;
+			align-items: center;
+			font-size: 15px;
+		}
 
+		button:hover {
+			background: #015be2;
+		}
+
+		button > svg {
+			width: 34px;
+			margin-left: 10px;
+			transition: transform 0.3s ease-in-out;
+		}
+
+		button:hover svg {
+			transform: translateX(5px);
+		}
+
+		button:active {
+			transform: scale(0.95);
+		}
+	</style>
 	<section class="section gradient-banner">
 		<div class="shapes-container">
 			<div class="shape" data-aos="fade-down-left" data-aos-duration="1500" data-aos-delay="100"></div>
@@ -25,14 +57,122 @@
 			<div class="shape" data-aos="fade-up-right" data-aos-duration="500" data-aos-delay="100"></div>
 			<div class="shape" data-aos="fade-down-left" data-aos-duration="500" data-aos-delay="0"></div>
 		</div>
+
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-md-6 order-2 order-md-1 text-center text-md-left">
 
-					<h5 class="text-white mb-5">
-						{{ include('devis/_form.html.twig') }}
+					<h1>
+						<b>
+							<i>°Simulation a peut prét de cout d'assurance</i>
+						</b>
+					</h1>
 
-					</h5>
+					<style>
+						.hidden {
+							display: none;
+						}
+					</style>
+
+
+					{{ form_start(form) }}
+
+					<form id="form">
+						<div id="step1">
+							<label for="input1">
+								<h3>Sélectionne le type assurance volu</h3>
+
+							</label>
+							<br>
+							<span id="input1">
+								{{ form_widget(form.typeassurance, { 'attr': {'class': 'form-control
+							form-control-capitalize'} }) }}
+							</span>
+
+
+						</div>
+						<div id="step2" class="hidden">
+							<label for="input2">
+								<h3>Puissance du moteur( chauveaux )</h3>
+
+							</label>
+							<br>
+							<span id="input2">
+								{{ form_widget(form.puissance, { 'attr': {'class': 'form-control
+							form-control-capitalize'} }) }}
+							</span>
+
+						</div>
+						<div id="step3" class="hidden">
+							<label for="input3">
+								<h3>Valeur du véhicule</h3>
+
+							</label>
+							<br>
+							<span id="input3">
+								{{ form_widget(form.valeur, { 'attr': {'class': 'form-control
+							form-control-capitalize'} }) }}
+							</span>
+
+						</div>
+						<div id="step4" class="hidden">
+							<label for="input4">
+								<h3>carburant</h3>
+
+							</label>
+							<br>
+							<span id="input4">
+								{{ form_widget(form.carburant, { 'attr': {'class': 'form-control
+							form-control-capitalize'} }) }}
+							</span>
+
+						</div>
+						<div id="step5" class="hidden">
+							<label for="input5">
+								<h3>Utilisation du véhicule
+								</h3>
+
+
+							</label>
+							<br>
+							<span id="input6">
+								{{ form_widget(form.utilisation, { 'attr': {'class': 'form-control
+							form-control-capitalize'} }) }}
+
+
+								<br><br>
+								<button class="btn btn-success">{{ button_label|default('Envoyer') }}</button>
+
+							</span>
+							{{ form_end(form) }}
+						</div>
+
+						<br><br>
+						<button type="button" id="nextButton">
+							<span>Continue</span>
+							<svg width="34" height="34" viewbox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<circle cx="37" cy="37" r="35.5" stroke="black" stroke-width="3"></circle>
+								<path d="M25 35.5C24.1716 35.5 23.5 36.1716 23.5 37C23.5 37.8284 24.1716 38.5 25 38.5V35.5ZM49.0607 38.0607C49.6464 37.4749 49.6464 36.5251 49.0607 35.9393L39.5147 26.3934C38.9289 25.8076 37.9792 25.8076 37.3934 26.3934C36.8076 26.9792 36.8076 27.9289 37.3934 28.5147L45.8787 37L37.3934 45.4853C36.8076 46.0711 36.8076 47.0208 37.3934 47.6066C37.9792 48.1924 38.9289 48.1924 39.5147 47.6066L49.0607 38.0607ZM25 38.5L48 38.5V35.5L25 35.5V38.5Z" fill="black"></path>
+							</svg>
+						</button>
+					</form>
+
+					<script>
+						const form = document.getElementById('form');
+const nextButton = document.getElementById('nextButton');
+let currentStep = 1;
+
+nextButton.addEventListener('click', function () {
+if (currentStep < 5) {
+document.getElementById('step' + currentStep).classList.add('hidden');
+currentStep++;
+document.getElementById('step' + currentStep).classList.remove('hidden');
+} else {
+document.getElementById('step' + currentStep).classList.remove('hidden');
+
+}
+});
+					</script>
 
 
 				</div>

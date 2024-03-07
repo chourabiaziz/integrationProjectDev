@@ -18,9 +18,21 @@ class DevisController extends AbstractController
     #[Route('/', name: 'app_devis_index', methods: ['GET'])]
     public function index(DevisRepository $devisRepository): Response
     {
-        return $this->render('devis/index.html.twig', [
-            'devis' => $devisRepository->findAll(),
-        ]);
+
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->render('devis/index.html.twig', [
+                'devis' => $devisRepository->findAll(),
+            ]);
+         }
+        else  {
+            return $this->render('xfront_office/devis/index.html.twig', [
+                'devis' => $devisRepository->findAll(),
+            ]);
+           
+        }
+
+ 
     }
 
     #[Route('/new/offre/{id}', name: 'app_devis_new', methods: ['GET', 'POST'])]
@@ -32,6 +44,11 @@ class DevisController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $devi->setOffre($offre);
+
+            $total = $devi->getPuissance() * 0.1 +  $devi->getValeur() / 2;
+
+            $devi->setTotal($total);
+
             $entityManager->persist($devi);
             $entityManager->flush();
 

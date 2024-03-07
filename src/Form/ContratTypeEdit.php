@@ -13,21 +13,16 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class ContratType extends AbstractType
+class ContratTypeEdit extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-      /*  ->add('client', EntityType::class, [
-            // Autres options de champ
-            'class' => User::class, // Remplacez VotreClasseEntite par la classe de votre entité
-            'constraints' => [
-                new NotNull()
-            ]
-        ])*/
-
+        
              ->add('couverture')
              ->add('dateDebut')
+             ->add('dateFin')
+             ->add('prix')
                ->add('engagement', ChoiceType::class, [
             'required' => true,
 
@@ -36,10 +31,8 @@ class ContratType extends AbstractType
                 '12 mois' => 12,
             ],
          ])           
-         ->add('description')
-
-          //  ->add('createdBy')
-        ;
+ 
+         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

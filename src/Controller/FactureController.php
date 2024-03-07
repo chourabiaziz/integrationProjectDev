@@ -8,21 +8,99 @@ use App\Form\FactureType2;
 use App\Form\FactureType3;
 use App\Repository\FactureRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use Knp\Snappy\Pdf;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Route('/facture')]
 class FactureController extends AbstractController
 {
-    #[Route('/', name: 'app_facture_index', methods: ['GET'])]
-    public function index(FactureRepository $factureRepository): Response
+    private $pdfService;
+
+    public function __construct(Pdf $pdfService)
     {
+        $this->pdfService = $pdfService;
+    }
+
+    public function generatePdf(Facture $facture , Request $request): Response
+    {
+ 
+        $htmlContent = $this->renderView('facture/pdf.html.twig', [
+            'id' => $facture->getId()
+             ,         'totale'=>$facture->getTotale()
+            ,         'tva'=>$facture->getTva()
+            ,         'createdat'=>$facture->getCreatedAt()
+            ,'facture'=>$facture
+
+    
+    
+    
+    
+    ]);
+        
+        // Générer le PDF à partir du contenu HTML
+        $pdfContent = $this->pdfService->getOutputFromHtml($htmlContent);
+    
+        // Renvoyer le PDF en tant que réponse
+        return new Response(
+            $pdfContent,
+            Response::HTTP_OK,
+            array(
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'attachment; filename="Facture.pdf"'
+            )
+        );
+    }
+    public function downloadPdf(string $filename): Response
+    {
+        // Renvoyer le fichier PDF au client pour le téléchargement
+        return $this->file($filename, 'document.pdf');
+    }
+
+
+    #[Route('/', name: 'app_facture_index', methods: ['GET'])]
+    public function index(FactureRepository $factureRepository,PaginatorInterface $paginator,Request $request): Response
+    {
+
+        $user = $this->getUser();
+
+       
+
+
+
+        if ($this->isGranted('ROLE_ADMIN')) {
+            $pagination = $paginator->paginate(
+
+                $factureRepository->findAllOrderedByAsc(),
+                $request->query->get('page', 1),
+                1
+            );
         return $this->render('facture/index.html.twig', [
-            'factures' => $factureRepository->findAllOrderedByAsc(),
-        ]);
+            'factures' => $pagination  ]);
+        }else{
+            $pagination = $paginator->paginate(
+
+                $factureRepository->findFacturesByClient($user),
+                $request->query->get('page', 1),
+                1
+            );
+            return $this->render('xfront_office/facture/index.html.twig', [
+
+            'factures' => $pagination,  ]);
+
+        }
+
+
+      
     }
 
     #[Route('/new', name: 'app_facture_new', methods: ['GET', 'POST'])]
@@ -36,7 +114,7 @@ class FactureController extends AbstractController
             $entityManager->persist($facture);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_facture_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_facture_etape2', ['id' => $facture->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('facture/new.html.twig', [
@@ -67,7 +145,7 @@ class FactureController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_facture_etape3')]
-    public function show(Request $request, Facture $facture,FactureRepository $fr , EntityManagerInterface $entityManager): Response
+    public function show(Request $request,MailerInterface $mailer , Facture $facture,FactureRepository $fr , EntityManagerInterface $entityManager): Response
     {
         $date = new \DateTime('now');
         $form = $this->createForm(FactureType3::class, $facture);
@@ -84,7 +162,25 @@ class FactureController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $facture->setCreatedAt($date);
             $facture->setStatut(true);
-       
+
+
+
+
+
+
+            $email = (new TemplatedEmail())
+                ->from(new Address('Admin@AssureEase', 'ADMIN'))
+
+                ->to($facture->getClient()->getUserIdentifier())
+                ->subject('New Facture')
+                ->htmlTemplate('email/email_facture.html.twig');
+             
+        try {
+            $mailer->send($email);
+        } catch (TransportExceptionInterface $e) {
+           
+        }    
+
 
         $facture->setTotale(($total + ($total*$facture->getTva())/100 ));
  
@@ -120,13 +216,12 @@ class FactureController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_facture_delete', methods: ['POST'])]
+    #[Route('/delete/{id}', name: 'app_facture_delete')]
     public function delete(Request $request, Facture $facture, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$facture->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($facture);
+             $entityManager->remove($facture);
             $entityManager->flush();
-        }
+        
 
         return $this->redirectToRoute('app_facture_index', [], Response::HTTP_SEE_OTHER);
     }
@@ -138,11 +233,19 @@ class FactureController extends AbstractController
     {
         
  
-
-        return $this->render('facture/template.html.twig', [
-            'facture' => $facture,
- 
-        ]);
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->render('facture/template.html.twig', [
+                'facture' => $facture,
+     
+            ]);
+         }
+        else  {
+            return $this->render('xfront_office/facture/show.html.twig', [
+                'facture' => $facture,
+              ]);
+           
+        }
+       
     }
     
 }

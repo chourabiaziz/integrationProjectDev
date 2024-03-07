@@ -4,92 +4,142 @@
 {% endblock %}
 
 {% block body %}
-	{{now|date('Y-m-d') }}
-	<h1>Tous Les Contrats</h1>
+<h1>Tous Les Contrats</h1>
+<div class="card">
+    <table class="table ">
 
-	<table class="table">
+        <thead>
+            <tr>
+                <th class="text-center">Client</th>
 
-		<thead>
-			<tr>
-				<th class="text-center">Client</th>
+                <th class="text-center">Couverture</th>
+                <th class="text-center">Prix</th>
+                <th class="text-center">De</th>
+                <th class="text-center">Jusqu'à</th>
 
-				<th class="text-center">Couverture</th>
-				<th class="text-center">Prix</th>
-				<th class="text-center">De</th>
-				<th class="text-center">Jusqu'à</th>
-				<th class="text-center">Statut</th>
-				<th class="text-center">Actiions</th>
+                <th class="text-center">Engagement</th>
+                <th class="text-center">Statut</th>
+                <th class="text-center">Consulter</th>
 
-				<th class="text-center">Consulter</th>
-				<th class="text-center"></th>
-			</tr>
-		</thead>
-		<tbody>
-			<div class="mobile-search waves-effect waves-light">
-				<div class="header-search">
-					<div class="main-search morphsearch-search">
-						<div class="input-group">
-							<form method="get">
-								<input type="text" name="search" class="form-control" placeholder="Vous cherche quelqu'un?">
-								<select name="select" class="form-control col-2">
-									<option value="ref">Ref°</option>
-									<option value="assurance">Assurance</option>
-									<option value="client">Client</option>
-								</select>
-								<input class="btn btn-primary" value="Rechercher" type="submit">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
+                <th class="text-center">Actiions</th>
+
+                <th class="text-center"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <div class="mobile-search waves-effect waves-light m-3">
+                <div class="header-search">
+                    <div class="main-search morphsearch-search">
+                        <div class="row">
+                            <div class="input-group col-5">
+                                <form method="get">
+                                    <input type="text" name="search" class="form-control"
+                                        placeholder="Vous cherche quelqu'un?">
+
+                                    <button class="btn btn-primary" type="submit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-search" viewbox="0 0 16 16">
+                                            <path
+                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
 
-			{% for contrat in contrats_searched %}
-				<tr class=" ">
-					<td class="text-center">{{ contrat.client }}</td>
+            {% for contrat in contrats %}
+            <tr class=" ">
+                <td class="text-center">{{ contrat.client }}</td>
 
-					<td class="text-center">{{ contrat.couverture }}</td>
-					<td class="text-center">{{ contrat.prix }}
-						TND</td>
-					<td class="text-center">{{ contrat.dateDebut ? contrat.dateDebut|date('Y-m-d') : '' }}</td>
-					<td class="text-center">{{ contrat.dateFin ? contrat.dateFin|date('Y-m-d') : '' }}</td>
-					<td class="text-center">
+                <td class="text-center">{{ contrat.couverture }}</td>
+                <td class="text-center">{{ contrat.prix }}
+                    TND</td>
+                <td class="text-center">{{ contrat.dateDebut ? contrat.dateDebut|date('Y-m-d') : '' }}</td>
+                <td class="text-center">{{ contrat.dateFin ? contrat.dateFin|date('Y-m-d') : '- - -' }}</td>
+                <td class="text-center">
+                    {% if contrat.dateFin %}
+                    <span class="bg-success b-2 p-2 bordure">
+                        {{ contrat.engagement }}
+                        Mois
+                    </span>
+                    {% elseif contrat.sent is null %}
+                    <span class="bg-warning b-2 p-2 bordure">
+                        Demande</span>
+                    {% else %}
+                    <span class="bg-danger b-2 p-2 bordure">
+                        Non validé</span>
+                    {% endif %}
+                </td>
 
-						{% if contrat.statut == 1 %}
-							<span class="bg-success b-2 p-2 bordure">
-								Actif</span>
-						{% else %}
-							<span class="bg-danger b-2 p-2 bordure">
-								expiré</span>
-						{% endif %}
-					</td>
-					<td class="text-center">
-						{% if not contrat.statut %}
-							<a class=" btn-success p-2" style="border-radius: 15px;" href="{{ path('app_contrat_renew', {'id': contrat.id}) }}">Renouvellement
-								<i class="ti-reload"></i>
-							</a>
 
-						{% else %}
-							<a class="" href="{{ path('app_contrat_edit', {'id': contrat.id}) }}">Edit
-								<i class="ti-pencil"></i>
-							</a>
-						{% endif %}
-					</td>
-					<td class="text-center">
-						<a class="badge-secondary p-2" style="border-radius: 15px;color:rgb(8, 42, 233);" href="{{contrat.id}}">
-							<i class="ti-eye"></i>
-						</a>
-						<a style="border-radius: 15px;" href="{{ path('app_contrat_delete', {'id': contrat.id}) }}">
-							<i class="ti-trash bg-danger p-2 bordure"></i>
-						</a>
-					</td>
-				</tr>
-			</td>
+                <td class="text-center">
 
-		</tbody>
-	</tr>
-{% else %}
-	<tr>
-		<td class="text-center table-danger" colspan="10">Aucun contrat trouvé pour votre recherche</td>
-	</tr>
-{% endfor %}</tbody></table>{% endblock %}
+                    {% if contrat.confirmed == 1 %}
+                    <span class="bg-success b-2 p-2 bordure">
+                        actif
+                    </span>
+                    {% elseif contrat.statut is null %}
+                    <span class="bg-warning b-2 p-2 bordure">
+                        Demande</span>
+                    {% elseif contrat.sent %}
+                    <span class="bg-warning b-2 p-2 bordure">
+                        confirmation par client </span>
+                    {% else %}
+                    <span class="bg-warning b-2 p-2 bordure">
+                        affecter un prix ! </span>
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    <a class="class=btn btn-mat waves-effect waves-light btn-inverse pr-3 pl-3"
+                        style="border-radius: 15px;color:rgb(143, 144, 153);" href="demande/{{contrat.id}}">
+                        <i style="color: rgb(221, 221, 221);" class="ti-eye"></i>
+                    </a>
+
+                </td>
+                <td class="text-center">
+                    {% if contrat.statut %}
+
+                    <a class="" href="{{ path('app_contrat_edit', {'id': contrat.id}) }}">Edit
+                        <i class="ti-pencil"></i>
+                    </a>
+                    {% elseif contrat.statut is null or contrat.sent == 0 %}
+                    Pas d'action
+
+                    {% elseif contrat.statut == 0 and contrat.sent == 1 %}
+
+                    <a class=" btn-success p-2" style="border-radius: 15px;"
+                        href="{{ path('app_contrat_new_affect', {'id': contrat.id}) }}">
+                        <i class="ti-hand-point-left"></i>
+                        Affecter prix
+                    </a>
+
+
+                    {% else %}
+
+                    <a class=" btn-success p-2" style="border-radius: 15px;"
+                        href="{{ path('app_contrat_renew', {'id': contrat.id}) }}">Re-nouvellement
+                        <i class="ti-reload"></i>
+                    </a>
+
+                    {% endif %}
+                </td>
+
+            </tr>
+            </td>
+
+        </tbody>
+        </tr>
+        {% else %}
+        <tr>
+            <td class="text-center table-danger" colspan="10">Aucun contrat trouvé pour votre recherche</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>{% endblock %}

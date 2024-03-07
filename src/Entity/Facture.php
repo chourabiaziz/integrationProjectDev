@@ -19,8 +19,7 @@ class Facture
  
     private Collection $contrat;
 
-    #[ORM\Column(length: 255 , nullable:true)]
-    private ?string $client = null;
+     
 
     #[ORM\Column(nullable: true)]
 
@@ -37,6 +36,12 @@ class Facture
 
     #[ORM\Column(nullable: true)]
     private ?\DateTime $CreatedAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'factures')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $client = null;
+
+     
 
     public function __construct()
     {
@@ -72,17 +77,7 @@ class Facture
         return $this;
     }
 
-    public function getClient(): ?string
-    {
-        return $this->client;
-    }
-
-    public function setClient(string $client): static
-    {
-        $this->client = $client;
-
-        return $this;
-    }
+     
 
     public function isStatut(): ?bool
     {
@@ -140,6 +135,18 @@ class Facture
     public function setCreatedAt(?\DateTime $CreatedAt): static
     {
         $this->CreatedAt = $CreatedAt;
+
+        return $this;
+    }
+
+    public function getClient(): ?User
+    {
+        return $this->client;
+    }
+
+    public function setClient(?User $client): static
+    {
+        $this->client = $client;
 
         return $this;
     }

@@ -12,36 +12,11 @@ class Devis
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+ 
+    
+ 
 
-    #[ORM\Column(length: 255)]
-    private ?string $nom = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $prenom = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $civilite = null;
-
-    #[ORM\Column]
-    private ?int $telephone = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $email = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $voiture = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $matricule = null;
-
-    #[ORM\Column]
-    private ?int $puissance = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $cylindre = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $description = null;
+  
 
     #[ORM\ManyToOne(inversedBy: 'devis')]
     private ?Offre $offre = null;
@@ -49,134 +24,39 @@ class Devis
     #[ORM\Column(nullable: true)]
     private ?bool $statut = null;
 
+ 
+
     #[ORM\Column(length: 255)]
-    private ?string $couverture = null;
+    private ?string $typeassurance = null;
+
+    #[ORM\Column]
+    private ?int $puissance = null;
+
+    #[ORM\Column]
+    private ?int $valeur = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $carburant = null;
+
+    #[ORM\Column(length: 255 , nullable:true)]
+    private ?string $security = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $utilisation = null;
+
+    #[ORM\Column]
+    private ?int $total = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): static
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): static
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getCivilite(): ?string
-    {
-        return $this->civilite;
-    }
-
-    public function setCivilite(string $civilite): static
-    {
-        $this->civilite = $civilite;
-
-        return $this;
-    }
-
-    public function getTelephone(): ?int
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(int $telephone): static
-    {
-        $this->telephone = $telephone;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): static
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getVoiture(): ?string
-    {
-        return $this->voiture;
-    }
-
-    public function setVoiture(string $voiture): static
-    {
-        $this->voiture = $voiture;
-
-        return $this;
-    }
-
-    public function getMatricule(): ?string
-    {
-        return $this->matricule;
-    }
-
-    public function setMatricule(string $matricule): static
-    {
-        $this->matricule = $matricule;
-
-        return $this;
-    }
-
-    public function getPuissance(): ?int
-    {
-        return $this->puissance;
-    }
-
-    public function setPuissance(int $puissance): static
-    {
-        $this->puissance = $puissance;
-
-        return $this;
-    }
-
-    public function getCylindre(): ?string
-    {
-        return $this->cylindre;
-    }
-
-    public function setCylindre(string $cylindre): static
-    {
-        $this->cylindre = $cylindre;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): static
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
+      
+    
+ 
+ 
+ 
     public function getOffre(): ?Offre
     {
         return $this->offre;
@@ -201,14 +81,88 @@ class Devis
         return $this;
     }
 
-    public function getCouverture(): ?string
+   
+
+    public function getTypeassurance(): ?string
     {
-        return $this->couverture;
+        return $this->typeassurance;
     }
 
-    public function setCouverture(string $couverture): static
+    public function setTypeassurance(string $typeassurance): static
     {
-        $this->couverture = $couverture;
+        $this->typeassurance = $typeassurance;
+
+        return $this;
+    }
+
+    public function getPuissance(): ?int
+    {
+        return $this->puissance;
+    }
+
+    public function setPuissance(int $puissance): static
+    {
+        $this->puissance = $puissance;
+
+        return $this;
+    }
+
+    public function getValeur(): ?int
+    {
+        return $this->valeur;
+    }
+
+    public function setValeur(int $valeur): static
+    {
+        $this->valeur = $valeur;
+
+        return $this;
+    }
+
+    public function getCarburant(): ?string
+    {
+        return $this->carburant;
+    }
+
+    public function setCarburant(string $carburant): static
+    {
+        $this->carburant = $carburant;
+
+        return $this;
+    }
+
+    public function getSecurity(): ?string
+    {
+        return $this->security;
+    }
+
+    public function setSecurity(string $security): static
+    {
+        $this->security = $security;
+
+        return $this;
+    }
+
+    public function getUtilisation(): ?string
+    {
+        return $this->utilisation;
+    }
+
+    public function setUtilisation(string $utilisation): static
+    {
+        $this->utilisation = $utilisation;
+
+        return $this;
+    }
+
+    public function getTotal(): ?int
+    {
+        return $this->total;
+    }
+
+    public function setTotal(int $total): static
+    {
+        $this->total = $total;
 
         return $this;
     }

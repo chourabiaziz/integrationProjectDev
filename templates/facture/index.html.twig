@@ -24,7 +24,7 @@
 
 
                     {% endif %}
-                    <div class="card">
+                    <div style="background-color: rgb(240, 240, 240);" class="card">
 
                         <div class="card-block">
                             <div class="row align-items-center">
@@ -39,59 +39,72 @@
                                         TND
                                     </h4>
                                     <h6 class="text-muted m-b-0">
-                                        {{f.CreatedAt|date('d-m-y')}}</h6>
+                                        Envoyée le {{f.CreatedAt|date('d-M-Y')}}</h6>
                                     </p>
                                 </div>
                                 <div class="col-4 text-right">
                                     <i class="ti ti-file f-28"></i>
-                                </div>
-                            </div>
-                        </div>
-                        {% if f.statut is null %}
-                        <div class="card-footer bg-warning">
-                            <div class="row align-items-center">
-                                <div class="col-9">
-                                    <p class="text-white m-b-0">Générer et non finis</p>
-                                </div>
-                                <div class="col-2  "><a href=""><i class="ti-trash"></i></a></div>
-                                <div class="col-1  "><a href=""><i class="ti-pencil-alt"></i></a></div>
-                            </div>
-                        </div>
-                        {% elseif f.statut == true %}
-                        <div class="card-footer bg-c-green">
-                            <div class="row align-items-center">
-                                <div class="col-10">
-                                    <p class="text-white m-b-0 "> Envoyé <i style="color: green;" class="ti-check"></i>
+                                    {% if f.statut is null %}
+
+                                    <p class="text-white m-b-0">Générer et non finis
+
                                     </p>
-                                </div>
-                                <div class="col-1"><a href=""><i class="ti-trash"></i></a></div>
-                                <div class="col-1"><a href=""><i class="ti-pencil-alt"></i></a></div>
-                            </div>
-                        </div>
-                        {% else %}
-                        <div class="card-footer bg-c-purple">
-                            <div class="row align-items-center">
-                                <div class="col-9">
-                                    <p class="text-white m-b-0">prét pour continuer</p>
+
+
+
 
                                 </div>
-                                <div class="col-3 text-right"></div>
                             </div>
+                            {% elseif f.statut == true %}
+
+                            <b style="color: green;">Envoyé</b>
+
+
+
+                            {% else %}
+
+                            <p class="text-white m-b-0">prét pour continuer</p>
+
+
+
+                            {% endif %}
                         </div>
-
-
-                        {% endif %}
-
-
                     </div>
     </div>
-    </a>
 
+    <div class="col-1">
+        <a href="/facture/delete/{{f.id}}">
+            <i style="color: red;" class="ti ti-trash f-28"></i>
+        </a>
+    </div>
 
-    {% else %}
-    <h1>Insérer votre données</h1>
+    </a> <button class="btn btn-secondary" onclick="printFrame('{{ f.id }}')">Imprimer
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-printer"
+            viewBox="0 0 16 16">
+            <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+            <path
+                d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1" />
+        </svg></button>
+</div>
+</a>
+</div>
+<iframe id="myFrame-{{f.id}}" src="{{ path('app_facture_show', { id: f.id }) }}" style="display: none;"></iframe>
+</div>
+</div>
 
-    {% endfor %}
+<script>
+    function printFrame(frameId) {
+        var iframe = document.getElementById("myFrame-" + frameId);
+        var iframeWindow = iframe.contentWindow;
+        iframeWindow.print();
+        console.log('aa')
+    }
+</script>
+
+{% else %}
+<h1>Insérer votre données</h1>
+
+{% endfor %}
 
 
 </div>
@@ -101,4 +114,11 @@
     <a class="btn btn-primary" href="{{ path('app_facture_new') }}">Create new</a>
 
 </div>
+<nav class="app-pagination mt-5">
+    <ul class="pagination justify-content-center">
+        {{
+        knp_pagination_render(factures)
+        }}
+    </ul>
+</nav>
 {% endblock %}

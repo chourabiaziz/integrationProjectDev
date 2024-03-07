@@ -63,4 +63,20 @@ public function findAllOrderedByAsc(): array
          ->getQuery()
         ->getResult();
 }
+
+public function nom($searchQuery, $sort)
+{
+    $query = $this->createQueryBuilder('p')
+        ->leftJoin('p.client', 'c') // Assuming p.client is the relation to client entity
+        ->andWhere('c.email LIKE :searchQuery')
+        ->setParameter('searchQuery', '%' . $searchQuery . '%');
+    
+    if ($sort === 'asc') {
+        $query->orderBy('p.statut', 'ASC');
+    } elseif ($sort === 'desc') {
+        $query->orderBy('p.statut', 'DESC');
+    }
+
+    return $query->getQuery()->getResult();
+}
 }

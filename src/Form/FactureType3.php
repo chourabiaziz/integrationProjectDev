@@ -16,8 +16,7 @@ class FactureType3 extends AbstractType
     {
         $builder
             ->add('tva')
-            ->add('description')
-            ->add('submit', SubmitType::class, [
+             ->add('submit', SubmitType::class, [
                 'label' => 'Confirmer et Terminer',
                 'attr' => ['class' => 'btn btn-success'],
             ]);

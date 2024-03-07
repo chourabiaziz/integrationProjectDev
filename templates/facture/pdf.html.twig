@@ -1,0 +1,198 @@
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="app-wrapper">
+                                <div class="container-xl">
+                                    <div class="row justify-content-center">
+                                        <div class="app-card col-md-14 col-14 ">
+                                            <h3 class="text-muted mt-99 ng-star-inserted"
+                                                style="text-align: right; font-size: 34px">
+                                                AssureEase
+
+                                            </h3>
+                                            <h3 class="text-muted mt-99 ng-star-inserted"
+                                                style="text-align: right; font-size: 34px"></h3>
+
+                                            <h1 class="text-center">
+                                                <b>
+                                                    Facture</b>
+                                            </h1>
+                                            <div class="overlay-content p-3 p-lg-4 rounded">
+                                                <p>
+                                                <h2>
+                                                    <b>
+                                                        Facture n°{{id}}
+
+                                                    </b>
+                                                </h2>
+                                                <br>
+                                                <h6>
+                                                    <i>
+                                                        Adresse : 84 rue du pacha</i>
+                                                </h6>
+                                                <h6>
+                                                    <i>
+                                                        Email enterprise : star.assurance@gmail.com</i>
+                                                </h6>
+                                                <h6>
+                                                    <i>
+                                                        Num Tél :+216 71 234 256</i>
+                                                </h6>
+
+
+                                                <div class="  text-end ">
+
+                                                    <h6>
+                                                        <i>
+                                                            Nom Client :chourabi aziz
+
+                                                        </i>
+                                                    </h6>
+                                                    <h6>
+                                                        <i>
+                                                            Email Client :
+                                                            client@client </i>
+                                                    </h6>
+                                                    <h6>
+                                                        <i>
+                                                            Num Tél :71 777 999
+                                                        </i>
+                                                    </h6>
+                                                </div>
+
+
+                                                </p>
+
+
+                                                <h3>
+                                                    <i>Contrat(s) :
+                                                    </i>
+                                                </h3>
+                                                <div class="table-responsive">
+                                                    <table class="table app-table-hover mb-0 text-left">
+                                                        <thead style="color: black;">
+                                                            <tr style="color: black;">
+                                                                <th class="cell text-center">Contrat REF°</th>
+                                                                <th class="cell text-center">Couverture</th>
+
+                                                                <th class="cell text-center">Voiture</th>
+
+                                                                <th class="cell text-center">Date debut</th>
+
+
+                                                                <th class="cell text-center">Date fin</th>
+                                                                <th class="cell text-center">
+                                                                    <b>Prix</b>
+                                                                </th>
+                                                                <th class="cell text-center">Unité</th>
+
+
+                                                            </tr>
+
+                                                        </thead>
+                                                        {% set totale = 0 %}
+                                                        {% set dr = 0 %}
+                                                        <tbody>
+
+
+                                                            <tr>
+                                                                {% for x in facture.contrat %}
+
+
+                                                                <td class="cell text-center">
+                                                                    {{x.id}}
+                                                                </td>
+                                                                <td class="cell text-center">
+
+                                                                    {{x.couverture}}
+                                                                </td>
+
+                                                                <td class="cell text-center">
+                                                                    102 Tunis 7500
+
+
+                                                                </td>
+
+
+                                                                <td class="cell text-center">
+                                                                    <span class="truncate text-center">
+                                                                        {{x.dateDebut|date('d-m-y')}}
+                                                                    </span>
+                                                                </td>
+
+                                                                <td class="cell text-center">
+                                                                    <span class="truncate">
+
+
+                                                                        {{x.dateFin|date('d-m-y')}}
+
+                                                                    </span>
+                                                                </td>
+                                                                <td class="cell text-center">
+                                                                    <span class="cell-data">
+                                                                        <b>{{x.Prix}}</b>
+
+                                                                    </span>
+                                                                </td>
+                                                                <td class="cell text-center">
+                                                                    <span class="cell-data">
+
+                                                                        DT</span>
+                                                                </td>
+                                                                {% endfor %}
+                                                            </tr>
+                                                        </tbody>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+
+                                                            <pre>
+                                                                 </pre>
+                                                            <td></td>
+                                                            <td class="text-center">TVA %
+                                                            </td>
+
+                                                            <td class="text-center">
+                                                                {{tva}}
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td class="text-center">Total</td>
+                                                            <td class="text-center">
+                                                                {{totale}}
+
+
+                                                                DT
+                                                            </td>
+
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+
+
+
+                                                </div>
+
+
+                                                <br><br><br><br><br>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>

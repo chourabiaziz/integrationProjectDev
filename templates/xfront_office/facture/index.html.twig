@@ -1,0 +1,164 @@
+{% extends 'base_front.html.twig' %}
+
+{% block title %}Offre index
+{% endblock %}
+
+{% block body %}
+
+<style>
+    .offer-badge {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: red;
+        color: white;
+        margin-right: 10px;
+        padding: 5px;
+        font-weight: bold;
+    }
+</style>
+
+
+<section class="section gradient-banner">
+
+    <div class="shapes-container">
+        <div class="shape" data-aos="fade-down-left" data-aos-duration="1500" data-aos-delay="100"></div>
+        <div class="shape" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100"></div>
+        <div class="shape" data-aos="fade-up-right" data-aos-duration="1000" data-aos-delay="200"></div>
+        <div class="shape" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"></div>
+        <div class="shape" data-aos="fade-down-left" data-aos-duration="1000" data-aos-delay="100"></div>
+        <div class="shape" data-aos="fade-down-left" data-aos-duration="1000" data-aos-delay="100"></div>
+        <div class="shape" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300"></div>
+        <div class="shape" data-aos="fade-down-right" data-aos-duration="500" data-aos-delay="200"></div>
+        <div class="shape" data-aos="fade-down-right" data-aos-duration="500" data-aos-delay="100"></div>
+        <div class="shape" data-aos="zoom-out" data-aos-duration="2000" data-aos-delay="500"></div>
+        <div class="shape" data-aos="fade-up-right" data-aos-duration="500" data-aos-delay="200"></div>
+        <div class="shape" data-aos="fade-down-left" data-aos-duration="500" data-aos-delay="100"></div>
+        <div class="shape" data-aos="fade-up" data-aos-duration="500" data-aos-delay="0"></div>
+        <div class="shape" data-aos="fade-down" data-aos-duration="500" data-aos-delay="0"></div>
+        <div class="shape" data-aos="fade-up-right" data-aos-duration="500" data-aos-delay="100"></div>
+        <div class="shape" data-aos="fade-down-left" data-aos-duration="500" data-aos-delay="0"></div>
+    </div>
+    <div class="container">
+        <div class="row align-items-center">
+
+
+            {% for f in factures %}
+
+            <div class="col-xl-3 col-md-6">
+
+                <a href="/facture/{{f.id}}/ended">
+
+                    <div class="card">
+                        <div class="card-header  button-64  text-center ">
+                            <h3 class="text-mutedm-b-0">Facture Ref°
+                                {{f.id}}
+                            </h3>
+                        </div>
+                        <div class="card-block">
+                            <div class="row align-items-center">
+                                <div class="col-8 m-3">
+
+
+
+
+                                    <h4 class="text-c-purple">{{f.totale}}
+                                        TND
+                                    </h4>
+                                    <h6 class="text-muted m-b-0">
+                                        {{f.CreatedAt|date('D-M-Y')}}</h6>
+                                    </p>
+                                </div>
+                                <div class="col-4 text-right">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card-footer bg-c-purple">
+                            <div class="row align-items-center">
+
+                                <div class=" text-center">
+                                    <div class="col-xl-3 col-md-6">
+                                        <a href="/generate-pdf" class="btn btn-primary" id="downloadPdfBtn">Télécharger
+                                            PDF</a>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <button class="btn btn-secondary" onclick="printFrame('{{ f.id }}')">Imprimer
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                                class="bi bi-printer" viewBox="0 0 16 16">
+                                <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+                                <path
+                                    d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1" />
+                            </svg></button>
+                    </div>
+                </a>
+            </div>
+            <iframe id="myFrame-{{f.id}}" src="{{ path('app_facture_show', { id: f.id }) }}"
+                style="display: none;"></iframe>
+
+
+            {% else %}
+            <h1>no données</h1>
+            {% endfor %}
+        </div>
+
+
+    </div>
+
+
+
+    <script>
+        function printFrame(frameId) {
+            var iframe = document.getElementById("myFrame-" + frameId);
+            var iframeWindow = iframe.contentWindow;
+            iframeWindow.print();
+            console.log('aa')
+        }
+    </script>
+
+    </nav>
+</section>
+<script>
+    function downloadPdf() {
+        // Effectuer une requête AJAX vers l'URL de votre contrôleur Symfony pour générer le PDF
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/generate-pdf', true); // Assurez-vous de remplacer '/generate-pdf' par l'URL de votre route Symfony pour la génération de PDF
+        xhr.responseType = 'blob'; // Spécifier que la réponse sera un blob (fichier binaire)
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Créer un objet URL à partir de la réponse pour le blob PDF
+                var blob = new Blob([xhr.response], { type: 'application/pdf' });
+                var url = window.URL.createObjectURL(blob);
+
+                // Créer un élément 'a' pour déclencher le téléchargement du PDF
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'facture.pdf'; // Nom du fichier PDF à télécharger
+                document.body.appendChild(a);
+                a.click();
+
+                // Nettoyer l'objet URL créé
+                window.URL.revokeObjectURL(url);
+            } else {
+                console.error('Erreur lors de la récupération du PDF:', xhr.status);
+            }
+        };
+
+        xhr.onerror = function () {
+            console.error('Erreur réseau lors de la récupération du PDF.');
+        };
+
+        // Envoyer la requête AJAX
+        xhr.send();
+    }
+</script>
+
+
+{% endblock %}

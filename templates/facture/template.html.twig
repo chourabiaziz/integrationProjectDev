@@ -1,9 +1,42 @@
-{% extends 'base.html.twig' %}
+<head>
+	<meta charset="UTF-8">
+	<title>
+		{% block title %}Welcome!
+		{% endblock %}
+	</title>
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 
-{% block title %}Facture
-{% endblock %}
 
-{% block body %}
+	<link
+	rel="icon" href="{{ asset('assets/images/ico.ico') }}" type="image/x-icon">
+	<!-- Google font-->
+	<link
+	href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+	<!-- waves.css -->
+	<link
+	rel="stylesheet" href="{{ asset('assets/pages/waves/css/waves.min.css') }}" type="text/css" media="all">
+	<!-- Required Fremwork -->
+	<link
+	rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap/css/bootstrap.min.css') }}">
+	<!-- waves.css -->
+	<link
+	rel="stylesheet" href="{{ asset('assets/pages/waves/css/waves.min.css') }}" type="text/css" media="all">
+	<!-- themify icon -->
+	<link
+	rel="stylesheet" type="text/css" href="{{ asset('assets/icon/themify-icons/themify-icons.css') }}">
+	<!-- Font Awesome -->
+	<link
+	rel="stylesheet" type="text/css" href="{{ asset('assets/icon/font-awesome/css/font-awesome.min.css') }}">
+	<!-- scrollbar.css -->
+	<link
+	rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.mCustomScrollbar.css') }}">
+	<!-- am chart export.css -->
+	<link
+	rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all"/>
+	<!-- Style.css -->
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}"> {% block stylesheets %}{%
+    endblock %}
+	</head>
 	<h1></h1>
 	<div class="pcoded-inner-content">
 		<div class="main-body">
@@ -63,7 +96,7 @@
 															<h6>
 																<i>
 																	Email Client :
-																																																																																																																																																																																																																																																																																																																		                                                            chourabiaziz@gmail.com
+																																																																																																																																																																																																																																																																																																																																			                                                            chourabiaziz@gmail.com
 
 																</i>
 															</h6>
@@ -212,6 +245,3 @@
 
 
 						</div>
-
-
-					{% endblock %}

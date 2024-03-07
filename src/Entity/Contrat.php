@@ -42,7 +42,7 @@ class Contrat
     #[ORM\Column(nullable: true)]
     private ?int $renew = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column( nullable: true)]
@@ -56,6 +56,16 @@ class Contrat
 
     #[ORM\ManyToOne(inversedBy: 'contrats')]
     private ?User $client = null;
+
+    #[ORM\Column]
+    private ?int $engagement = null;
+
+    #[ORM\Column(length: 255, nullable: true)]    
+
+    private ?string $reponse = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $signatureclient = null;
 
         public function __construct()
     {
@@ -226,6 +236,42 @@ class Contrat
     public function setClient(?User $client): static
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getEngagement(): ?int
+    {
+        return $this->engagement;
+    }
+
+    public function setEngagement(int $engagement): static
+    {
+        $this->engagement = $engagement;
+
+        return $this;
+    }
+
+    public function getReponse(): ?string
+    {
+        return $this->reponse;
+    }
+
+    public function setReponse(string $reponse): static
+    {
+        $this->reponse = $reponse;
+
+        return $this;
+    }
+
+    public function getSignatureclient(): ?string
+    {
+        return $this->signatureclient;
+    }
+
+    public function setSignatureclient(?string $signatureclient): static
+    {
+        $this->signatureclient = $signatureclient;
 
         return $this;
     }

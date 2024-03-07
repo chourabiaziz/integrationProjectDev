@@ -4,47 +4,45 @@
 {% endblock %}
 
 {% block body %}
-<h1>Devis index</h1>
+	<h1>Devis index</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Civilite</th>
-            <th>Telephone</th>
-            <th>Email</th>
-            <th>Statue</th>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Valuer</th>
+				<th>Puissance</th>
+				<th>type assurance</th>
+				<th>carburant</th>
+				<th>utilisation</th>
+				<th>total</th>
 
-            <th>actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for devi in devis %}
-        <tr>
-            <td>{{ devi.id }}</td>
-            <td>{{ devi.nom }}</td>
-            <td>{{ devi.prenom }}</td>
-            <td>{{ devi.civilite }}</td>
-            <td>{{ devi.telephone }}</td>
-            <td>{{ devi.email }}</td>
-            {% if devi.statut is null %}
-            <td> <span class="bg-danger">En attente</span> </td>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for devi in devis %}
+				<tr>
+					<td>{{ devi.id }}</td>
+					<td>{{ devi.valeur}}</td>
+					<td>{{ devi.puissance }}</td>
+					<td>{{ devi.typeassurance }}</td>
+					<td>{{ devi.carburant }}</td>
+					<td>{{ devi.utilisation }}</td>
+					<td>{{ devi.total }}
+						Dt</td>
 
-            {% endif %}
 
-            <td>
-                <a href="{{ path('app_devis_show', {'id': devi.id}) }}">show</a>
-                <a href="{{ path('app_devis_edit', {'id': devi.id}) }}">edit</a>
-            </td>
-        </tr>
-        {% else %}
-        <tr>
-            <td colspan="12">no records found</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+					<td>
+						<a href="{{ path('app_devis_show', {'id': devi.id}) }}">show</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="12">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
 {% endblock %}
